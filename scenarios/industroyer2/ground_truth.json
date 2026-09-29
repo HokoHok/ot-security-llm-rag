@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.0",
+  "scenario": "industroyer2",
+  "purpose": "Instructor-only reference for Industroyer2-like normalized-evidence retrieval evaluation and progressive teaching hints. This file must not be indexed or revealed wholesale to students.",
+  "cases": [
+    {
+      "question_id": "IND2-Q01",
+      "topic": "normal_eng_baseline",
+      "canonical_question": "正常 ENG 維護時，OT-SERVER01 看到的來源 IP、協定與 maintenance ticket 分別是什麼？",
+      "expected_answer": "正常 ENG 維護時，Server 看到 ENG01 的 10.10.60.20 經 TCP/2404 傳送 IEC-104；maintenance ticket MW-2026-001 只存在 ENG 本機紀錄，不會出現在 Server 或 IEC-104 封包。",
+      "required_evidence_ids": [
+        "IND2-N01",
+        "IND2-N03",
+        "IND2-N05"
+      ],
+      "expected_known_facts": [
+        "Authorized ENG Maintenance Console 對 OT-SERVER01 發送 IEC-104 指令。",
+        "Server 觀測到 source_ip=10.10.60.20 與 TCP/2404。",
+        "maintenance ticket MW-2026-001 是 ENG 本機證據，不存在 IEC-104 封包或 Server state。"
+      ],
+      "acceptable_inferences": [
+        "maintenance ticket 可協助解讀操作意圖，但不能從 Server 或封包視角單獨取得。"
+      ],
+      "expected_unknowns": [],
+      "forbidden_claims": [
+        "maintenance ticket 會由 IEC-104 封包傳送給 OT-SERVER01。",
+        "只靠 Server source IP 就能看見正常維護的工單。"
+      ],
+      "hint_levels": [
+        "先分開看 Server 能看到的網路欄位，以及 ENG 本機才保留的欄位。",
+        "比較來源 IP、TCP/2404 與 maintenance ticket 的保存位置。",
+        "查看 IND2-N01、IND2-N03 與 IND2-N05，判斷哪些是 Server／封包證據，哪些是 ENG 本機證據。"
+      ]
+    },
+    {
+      "question_id": "IND2-Q02",
+      "topic": "direct_iec104_attribution",
+      "canonical_question": "ind2_vE_002 中，OT-SERVER01 為什麼能把 Kali direct IEC-104 操作與正常 ENG 維護區分開？",
+      "expected_answer": "此 case 的 Server／PCAP 視角看到來源是 Kali 的 10.10.60.10 經 TCP/2404，而不是正常 ENG 的 10.10.60.20，因此 direct 操作可由來源 IP 區分。",
+      "required_evidence_ids": [
+        "IND2-N08",
+        "IND2-N09"
+      ],
+      "expected_known_facts": [
+        "ind2_vE_002 被正規化為 direct_iec104_attack。",
+        "Server 觀測到 source_ip=10.10.60.10 經 TCP/2404。",
+        "OT state 在此安全模擬中改變為 service disruption。"
+      ],
+      "acceptable_inferences": [
+        "在此 direct case 中，來源 IP 是區分 Kali direct 與正常 ENG 維護的有效線索。"
+      ],
+      "expected_unknowns": [],
+      "forbidden_claims": [
+        "來源 IP 10.10.60.10 證明使用了未記載的漏洞。",
+        "這個安全模擬是已驗證的真實 Industroyer2 惡意程式。"
+      ],
+      "hint_levels": [
+        "先比較 normal ENG case 與 direct case 在 Server 視角的來源 IP。",
+        "確認 direct case 是否仍使用 TCP/2404，以及來源位址是否為 ENG01。",
+        "查看 IND2-N08 與 IND2-N09，區分此 case 的直接來源線索與尚未解析的封包欄位。"
+      ]
+    },
+    {
+      "question_id": "IND2-Q03",
+      "topic": "source_ip_ambiguity",
+      "canonical_question": "為什麼只看到 source_ip=10.10.60.20 不能判定是正常 ENG 維護？",
+      "expected_answer": "因為正常 ENG 維護與 Kali 經 ENG Relay 成功的 case 都可能讓 Server／PCAP 看到 10.10.60.20；來源 IP 本身不足以判定操作意圖或真正發起端。",
+      "required_evidence_ids": [
+        "IND2-N02",
+        "IND2-N21"
+      ],
+      "expected_known_facts": [
+        "正常 ENG baseline 在 Server／PCAP 視角使用 source_ip=10.10.60.20。",
+        "via-ENG relay success 也可能在 Server／PCAP 視角使用 source_ip=10.10.60.20。"
+      ],
+      "acceptable_inferences": [
+        "只使用 Server source IP 會把兩種不同的操作來源混在一起。"
+      ],
+      "expected_unknowns": [
+        "Server source IP 單獨無法顯示最初的發起者或正常維護意圖。"
+      ],
+      "forbidden_claims": [
+        "10.10.60.20 一定代表正常 ENG 維護。",
+        "Server source IP 已經能單獨確認 Kali 沒有介入。"
+      ],
+      "hint_levels": [
+        "先找出 normal ENG 與 via-ENG relay 各自的 Server source IP。",
+        "比較兩個 case 在 Server／PCAP 視角是否有相同來源位址。",
+        "查看 IND2-N02 與 IND2-N21，說明來源 IP 相同時為何還需要其他證據。"
+      ]
+    },
+    {
+      "question_id": "IND2-Q04",
+      "topic": "relay_success_correlation",
+      "canonical_question": "要判斷 Kali 是否經 ENG Relay 成功送出 IEC-104，還需要關聯哪些紀錄？",
+      "expected_answer": "必須關聯 Kali action、ENG Relay 操作紀錄與 Server command／PCAP metadata；Server 只看到 ENG01 的來源 IP，不能單獨區分正常 ENG 與 Kali 經 Relay 的操作。",
+      "required_evidence_ids": [
+        "IND2-N20",
+        "IND2-N24",
+        "IND2-N26"
+      ],
+      "expected_known_facts": [
+        "ind2_vE_004 中 Kali 在 CaddyWiper lockout 前提出經 Relay 的操作要求。",
+        "ENG Relay 紀錄有 accepted=True、iec104_sent=True 與 successful IEC-104 send。",
+        "此 case 的 Server 看到 source_ip=10.10.60.20。",
+        "資料品質說明 Server／PCAP source IP 單獨無法區分正常 ENG 與 Kali via ENG relay。"
+      ],
+      "acceptable_inferences": [
+        "Kali action 與 ENG Relay log 是判斷操作不是正常維護的關鍵關聯證據。"
+      ],
+      "expected_unknowns": [
+        "目前未由 tshark 解析 IEC-104 封包的細部欄位。"
+      ],
+      "forbidden_claims": [
+        "只靠 Server 的 10.10.60.20 就能證明是 Kali 發起。",
+        "Relay connection timeout 等同成功送出 IEC-104。"
+      ],
+      "hint_levels": [
+        "先不要把 Server source IP 當成最初發起者。",
+        "找出哪份紀錄明確寫出 iec104_sent=True。",
+        "查看 IND2-N20、IND2-N24 與 IND2-N26，串起 Kali、ENG Relay 與 Server／PCAP 三個視角。"
+      ]
+    },
+    {
+      "question_id": "IND2-Q05",
+      "topic": "caddywiper_lockout_limit",
+      "canonical_question": "CaddyWiper lockout 後，為什麼不能把 ENG Relay 嘗試當成已送出 IEC-104 指令？",
+      "expected_answer": "lockout 後 Relay 紀錄顯示 accepted=False、iec104_sent=False，表示嘗試在 IEC-104 發送前已被 Safe CaddyWiper lockout 阻擋，不能把它當成 Server 已收到的新指令。",
+      "required_evidence_ids": [
+        "IND2-N15",
+        "IND2-N17"
+      ],
+      "expected_known_facts": [
+        "Safe CaddyWiper lockout 後，ENG relay／recovery 嘗試可能在送出 IEC-104 前被拒絕。",
+        "Relay 操作紀錄出現 accepted=False、iec104_sent=False 與 blocked_by_safe_caddywiper。"
+      ],
+      "acceptable_inferences": [
+        "沒有 iec104_sent=true 或相應 Server command 時，不能把 Relay 嘗試視為成功控制。"
+      ],
+      "expected_unknowns": [],
+      "forbidden_claims": [
+        "CaddyWiper lockout 後 ENG01 仍成功送出新的 IEC-104 指令。",
+        "任何 Relay 連線紀錄都代表 OT-SERVER01 收到控制命令。"
+      ],
+      "hint_levels": [
+        "先檢查 Relay log 中的 iec104_sent 欄位。",
+        "比較「被接受」與「實際送出 IEC-104」是否是同一件事。",
+        "查看 IND2-N15 與 IND2-N17，確認 lockout 發生在事件鏈的哪一段。"
+      ]
+    },
+    {
+      "question_id": "IND2-Q06",
+      "topic": "pcap_data_quality",
+      "canonical_question": "SENSOR01 沒有 tshark 時，PCAP 能提供哪些資訊，又不能證明什麼？",
+      "expected_answer": "目前 Normalizer 只記錄 PCAP 檔案存在、大小與 SHA-256；因為沒有 tshark，尚未解碼 IEC-104 欄位，所以不能把 PCAP 當成已解析的控制內容或完整操作歸因。",
+      "required_evidence_ids": [
+        "IND2-N07",
+        "IND2-N26"
+      ],
+      "expected_known_facts": [
+        "PCAP 檔案存在，但 Normalizer 目前只保留檔案大小與雜湊等中繼資訊。",
+        "SENSOR01 目前沒有 tshark，因此尚未解析 IEC-104 欄位。"
+      ],
+      "acceptable_inferences": [
+        "PCAP metadata 可證明收集到檔案，但不足以單獨重建 IEC-104 指令內容。"
+      ],
+      "expected_unknowns": [
+        "未解碼的 PCAP 無法確認完整 IEC-104 欄位與每個控制命令細節。"
+      ],
+      "forbidden_claims": [
+        "PCAP 已經由 tshark 完整解析 IEC-104 指令。",
+        "只憑 PCAP 檔案大小就能確認操作是正常或惡意。"
+      ],
+      "hint_levels": [
+        "區分 PCAP 檔案中繼資料與封包欄位解碼結果。",
+        "確認 Normalizer 是否真的安裝並使用 tshark。",
+        "查看 IND2-N07 與 IND2-N26 的 data-quality warnings。"
+      ]
+    },
+    {
+      "question_id": "IND2-Q07",
+      "topic": "cross_host_clock_limit",
+      "canonical_question": "ind2_vE_002 的跨主機時間戳可以直接用來判斷因果順序嗎？",
+      "expected_answer": "不可以直接判定；Normalizer 偵測到可能的跨主機時鐘偏移，應保留原始時間戳並以多端事件關聯，不應只依絕對時間推論因果。",
+      "required_evidence_ids": [
+        "IND2-N12"
+      ],
+      "expected_known_facts": [
+        "ind2_vE_002 的 data quality 提示可能存在跨主機 clock offset。",
+        "Normalizer 建議保留原始 timestamps，不要僅依絕對時間推論 causality。"
+      ],
+      "acceptable_inferences": [
+        "事件順序需要搭配主機端紀錄內容與關聯欄位共同判斷。"
+      ],
+      "expected_unknowns": [
+        "目前無法只用跨主機絕對時間精確重建所有事件的先後。"
+      ],
+      "forbidden_claims": [
+        "不同主機時間戳已完全同步，因此可直接證明因果。",
+        "時間最早的紀錄必然就是事件根因。"
+      ],
+      "hint_levels": [
+        "先查看 data-quality warning 是否提到 clock offset。",
+        "區分時間排序與因果關係。",
+        "查看 IND2-N12，說明為何需要保留原始 timestamps 並關聯多端事件。"
+      ]
+    },
+    {
+      "question_id": "IND2-Q08",
+      "topic": "safe_caddywiper_state",
+      "canonical_question": "Safe CaddyWiper 在 ind2_vE_003 對 ENG01 的模擬狀態是什麼？",
+      "expected_answer": "在 ind2_vE_003，Safe CaddyWiper 模擬 ENG01 engineering console、backup、IOA mapping 與 restore 都不可用，並標記 dummy_files_wiped=true；這是安全模擬狀態，不可描述為真實 CaddyWiper 行為已被驗證。",
+      "required_evidence_ids": [
+        "IND2-N18"
+      ],
+      "expected_known_facts": [
+        "eng_console_available、engineering_backup_available、ioa_mapping_available 與 restore_allowed 都是 false。",
+        "dummy_files_wiped=true，reason 指向 simulated engineering workstation impact。"
+      ],
+      "acceptable_inferences": [
+        "此安全模擬用來呈現 lockout 對 ENG01 復原與操作能力的影響。"
+      ],
+      "expected_unknowns": [
+        "現有安全模擬不能證明真實 CaddyWiper 在正式環境的實際行為或影響範圍。"
+      ],
+      "forbidden_claims": [
+        "這份狀態證明真實 CaddyWiper 已在 ENG01 執行。",
+        "dummy_files_wiped 代表正式工程檔案已被刪除。"
+      ],
+      "hint_levels": [
+        "先查看哪些 ENG01 能力被標成 false。",
+        "區分 dummy files 的安全模擬與正式工程檔案。",
+        "查看 IND2-N18 的 Safe CaddyWiper status 與 reason 欄位。"
+      ]
+    },
+    {
+      "question_id": "IND2-Q09",
+      "topic": "direct_vs_relay_source_ip",
+      "canonical_question": "比較 Kali direct IEC-104 與 Kali via ENG Relay 成功時，OT-SERVER01 看到的來源 IP 有何不同？",
+      "expected_answer": "Kali direct case 中 Server 看到 10.10.60.10；Kali via ENG Relay 成功時，ENG01 代表它送出 IEC-104，所以 Server 看到 10.10.60.20。後者不能只靠 source IP 與正常 ENG 維護區分。",
+      "required_evidence_ids": [
+      "IND2-N09",
+      "IND2-N21"
+      ],
+      "expected_known_facts": [
+        "direct IEC-104 操作在 Server／PCAP 視角可由 source_ip=10.10.60.10 區分。",
+        "via-ENG relay success 在 Server／PCAP 視角可能使用 source_ip=10.10.60.20。",
+        "via-ENG relay 與正常 ENG 在 Server／PCAP 視角可能相似。"
+      ],
+      "acceptable_inferences": [
+        "來源 IP 可區分 direct 與 relay case，但不足以判定 10.10.60.20 是否為正常維護。"
+      ],
+      "expected_unknowns": [
+        "source IP 本身無法提供最初發起者與操作意圖的完整歸因。"
+      ],
+      "forbidden_claims": [
+        "10.10.60.20 一定表示 Kali direct 操作。",
+        "10.10.60.20 一定表示正常 ENG 維護。"
+      ],
+      "hint_levels": [
+        "先分開列出 direct case 與 relay case 的 Server source IP。",
+        "再思考 Relay 為何會讓 Server 只看到 ENG01。",
+        "查看 IND2-N08、IND2-N20 與 IND2-N22，區分 direct 線索與 relay 的歸因限制。"
+      ]
+    }
+  ]
+}

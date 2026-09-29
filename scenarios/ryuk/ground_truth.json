@@ -1,0 +1,347 @@
+{
+  "schema_version": "1.0",
+  "scenario": "ryuk",
+  "purpose": "Instructor-only reference for retrieval evaluation, evidence-grounded answer checking, and progressive hints. This file must not be indexed or revealed wholesale to students.",
+  "cases": [
+    {
+      "question_id": "RYUK-Q01",
+      "topic": "execution_attribution",
+      "canonical_question": "為什麼 Kali 不是直接修改 DC01 Share 的主機？",
+      "expected_answer": "Kali 是 HTTP 內容提供端；Lab impact 由 USER01 透過既有 SMB 權限作用於 DC01 Share，而直接 Kali 到 DC01 SMB 被 Lab 規則阻擋。",
+      "required_evidence_ids": [
+        "RYUK-C01",
+        "RYUK-L02",
+        "RYUK-U02",
+        "RYUK-U03",
+        "RYUK-N01"
+      ],
+      "expected_known_facts": [
+        "Lab 將 Kali 設計為 HTTP 內容提供端，並阻擋 Kali 到 DC01 的直接 SMB。",
+        "Execution log 將 USER01 記為 Source Host、Kali HTTP Server 記為 Payload Source、DC01 Share 記為 Target Share。",
+        "USER01 的 PowerShell 與 Security 摘要直接記錄腳本、employee01、DC01 Share 與 process creation。",
+        "本次已收集的預期證據集合不包含逐連線 firewall log 或 PCAP。"
+      ],
+      "acceptable_inferences": [
+        "DC01 Share 的模擬變化較符合 USER01 使用既有 SMB 權限造成，而不是 Kali 直接寫入。"
+      ],
+      "expected_unknowns": [
+        "缺少本次執行期間的 firewall log 或 PCAP，無法斷言 Kali 從未嘗試直接 SMB 連線。"
+      ],
+      "forbidden_claims": [
+        "Kali 利用未記載的漏洞入侵 DC01。",
+        "現有證據已逐封包證明 Kali 完全沒有嘗試連線 DC01。"
+      ],
+      "hint_levels": [
+        "先把內容提供端、實際執行端與檔案所在端分成三個角色。",
+        "比較 HTTP delivery、SMB 存取方向，以及 execution log 中的 Source Host。",
+        "查看 RYUK-C01、RYUK-L02、RYUK-U02、RYUK-U03 與 RYUK-N01，分別判斷設計、端點觀測與缺少的遙測。"
+      ]
+    },
+    {
+      "question_id": "RYUK-Q02",
+      "topic": "delivery_vs_execution",
+      "canonical_question": "下載腳本與執行腳本的是同一台主機嗎？",
+      "expected_answer": "是；USER01 同時是下載端與執行端，Kali 只提供 HTTP 內容。",
+      "required_evidence_ids": [
+        "RYUK-C01",
+        "RYUK-L01",
+        "RYUK-L02",
+        "RYUK-U02",
+        "RYUK-U03"
+      ],
+      "expected_known_facts": [
+        "Kali HTTP log 記錄 10.10.50.20 取得下載頁與 invoice_update_v4.ps1。",
+        "Lab 設定將 10.10.50.20 對應到 USER01。",
+        "Execution log 將 USER01 記為 Source Host。",
+        "USER01 的 PowerShell 與 Security 摘要直接佐證腳本執行與 process creation。"
+      ],
+      "acceptable_inferences": [
+        "這組證據支持 USER01 同時是下載端與執行端。"
+      ],
+      "expected_unknowns": [],
+      "forbidden_claims": [
+        "HTTP GET 單獨就能證明腳本已執行。",
+        "Kali 因為提供檔案，所以也是執行腳本的主機。"
+      ],
+      "hint_levels": [
+        "先分別找出 HTTP log 的來源位址與 execution log 的 Source Host。",
+        "確認 10.10.50.20 在 Lab 拓樸中對應哪台主機。",
+        "比較 RYUK-L01、RYUK-L02、RYUK-U02 與 RYUK-U03，並用 RYUK-C01 解讀主機對應。"
+      ]
+    },
+    {
+      "question_id": "RYUK-Q03",
+      "topic": "impact_interpretation",
+      "canonical_question": "100 個 .RYK 是否能證明這是真實 Ryuk？",
+      "expected_answer": "不能；100 個 .RYK 是本次 Lab 的 Caesar shift 安全模擬 artifacts，不能證明真實 Ryuk。",
+      "required_evidence_ids": [
+        "RYUK-L03",
+        "RYUK-L04"
+      ],
+      "expected_known_facts": [
+        "本次 Lab 產生 100 個 .RYK、4 個 RyukReadMe 與 100 個 Caesar markers。",
+        "Impact 與 detection 證據都聲明這是安全模擬。",
+        "檔案內容使用可逆 Caesar shift，而不是真實 Ryuk 加密。"
+      ],
+      "acceptable_inferences": [
+        "這些 artifacts 足以觸發本 Lab 的教學偵測規則，但不足以識別真實惡意程式家族。"
+      ],
+      "expected_unknowns": [
+        "目前沒有真實惡意程式樣本、密碼學行為或其他家族識別證據。"
+      ],
+      "forbidden_claims": [
+        "100 個 .RYK 是歷史 Ryuk 事件的固定特徵或統計。",
+        "Caesar shift 等同真實 Ryuk 加密。"
+      ],
+      "hint_levels": [
+        "先區分檔名 artifacts 與惡意程式家族識別證據。",
+        "查看安全說明如何描述 Caesar shift 和檔案數量。",
+        "比較 RYUK-L03 與 RYUK-L04 對 impact 和安全邊界的描述。"
+      ]
+    },
+    {
+      "question_id": "RYUK-Q04",
+      "topic": "detection_reasoning",
+      "canonical_question": "DC01 為什麼把這次事件判定為 Critical？",
+      "expected_answer": "Lab detector 觀測到大量 .RYK、ReadMe、Caesar markers、受影響類型與多階段模擬 log，因此依實驗規則標為 Critical。",
+      "required_evidence_ids": [
+        "RYUK-L04"
+      ],
+      "expected_known_facts": [
+        "Detection JSON 記錄大量 .RYK、ReadMe、Caesar markers 與多種受影響測試檔類型。",
+        "Detection reasons 也包含 Discovery、credential assumption、scheduled-task dry run 與 service/recovery dry run 的 log。"
+      ],
+      "acceptable_inferences": [
+        "Lab detector 是依 artifacts 數量與多個模擬階段同時出現而給出 Critical。"
+      ],
+      "expected_unknowns": [
+        "這個 Critical 分級不能直接換算成正式環境的業務衝擊或歷史事件嚴重度。"
+      ],
+      "forbidden_claims": [
+        "Critical 代表已驗證真實 Ryuk malware。",
+        "Lab 的檔案數門檻是通用產業標準。"
+      ],
+      "hint_levels": [
+        "先列出 detector 實際看到的 artifacts，不要先猜惡意程式名稱。",
+        "比較檔案數、檔案類型與多個階段 log 如何共同影響風險分類。",
+        "檢查 RYUK-L04 的 reasons 與 safety note。"
+      ]
+    },
+    {
+      "question_id": "RYUK-Q05",
+      "topic": "credential_evidence",
+      "canonical_question": "這次事件有真的偷到 employee01 的密碼嗎？",
+      "expected_answer": "沒有證據顯示真的偷到密碼；帳號暴露是 Demo assumption，僅觀測到該身分被使用。",
+      "required_evidence_ids": [
+        "RYUK-L02",
+        "RYUK-L07"
+      ],
+      "expected_known_facts": [
+        "Execution log 記錄模擬使用 RYUK\\employee01 身分。",
+        "Credential exposure log 將帳號暴露明確標成 Demo assumption。",
+        "安全說明否定 password dumping、LSASS access、browser password collection 與真實 credential theft。"
+      ],
+      "acceptable_inferences": [
+        "Lab 故事假設帳號已可用，但沒有模擬或觀測取得密碼的過程。"
+      ],
+      "expected_unknowns": [
+        "現有證據無法回答密碼如何取得、何時取得或使用了哪個工具。"
+      ],
+      "forbidden_claims": [
+        "系統執行了 LSASS dumping。",
+        "Credential exposure log 證明真實憑證竊取已發生。"
+      ],
+      "hint_levels": [
+        "先區分帳號被使用與密碼取得過程是否被觀測。",
+        "找出 credential log 中的 Demo assumption 與安全否定項目。",
+        "比較 RYUK-L02 的使用者內容與 RYUK-L07 的證據限制。"
+      ]
+    },
+    {
+      "question_id": "RYUK-Q06",
+      "topic": "scheduled_task_boundary",
+      "canonical_question": "USER01 是否真的在 DC01 建立遠端排程工作？",
+      "expected_answer": "沒有；scheduled task deployment 是 dry run，沒有建立遠端排程工作或推送 payload。",
+      "required_evidence_ids": [
+        "RYUK-L08"
+      ],
+      "expected_known_facts": [
+        "Scheduled task deployment log 將這個階段標記為 dry run。",
+        "Log 明確記錄沒有建立 remote scheduled task，也沒有推送 payload。",
+        "USER01 與 DC01 只被列為 simulated target hosts。"
+      ],
+      "acceptable_inferences": [],
+      "expected_unknowns": [],
+      "forbidden_claims": [
+        "DC01 上已建立 persistence scheduled task。",
+        "這份 dry-run log 能證明真實橫向部署。"
+      ],
+      "hint_levels": [
+        "先看 log 描述的是實際動作還是故事階段。",
+        "注意 Lab implementation 中對 created、pushed 和 simulated 的用詞。",
+        "使用 RYUK-L08 判斷 scheduled task 與 payload deployment 是否真的發生。"
+      ]
+    },
+    {
+      "question_id": "RYUK-Q07",
+      "topic": "restore_interpretation",
+      "canonical_question": "復原 100 個檔案代表我們能解密真實 Ryuk 嗎？",
+      "expected_answer": "不代表；本次只成功逆轉 Lab 的 Caesar shift，不能推論能解密真實 Ryuk。",
+      "required_evidence_ids": [
+        "RYUK-L05",
+        "RYUK-L09"
+      ],
+      "expected_known_facts": [
+        "Restore result 記錄 100 份復原副本與 0 份失敗。",
+        "復原使用 Caesar shift -3，且沒有修改原始 .RYK。",
+        "Service/recovery disruption 只是 dry run，沒有刪除 backup 或 shadow copy。"
+      ],
+      "acceptable_inferences": [
+        "成功復原反映受控 Lab 轉換可逆，以及原始復原資源沒有被破壞。"
+      ],
+      "expected_unknowns": [
+        "現有證據不能說明真實 Ryuk 的金鑰、演算法或正式環境復原成功率。"
+      ],
+      "forbidden_claims": [
+        "restore_version_d.ps1 是真實 Ryuk 通用解密工具。",
+        "100 份成功復原可代表所有勒索事件都能復原。"
+      ],
+      "hint_levels": [
+        "先確認被還原的是哪種轉換，以及原始檔是否被修改。",
+        "比較 Caesar shift、復原副本與 recovery disruption dry run。",
+        "查看 RYUK-L05 與 RYUK-L09，區分 Lab 可逆性和真實解密能力。"
+      ]
+    },
+    {
+      "question_id": "RYUK-Q08",
+      "topic": "collection_provenance",
+      "canonical_question": "SENSOR01 在事件中扮演什麼角色，資料有收完整嗎？",
+      "expected_answer": "SENSOR01 負責收集、驗證與正規化；預期來源完整且 data quality 為 ok，但不代表包含所有可能遙測。",
+      "required_evidence_ids": [
+        "RYUK-L10",
+        "RYUK-U01",
+        "RYUK-U02",
+        "RYUK-U03",
+        "RYUK-N01"
+      ],
+      "expected_known_facts": [
+        "SENSOR01 被記錄為本情境的 evidence collector。",
+        "本次 DC01 Share 可讀，Kali HTTP fetch 的 curl exit code 為 0 且 HTTP status 為 200。",
+        "Collector 完整收進 USER01 執行證據包。",
+        "Normalized summary 驗證 USER01 context、PowerShell、Security 4688 與 manifest，且 data quality 為 ok。"
+      ],
+      "acceptable_inferences": [
+        "對目前定義的預期證據集合而言，本次收集與正規化流程完整且一致。"
+      ],
+      "expected_unknowns": [
+        "資料品質為 ok 不代表已收集所有可能遙測，例如逐連線 firewall log 或 PCAP。"
+      ],
+      "forbidden_claims": [
+        "SENSOR01 是執行 impact 的主機。",
+        "data quality 為 ok 代表事件中的所有未知事項都已消除。"
+      ],
+      "hint_levels": [
+        "先區分證據產生端、偵測端與收集端。",
+        "查看 collector 記錄的 Share、HTTP status、USER01 run 與 raw files presence。",
+        "比較 RYUK-L10、RYUK-U01 到 RYUK-U03 與 RYUK-N01，並思考完整性檢查涵蓋哪些來源。"
+      ]
+    },
+    {
+      "question_id": "RYUK-Q09",
+      "topic": "unsupported_vulnerability_claim",
+      "canonical_question": "Kali 是利用哪一個漏洞進入 DC01？",
+      "expected_answer": "無法確認任何漏洞；證據只支持 USER01 使用既有 SMB 權限，沒有漏洞利用或 Kali 直接入侵證據。",
+      "required_evidence_ids": [
+        "RYUK-C01",
+        "RYUK-L02",
+        "RYUK-N01"
+      ],
+      "expected_known_facts": [
+        "Lab 設計允許 USER01 使用既有網域身分透過 SMB 存取 DC01。",
+        "Execution 與 USER01 端點證據都將腳本執行內容放在 USER01。",
+        "目前收集的預期來源沒有漏洞利用、exploit telemetry、firewall log 或 PCAP。"
+      ],
+      "acceptable_inferences": [
+        "本 Lab 的 impact 不需要假設 Kali 利用漏洞直接進入 DC01。"
+      ],
+      "expected_unknowns": [
+        "現有證據無法識別任何漏洞名稱、exploit 工具或 Kali 到 DC01 的直接入侵方式。"
+      ],
+      "forbidden_claims": [
+        "補入任何未出現在證據中的 CVE、漏洞名稱或攻擊工具。",
+        "把 valid account access 描述成已證實的漏洞利用。"
+      ],
+      "hint_levels": [
+        "先確認問題是否預設了一個證據沒有支持的前提。",
+        "比較既有 SMB 權限、USER01 execution 與目前缺少的網路遙測。",
+        "使用 RYUK-C01、RYUK-L02 與 RYUK-N01 判斷能否命名漏洞。"
+      ]
+    },
+    {
+      "question_id": "RYUK-Q10",
+      "topic": "simulation_safety_boundary",
+      "canonical_question": "哪些 kill chain 階段是真的觀測，哪些只是安全模擬？",
+      "expected_answer": "Discovery 查詢與安全 impact artifacts 有觀測紀錄；credential exposure 是 assumption；scheduled task 與 service/recovery 是 dry run；所有階段都不是實際惡意行為。",
+      "required_evidence_ids": [
+        "RYUK-L03",
+        "RYUK-L04",
+        "RYUK-L06",
+        "RYUK-L07",
+        "RYUK-L08",
+        "RYUK-L09"
+      ],
+      "expected_known_facts": [
+        "Discovery log 記錄 USER01 實際執行的安全查詢。",
+        "Credential exposure 是故事假設。",
+        "Scheduled task deployment 與 service/recovery disruption 都是 dry run。",
+        "Impact artifacts 是 Caesar shift 與測試檔名變更，不是真實 Ryuk 加密。"
+      ],
+      "acceptable_inferences": [
+        "這些資料適合教學事件還原，但各階段必須依 source_type 和 safety note 分別解讀。"
+      ],
+      "expected_unknowns": [
+        "安全模擬沒有提供真實 credential theft、persistence、service stop 或 recovery deletion 的行為證據。"
+      ],
+      "forbidden_claims": [
+        "把所有 kill chain story log 都描述成已發生的真實攻擊。",
+        "將 Caesar shift、dry run 或 Demo assumption 改寫成真實惡意行為。"
+      ],
+      "hint_levels": [
+        "先替每份證據標記 observed、assumption、dry run 或 safe transform。",
+        "不要因為檔名含有攻擊階段，就假設對應行為真的執行。",
+        "比較 RYUK-L06 至 RYUK-L09，並用 RYUK-L03、RYUK-L04確認 impact 安全邊界。"
+      ]
+    },
+    {
+      "question_id": "RYUK-Q11",
+      "topic": "user01_endpoint_provenance",
+      "canonical_question": "目前有直接從 USER01 收到執行證據嗎？",
+      "expected_answer": "有；USER01 匯出的 execution context、PowerShell 4103/4104 摘要與 Security 4688 摘要直接佐證腳本在 USER01 的執行脈絡。",
+      "required_evidence_ids": [
+        "RYUK-U01",
+        "RYUK-U02",
+        "RYUK-U03",
+        "RYUK-N01"
+      ],
+      "expected_known_facts": [
+        "Execution context 記錄 USER01、RYUK\\employee01、腳本 SHA-256 與 DC01 Share 目標。",
+        "PowerShell 摘要包含 926 筆 4103、6 筆 4104，且腳本與 Share markers 都為 true。",
+        "Security 摘要包含 7 筆 4688，並命中 PowerShell、腳本名稱、employee01 與 command line。",
+        "SENSOR01 驗證 context、PowerShell、process creation 與 manifest 後，將 execution_corroborated 設為 true。"
+      ],
+      "acceptable_inferences": [
+        "USER01 的執行歸因已有端點原生紀錄佐證，不再只依賴 DC01 上的結果檔回推。"
+      ],
+      "expected_unknowns": [],
+      "forbidden_claims": [
+        "把事後空白的 SMB state 解讀成 USER01 從未存取 DC01。",
+        "把 PowerShell 或 4688 事件描述成真實惡意程式執行。"
+      ],
+      "hint_levels": [
+        "先分辨 USER01 自己產生的端點紀錄與 DC01 上的結果檔。",
+        "比較 execution context、PowerShell 4104 與 Security 4688 分別能支持什麼。",
+        "查看 RYUK-U01 至 RYUK-U03 與 RYUK-N01，分辨執行脈絡、PowerShell 紀錄與程序建立各自支持什麼。"
+      ]
+    }
+  ]
+}

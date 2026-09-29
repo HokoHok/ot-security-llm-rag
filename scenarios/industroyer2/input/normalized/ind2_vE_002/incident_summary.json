@@ -1,0 +1,431 @@
+{
+  "normalizer_version": "ind2-normalizer-0.1.5",
+  "generated_at": "2026-08-06T03:41:14Z",
+  "case_id": "ind2_vE_002",
+  "classification": {
+    "primary_case_type": "direct_iec104_attack",
+    "tags": [
+      "direct_iec104_attack"
+    ],
+    "signals": {
+      "has_kali_payload": true,
+      "has_direct_server": false,
+      "has_any_server_command": true,
+      "has_eng_server_explicit": false,
+      "has_eng_server": false,
+      "has_relay_success": false,
+      "has_relay_blocked": false,
+      "has_maintenance": false,
+      "case_name_hints_normal_eng": false,
+      "active_event_type_counts": {
+        "eng_maintenance_legacy": 1,
+        "kali_direct_iec104": 5,
+        "kali_ran_industroyer2_like_payload": 1,
+        "safe_caddywiper_lockout": 1,
+        "server_raw_traffic": 20,
+        "server_received_iec104_command": 10
+      }
+    }
+  },
+  "executive_summary": "ind2_vE_002: Kali sent a direct Industroyer2-like IEC-104 payload to OT-SERVER01. Server observed source_ip=10.10.60.10 over TCP/2404 and OT state changed to service disruption.",
+  "observed_facts": {
+    "kali": {
+      "count": 6,
+      "actions": [
+        {
+          "timestamp": "2026-08-05T04:07:56.902408",
+          "event": "kali_run_industroyer2_like_payload",
+          "ioa": "",
+          "desired_state": "",
+          "frontend_target": null,
+          "final_backend_protocol": null,
+          "final_backend_target": null,
+          "accepted": true,
+          "normalized_event_type": "kali_ran_industroyer2_like_payload",
+          "source_file": "kali/kali_attacker_console_actions.log",
+          "line_number": 1
+        },
+        {
+          "timestamp": "2026-08-05T04:07:57.647559",
+          "event": null,
+          "ioa": "1001",
+          "desired_state": "OPEN",
+          "frontend_target": null,
+          "final_backend_protocol": null,
+          "final_backend_target": null,
+          "accepted": null,
+          "normalized_event_type": "kali_direct_iec104",
+          "source_file": "kali/kali_iec104_direct_actions.log",
+          "line_number": 1
+        },
+        {
+          "timestamp": "2026-08-05T04:07:58.569747",
+          "event": null,
+          "ioa": "1002",
+          "desired_state": "OPEN",
+          "frontend_target": null,
+          "final_backend_protocol": null,
+          "final_backend_target": null,
+          "accepted": null,
+          "normalized_event_type": "kali_direct_iec104",
+          "source_file": "kali/kali_iec104_direct_actions.log",
+          "line_number": 2
+        },
+        {
+          "timestamp": "2026-08-05T04:07:59.493332",
+          "event": null,
+          "ioa": "1003",
+          "desired_state": "OPEN",
+          "frontend_target": null,
+          "final_backend_protocol": null,
+          "final_backend_target": null,
+          "accepted": null,
+          "normalized_event_type": "kali_direct_iec104",
+          "source_file": "kali/kali_iec104_direct_actions.log",
+          "line_number": 3
+        },
+        {
+          "timestamp": "2026-08-05T04:08:00.429359",
+          "event": null,
+          "ioa": "2001",
+          "desired_state": "DEENERGIZED",
+          "frontend_target": null,
+          "final_backend_protocol": null,
+          "final_backend_target": null,
+          "accepted": null,
+          "normalized_event_type": "kali_direct_iec104",
+          "source_file": "kali/kali_iec104_direct_actions.log",
+          "line_number": 4
+        },
+        {
+          "timestamp": "2026-08-05T04:08:01.353973",
+          "event": null,
+          "ioa": "3001",
+          "desired_state": "ALARM",
+          "frontend_target": null,
+          "final_backend_protocol": null,
+          "final_backend_target": null,
+          "accepted": null,
+          "normalized_event_type": "kali_direct_iec104",
+          "source_file": "kali/kali_iec104_direct_actions.log",
+          "line_number": 5
+        }
+      ]
+    },
+    "eng_relay": {
+      "count": 0,
+      "attempts": [],
+      "successful_attempts": [],
+      "failed_attempts": []
+    },
+    "eng_maintenance": {
+      "count": 0,
+      "maintenance_tickets": [],
+      "records": []
+    },
+    "server_commands": {
+      "count": 10,
+      "commands": [
+        {
+          "timestamp": "2026-08-05T16:07:56.130578",
+          "source_ip": null,
+          "source_classification": "UNAUTHORIZED_IEC104_DIRECT_SOURCE",
+          "ioa": null,
+          "asset_id": null,
+          "desired_state": null,
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 1
+        },
+        {
+          "timestamp": "2026-08-05T16:07:56.326969",
+          "source_ip": null,
+          "source_classification": null,
+          "ioa": 1001,
+          "asset_id": "BRK-101",
+          "desired_state": "OPEN",
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 2
+        },
+        {
+          "timestamp": "2026-08-05T16:07:57.079692",
+          "source_ip": null,
+          "source_classification": "UNAUTHORIZED_IEC104_DIRECT_SOURCE",
+          "ioa": null,
+          "asset_id": null,
+          "desired_state": null,
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 3
+        },
+        {
+          "timestamp": "2026-08-05T16:07:57.272046",
+          "source_ip": null,
+          "source_classification": null,
+          "ioa": 1002,
+          "asset_id": "BRK-102",
+          "desired_state": "OPEN",
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 4
+        },
+        {
+          "timestamp": "2026-08-05T16:07:58.007985",
+          "source_ip": null,
+          "source_classification": "UNAUTHORIZED_IEC104_DIRECT_SOURCE",
+          "ioa": null,
+          "asset_id": null,
+          "desired_state": null,
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 5
+        },
+        {
+          "timestamp": "2026-08-05T16:07:58.196801",
+          "source_ip": null,
+          "source_classification": null,
+          "ioa": 1003,
+          "asset_id": "BRK-103",
+          "desired_state": "OPEN",
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 6
+        },
+        {
+          "timestamp": "2026-08-05T16:07:58.924492",
+          "source_ip": null,
+          "source_classification": "UNAUTHORIZED_IEC104_DIRECT_SOURCE",
+          "ioa": null,
+          "asset_id": null,
+          "desired_state": null,
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 7
+        },
+        {
+          "timestamp": "2026-08-05T16:07:59.122198",
+          "source_ip": null,
+          "source_classification": null,
+          "ioa": 2001,
+          "asset_id": "FDR-A",
+          "desired_state": "DEENERGIZED",
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 8
+        },
+        {
+          "timestamp": "2026-08-05T16:07:59.864810",
+          "source_ip": null,
+          "source_classification": "UNAUTHORIZED_IEC104_DIRECT_SOURCE",
+          "ioa": null,
+          "asset_id": null,
+          "desired_state": null,
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 9
+        },
+        {
+          "timestamp": "2026-08-05T16:08:00.055931",
+          "source_ip": null,
+          "source_classification": null,
+          "ioa": 3001,
+          "asset_id": "RLY-201",
+          "desired_state": "ALARM",
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 10
+        }
+      ],
+      "source_ips": [],
+      "ioas": [
+        "1001",
+        "1002",
+        "1003",
+        "2001",
+        "3001"
+      ]
+    },
+    "caddywiper_status": {
+      "timestamp": "2026-08-05T16:00:41.632897",
+      "safe_caddywiper_version": "v2",
+      "eng_console_available": true,
+      "engineering_backup_available": true,
+      "ioa_mapping_available": true,
+      "restore_allowed": true,
+      "dummy_files_wiped": false,
+      "reason": "SAFE_CADDYWIPER_V2_RECOVERED",
+      "safety_note": "Lab recovery completed. Dummy engineering files recreated."
+    },
+    "caddywiper_report": {
+      "timestamp": "2026-08-05T15:47:52.239376",
+      "safe_caddywiper_version": "v2",
+      "eng_console_available": false,
+      "engineering_backup_available": false,
+      "ioa_mapping_available": false,
+      "restore_allowed": false,
+      "dummy_files_wiped": true,
+      "wiped_dummy_files": [
+        "substation_A_IOA_mapping.xlsx.sim",
+        "relay_settings_backup.cfg.sim",
+        "maintenance_restore_plan.txt.sim"
+      ],
+      "reason": "SAFE_CADDYWIPER_V2_SIMULATED_ENGINEERING_WORKSTATION_IMPACT",
+      "safety_note": "Safe simulation only. No real disk wiping, no destructive system commands.",
+      "impact_summary": [
+        "ENG maintenance console locked out",
+        "Engineering backup marked unavailable",
+        "IOA mapping marked unavailable",
+        "Restore action blocked",
+        "Dummy engineering files overwritten with safe simulation marker"
+      ]
+    },
+    "ot_state_before": {
+      "grid_status": "NORMAL",
+      "service_disruption_simulated": false,
+      "assets": {
+        "BRK-101": {
+          "state": "CLOSED"
+        },
+        "BRK-102": {
+          "state": "CLOSED"
+        },
+        "BRK-103": {
+          "state": "CLOSED"
+        },
+        "FDR-A": {
+          "state": "ENERGIZED"
+        },
+        "RLY-201": {
+          "state": "HEALTHY"
+        }
+      }
+    },
+    "ot_state_final": {
+      "scenario": "Industroyer2-like Safe Emulation",
+      "version": "D",
+      "site": "Simulated Substation A",
+      "grid_status": "SERVICE_DISRUPTION_SIMULATED",
+      "breakers": [
+        {
+          "asset_id": "BRK-101",
+          "state": "CLOSED"
+        },
+        {
+          "asset_id": "BRK-102",
+          "state": "CLOSED"
+        },
+        {
+          "asset_id": "BRK-103",
+          "state": "CLOSED"
+        }
+      ],
+      "feeders": [
+        {
+          "asset_id": "FDR-A",
+          "status": "ENERGIZED"
+        }
+      ],
+      "relays": [
+        {
+          "asset_id": "RLY-201",
+          "status": "HEALTHY"
+        }
+      ],
+      "last_updated_by": "iec104_server_v1",
+      "service_disruption_simulated": true,
+      "last_command": {
+        "timestamp": "2026-08-05T16:08:00.055715",
+        "protocol_label": "IEC-104",
+        "type_id_label": "C_SC_NA_1",
+        "transport": "TCP",
+        "destination_port": 2404,
+        "real_ics_protocol_used": true,
+        "source_ip": "10.10.60.10",
+        "source_host_claim": "IEC104-CLIENT",
+        "source_classification": "UNAUTHORIZED_IEC104_DIRECT_SOURCE",
+        "ioa": "3001",
+        "asset_id": "RLY-201",
+        "desired_state": "ALARM",
+        "maintenance_ticket": null,
+        "continued_without_ack": true,
+        "note": "IEC-104 packets do not carry lab maintenance_ticket metadata. ENG/Kali intent is correlated through local console or relay logs."
+      },
+      "assets": {
+        "BRK-102": {
+          "state": "OPEN",
+          "last_updated": "2026-08-05T16:07:57.271789"
+        },
+        "BRK-101": {
+          "state": "OPEN",
+          "last_updated": "2026-08-05T16:07:56.326050"
+        },
+        "BRK-103": {
+          "state": "OPEN",
+          "last_updated": "2026-08-05T16:07:58.196572"
+        },
+        "FDR-A": {
+          "state": "DEENERGIZED",
+          "last_updated": "2026-08-05T16:07:59.120667"
+        },
+        "RLY-201": {
+          "state": "ALARM",
+          "last_updated": "2026-08-05T16:08:00.055688"
+        }
+      }
+    },
+    "pcaps": [
+      {
+        "path": "pcaps/ind2_vE_002_server_iec104.pcapng",
+        "size_bytes": 9414,
+        "sha256": "95e0ab199cb57c6991ee9aeb944627c621966d0dada5fa89629d04242d8c304c",
+        "decoded_with_tshark": false,
+        "iec104_field_rows": []
+      }
+    ],
+    "collection_manifest": {
+      "case_id": "ind2_vE_002",
+      "collected_at": "2026-08-05T16:15:13+08:00",
+      "sensor_host": "iii",
+      "source_hosts": {
+        "kali": "10.10.60.10",
+        "eng01": "10.10.60.20",
+        "server": "10.10.60.30",
+        "sensor": "10.10.60.50"
+      },
+      "note": "Collected active logs only. logs/archive was intentionally excluded."
+    }
+  },
+  "comparison_notes": [
+    "Direct attack is distinguishable at Server/PCAP by source_ip=10.10.60.10 sending IEC-104 to TCP/2404."
+  ],
+  "data_quality_summary": {
+    "warnings": [
+      "Some collected files are empty. Empty files may mean no activity for that channel, or collection gaps.",
+      "Excluded 3 stale/legacy events from main conclusion using per-host recent window of 45 minutes.",
+      "Possible cross-host clock offset detected. Preserve original timestamps and do not infer causality from absolute time alone. Host latest timestamps: eng01=2026-07-29T10:57:51.142336, kali=2026-08-05T04:08:01.353973, server=2026-08-05T16:08:00.566504.",
+      "PCAP files are present, but tshark is not installed; normalizer recorded file hashes/sizes but did not decode IEC-104 fields."
+    ],
+    "missing_expected_files_count": 0,
+    "empty_files_count": 7,
+    "parse_errors_count": 0,
+    "stale_events_excluded_count": 3,
+    "pcap_count": 1
+  },
+  "output_files": {
+    "incident_summary": "/home/lab-user/ind2_sensor/normalized/ind2_vE_002/incident_summary.json",
+    "timeline": "/home/lab-user/ind2_sensor/normalized/ind2_vE_002/timeline.json",
+    "data_quality": "/home/lab-user/ind2_sensor/normalized/ind2_vE_002/data_quality.json",
+    "rag_chunks": "/home/lab-user/ind2_sensor/normalized/ind2_vE_002/rag_chunks.jsonl"
+  }
+}

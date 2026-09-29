@@ -1,0 +1,347 @@
+{
+  "normalizer_version": "ind2-normalizer-0.1.5",
+  "generated_at": "2026-08-06T03:41:14Z",
+  "case_id": "ind2_normal_eng_001",
+  "case_dir": "/home/lab-user/ind2_sensor/evidence/ind2_normal_eng_001",
+  "recent_window_minutes_per_host": 45,
+  "file_inventory": [
+    {
+      "path": "eng01/eng_command_relay_actions.log",
+      "size_bytes": 0,
+      "empty": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "eng01/eng_console_status.json",
+      "size_bytes": 368,
+      "empty": false,
+      "sha256": "29376f18c8ad7d3b8220f6c9c3263a5fee280f84749b1faee26154aa44a90c06"
+    },
+    {
+      "path": "eng01/eng_iec104_maintenance_actions.log",
+      "size_bytes": 442,
+      "empty": false,
+      "sha256": "c187501f87b0c792544ea8926b31603ef2dd171793f0f88e411a51a80a9f5470"
+    },
+    {
+      "path": "eng01/eng_iec104_relay_actions.log",
+      "size_bytes": 0,
+      "empty": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "eng01/eng_maintenance_actions.log",
+      "size_bytes": 1244,
+      "empty": false,
+      "sha256": "addbe0d5b709f06f51e43a47c393026c17ecd4439703aead4a0e8ed75e5fccc6"
+    },
+    {
+      "path": "eng01/eng_maintenance_console_actions.log",
+      "size_bytes": 762,
+      "empty": false,
+      "sha256": "19d6478637cdced8fa6245eacb13b10225afa0193564bf3b5ba90b23c2ea11d9"
+    },
+    {
+      "path": "eng01/engineering_backup_access.log",
+      "size_bytes": 2028,
+      "empty": false,
+      "sha256": "fcbfecf5aeddac2f421f2af112aa9416ee99e4f5c4ed4e8018d8e64c75ee2a06"
+    },
+    {
+      "path": "eng01/safe_caddywiper_lockout.log",
+      "size_bytes": 856,
+      "empty": false,
+      "sha256": "5ccacb142f6ed5e1bebbf77128c83b2cfffad6d9eef5d359199b44344b209060"
+    },
+    {
+      "path": "eng01/safe_caddywiper_v2_report.json",
+      "size_bytes": 817,
+      "empty": false,
+      "sha256": "0b3fab3ce4d21576956a07e771d53bf0f84ac745373b69b6520e24a62307073b"
+    },
+    {
+      "path": "eng01/safe_caddywiper_v2_timeline.log",
+      "size_bytes": 0,
+      "empty": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "kali/engineering_discovery_v2.log",
+      "size_bytes": 365,
+      "empty": false,
+      "sha256": "c6267af9926c67423acf17341010be45b3b4aec14e3d6d694927386a9e38c0b4"
+    },
+    {
+      "path": "kali/kali_attacker_console_actions.log",
+      "size_bytes": 0,
+      "empty": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "kali/kali_iec104_direct_actions.log",
+      "size_bytes": 0,
+      "empty": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "metadata/collection_manifest.json",
+      "size_bytes": 329,
+      "empty": false,
+      "sha256": "1068fbe333b24ab8d515d733c7ef754eb63bc57d0351ca217b5379440a095d57"
+    },
+    {
+      "path": "pcaps/ind2_normal_eng_001_maintenance.pcapng",
+      "size_bytes": 1986,
+      "empty": false,
+      "sha256": "bbb162fd23de6516828e99bcf8044869bca13985971bb863b6f795b75bd5dfaa"
+    },
+    {
+      "path": "server/engineering_backup_access.log",
+      "size_bytes": 398,
+      "empty": false,
+      "sha256": "477c4b0a78ddffe3ac5eb28ff58bb2e4115c83583db1e38e0ffa515ac0a4dc88"
+    },
+    {
+      "path": "server/iec104_raw_traffic.log",
+      "size_bytes": 536,
+      "empty": false,
+      "sha256": "6226ba4e04a6a4bc87118e581a8fba0dec6abfd390f0970a30fac5cd7c2f2db3"
+    },
+    {
+      "path": "server/iec104_server_commands.log",
+      "size_bytes": 932,
+      "empty": false,
+      "sha256": "7d331b7ed35c74bb4bffb5c6b4513cd52d17c4273975687e3cfc5315f27f1a0e"
+    },
+    {
+      "path": "server/mock_gateway_access.log",
+      "size_bytes": 606,
+      "empty": false,
+      "sha256": "48195456344aae1081556fa35679e7ad15717ffadbcced6670f2870e4200ab2d"
+    },
+    {
+      "path": "server/relay_event.log",
+      "size_bytes": 0,
+      "empty": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "server/service_disruption_event.log",
+      "size_bytes": 0,
+      "empty": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "server/substation_state_before.json",
+      "size_bytes": 331,
+      "empty": false,
+      "sha256": "88c1afbc84ecc17fe1a07b69203e81e725f00824dd682d4d1ebc03053e43ec33"
+    },
+    {
+      "path": "server/substation_state_current.json",
+      "size_bytes": 1802,
+      "empty": false,
+      "sha256": "353abd27ef2c00ecb742d6169298d8b5aafc856c6a79e4df3120a5dc6ec34789"
+    },
+    {
+      "path": "server/unauthorized_control_command.log",
+      "size_bytes": 606,
+      "empty": false,
+      "sha256": "48195456344aae1081556fa35679e7ad15717ffadbcced6670f2870e4200ab2d"
+    }
+  ],
+  "missing_expected_files": [],
+  "empty_files": [
+    "eng01/eng_command_relay_actions.log",
+    "eng01/eng_iec104_relay_actions.log",
+    "eng01/safe_caddywiper_v2_timeline.log",
+    "kali/kali_attacker_console_actions.log",
+    "kali/kali_iec104_direct_actions.log",
+    "server/relay_event.log",
+    "server/service_disruption_event.log"
+  ],
+  "parse_errors": [],
+  "stale_events_excluded": [
+    {
+      "timestamp": "2026-07-24T18:33:31.439329",
+      "host": "eng01",
+      "category": "safe_caddywiper_lockout",
+      "source_file": "/home/lab-user/ind2_sensor/evidence/ind2_normal_eng_001/eng01/safe_caddywiper_lockout.log",
+      "line_number": 1,
+      "source_file_rel": "eng01/safe_caddywiper_lockout.log",
+      "normalized_event_type": "safe_caddywiper_lockout",
+      "raw": {
+        "timestamp": "2026-07-24T18:33:31.439329",
+        "action": "activate_safe_caddywiper_lockout",
+        "status": {
+          "timestamp": "2026-07-24T18:33:31.439329",
+          "safe_caddywiper_simulated": true,
+          "eng_console_available": false,
+          "recovery_delay_simulated": true,
+          "operator_console_lockout_simulated": true,
+          "reason": "Safe CaddyWiper simulation active: maintenance console is unavailable",
+          "safety_note": "No files are deleted or overwritten. This only blocks maintenance actions in the lab console."
+        }
+      }
+    },
+    {
+      "timestamp": "2026-07-24T18:33:46.894072",
+      "host": "eng01",
+      "category": "eng_maintenance_legacy",
+      "source_file": "/home/lab-user/ind2_sensor/evidence/ind2_normal_eng_001/eng01/eng_maintenance_actions.log",
+      "line_number": 1,
+      "source_file_rel": "eng01/eng_maintenance_actions.log",
+      "description": "maintenance command blocked by safe caddywiper simulation",
+      "maintenance_ticket": "MW-2026-001",
+      "blocked_by_safe_caddywiper": true,
+      "normalized_event_type": "authorized_eng_maintenance_command",
+      "raw": {
+        "timestamp": "2026-07-24T18:33:46.894072",
+        "description": "maintenance command blocked by safe caddywiper simulation",
+        "blocked_by_safe_caddywiper": true,
+        "attempted_ioa": "1002",
+        "attempted_desired_state": "CLOSED",
+        "maintenance_ticket": "MW-2026-001",
+        "wiper_status": {
+          "timestamp": "2026-07-24T18:33:31.439329",
+          "safe_caddywiper_simulated": true,
+          "eng_console_available": false,
+          "recovery_delay_simulated": true,
+          "operator_console_lockout_simulated": true,
+          "reason": "Safe CaddyWiper simulation active: maintenance console is unavailable",
+          "safety_note": "No files are deleted or overwritten. This only blocks maintenance actions in the lab console."
+        }
+      }
+    },
+    {
+      "timestamp": "2026-07-29T10:57:17.431886",
+      "host": "eng01",
+      "category": "safe_caddywiper_lockout",
+      "source_file": "/home/lab-user/ind2_sensor/evidence/ind2_normal_eng_001/eng01/safe_caddywiper_lockout.log",
+      "line_number": 2,
+      "source_file_rel": "eng01/safe_caddywiper_lockout.log",
+      "normalized_event_type": "safe_caddywiper_lockout",
+      "raw": {
+        "timestamp": "2026-07-29T10:57:17.431886",
+        "action": "clear_safe_caddywiper_lockout",
+        "status": {
+          "timestamp": "2026-07-29T10:57:17.431886",
+          "safe_caddywiper_simulated": false,
+          "eng_console_available": true,
+          "recovery_delay_simulated": false,
+          "operator_console_lockout_simulated": false,
+          "reason": "Maintenance console is available",
+          "safety_note": "Safe reset state."
+        }
+      }
+    },
+    {
+      "timestamp": "2026-07-29T10:57:51.135572",
+      "host": "server",
+      "category": "server_unauthorized_control",
+      "source_file": "/home/lab-user/ind2_sensor/evidence/ind2_normal_eng_001/server/unauthorized_control_command.log",
+      "line_number": 1,
+      "source_file_rel": "server/unauthorized_control_command.log",
+      "protocol_label": "MOCK-IEC104",
+      "result_event": null,
+      "result_accepted": true,
+      "result_iec104_sent": null,
+      "result_blocked_by": null,
+      "normalized_event_type": "server_unauthorized_control",
+      "raw": {
+        "timestamp": "2026-07-29T10:57:51.135572",
+        "src_ip": "10.10.60.20",
+        "path": "/mock-iec104/control",
+        "protocol_label": "MOCK-IEC104",
+        "port_label": "2404-simulated",
+        "command": {
+          "src_host": "OT-ENG01",
+          "protocol_label": "MOCK-IEC104",
+          "type_id_label": "C_SC_NA_1",
+          "ioa": "1002",
+          "asset_id": "BRK-102",
+          "desired_state": "CLOSED",
+          "continued_without_ack": false,
+          "maintenance_ticket": "MW-2026-001",
+          "safe_emulation": true
+        },
+        "result": {
+          "accepted": true,
+          "safe_emulation": true,
+          "real_ics_protocol_used": false,
+          "ioa": "1002",
+          "desired_state": "CLOSED",
+          "affected_asset": "BRK-102",
+          "state_changed": false
+        }
+      }
+    },
+    {
+      "timestamp": "2026-07-29T10:57:51.142336",
+      "host": "eng01",
+      "category": "eng_maintenance_legacy",
+      "source_file": "/home/lab-user/ind2_sensor/evidence/ind2_normal_eng_001/eng01/eng_maintenance_actions.log",
+      "line_number": 2,
+      "source_file_rel": "eng01/eng_maintenance_actions.log",
+      "description": "authorized maintenance console command",
+      "blocked_by_safe_caddywiper": false,
+      "result_event": null,
+      "result_accepted": true,
+      "result_iec104_sent": null,
+      "result_blocked_by": null,
+      "normalized_event_type": "eng_maintenance_legacy",
+      "raw": {
+        "timestamp": "2026-07-29T10:57:51.142336",
+        "description": "authorized maintenance console command",
+        "blocked_by_safe_caddywiper": false,
+        "submitted_payload": {
+          "src_host": "OT-ENG01",
+          "protocol_label": "MOCK-IEC104",
+          "type_id_label": "C_SC_NA_1",
+          "ioa": "1002",
+          "asset_id": "BRK-102",
+          "desired_state": "CLOSED",
+          "continued_without_ack": false,
+          "maintenance_ticket": "MW-2026-001",
+          "safe_emulation": true
+        },
+        "result": {
+          "accepted": true,
+          "safe_emulation": true,
+          "real_ics_protocol_used": false,
+          "ioa": "1002",
+          "desired_state": "CLOSED",
+          "affected_asset": "BRK-102",
+          "state_changed": false
+        }
+      }
+    }
+  ],
+  "stale_events_excluded_count": 5,
+  "host_time_ranges_active_events": {
+    "eng01": {
+      "min": "2026-08-06T10:25:01.643553",
+      "max": "2026-08-06T10:25:02.366282"
+    },
+    "server": {
+      "min": "2026-08-06T10:24:59.694971",
+      "max": "2026-08-06T10:25:00.404724"
+    }
+  },
+  "pcaps": [
+    {
+      "path": "pcaps/ind2_normal_eng_001_maintenance.pcapng",
+      "size_bytes": 1986,
+      "sha256": "bbb162fd23de6516828e99bcf8044869bca13985971bb863b6f795b75bd5dfaa",
+      "decoded_with_tshark": false,
+      "iec104_field_rows": []
+    }
+  ],
+  "warnings": [
+    "Some collected files are empty. Empty files may mean no activity for that channel, or collection gaps.",
+    "Excluded 5 stale/legacy events from main conclusion using per-host recent window of 45 minutes.",
+    "PCAP files are present, but tshark is not installed; normalizer recorded file hashes/sizes but did not decode IEC-104 fields.",
+    "Server/PCAP source IP alone cannot distinguish normal ENG operation from Kali via ENG relay; correlate ENG local logs and Kali logs.",
+    "Maintenance ticket is local ENG evidence only; IEC-104 packets and Server state do not carry the lab maintenance_ticket field."
+  ]
+}

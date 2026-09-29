@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "normalizer_version": "frostygoop-normalizer-0.1.0",
+  "scenario": "frostygoop",
+  "case_id": "frostygoop_fc03_read_001",
+  "events": [
+    {
+      "sequence": 1,
+      "event_type": "task_configuration_loaded",
+      "detail": {
+        "function_code": 3,
+        "address": 53760,
+        "count": 123
+      },
+      "source": "task_test_reconstructed_v1.json"
+    },
+    {
+      "sequence": 2,
+      "event_type": "pcap_request_decoded",
+      "detail": {
+        "transaction_id": 1,
+        "unit_id": 1,
+        "function_code": 3,
+        "address": 53760,
+        "count": 123,
+        "frame_number": 4,
+        "source_ip": "127.0.0.1",
+        "destination_ip": "127.0.0.1",
+        "source_port": 36588,
+        "destination_port": 1502
+      },
+      "source": "frostygoop_fc03_reconstructed.pcapng"
+    },
+    {
+      "sequence": 3,
+      "event_type": "behavior_detector_result",
+      "detail": {
+        "operation": "read_holding_registers",
+        "behavior": "READ",
+        "risk": "LOW",
+        "detector_result": "NOTICE",
+        "message": "Read activity overlaps the Lab watched register range."
+      },
+      "source": "deterministic_normalizer"
+    }
+  ]
+}

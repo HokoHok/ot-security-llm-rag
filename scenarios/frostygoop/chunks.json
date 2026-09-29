@@ -1,0 +1,352 @@
+[
+  {
+    "chunk_id": "FROSTY-fc03-read-001-case-summary-01",
+    "scenario": "frostygoop",
+    "stage": "incident_overview",
+    "source_type": "normalized_summary",
+    "title": "frostygoop_fc03_read_001：安全重建案例摘要",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc03_read_001；classification=report_derived_fc03_read_baseline；safety_role=report-derived read-only baseline；證據類型=安全重建案例摘要。FrostyGoop report-derived safe reconstruction; report-derived read-only baseline. The Lab decoded Modbus FC3 on localhost TCP/1502.",
+    "evidence_ids": [
+      "FROSTY-N01"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc03_read_001",
+      "report_derived_fc03_read_baseline",
+      "report-derived read-only baseline",
+      "case_summary",
+      "安全重建",
+      "報告衍生",
+      "Lab",
+      "FC3",
+      "Modbus",
+      "TCP/1502"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc03-read-001-task-pcap-correlation-02",
+    "scenario": "frostygoop",
+    "stage": "traffic_analysis",
+    "source_type": "normalized_correlation",
+    "title": "frostygoop_fc03_read_001：Task JSON 與 PCAP 對照",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc03_read_001；classification=report_derived_fc03_read_baseline；safety_role=report-derived read-only baseline；證據類型=Task JSON 與 PCAP 對照。Task JSON requests FC3 at register 53760; the decoded PCAP match is True. Additional decoded request count is 0. The capture is a localhost Lab request and does not prove device acceptance.",
+    "evidence_ids": [
+      "FROSTY-N02"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc03_read_001",
+      "report_derived_fc03_read_baseline",
+      "report-derived read-only baseline",
+      "task_pcap_correlation",
+      "Task JSON",
+      "PCAP",
+      "Modbus",
+      "tshark",
+      "對照",
+      "FC3",
+      "53760"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc03-read-001-behavior-detection-03",
+    "scenario": "frostygoop",
+    "stage": "detection",
+    "source_type": "normalized_detection",
+    "title": "frostygoop_fc03_read_001：Modbus 行為偵測結果",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc03_read_001；classification=report_derived_fc03_read_baseline；safety_role=report-derived read-only baseline；證據類型=Modbus 行為偵測結果。Behavior detector classified FC3 as READ with Lab risk LOW and result NOTICE. Read activity overlaps the Lab watched register range.",
+    "evidence_ids": [
+      "FROSTY-N03"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc03_read_001",
+      "report_derived_fc03_read_baseline",
+      "report-derived read-only baseline",
+      "behavior_detection",
+      "Modbus",
+      "偵測",
+      "NOTICE",
+      "ALERT",
+      "register",
+      "FC3",
+      "READ"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc03-read-001-data-quality-04",
+    "scenario": "frostygoop",
+    "stage": "data_quality",
+    "source_type": "normalized_data_quality",
+    "title": "frostygoop_fc03_read_001：資料品質與安全限制",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc03_read_001；classification=report_derived_fc03_read_baseline；safety_role=report-derived read-only baseline；證據類型=資料品質與安全限制。Report-derived safe reconstruction; no real FrostyGoop sample, PLC, RTU, or physical process is involved. | Modbus port 1502 is a localhost Lab port, not production TCP/502. | PCAP proves the captured Lab request, not device acceptance or physical impact.",
+    "evidence_ids": [
+      "FROSTY-N04"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc03_read_001",
+      "report_derived_fc03_read_baseline",
+      "report-derived read-only baseline",
+      "data_quality",
+      "資料品質",
+      "安全限制",
+      "unknowns",
+      "TCP/1502",
+      "非生產環境",
+      "Modbus",
+      "TCP/502",
+      "PCAP"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc06-write-001-case-summary-01",
+    "scenario": "frostygoop",
+    "stage": "incident_overview",
+    "source_type": "normalized_summary",
+    "title": "frostygoop_fc06_write_001：安全重建案例摘要",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc06_write_001；classification=safe_fc06_single_register_write；safety_role=safe Lab capability demonstration；證據類型=安全重建案例摘要。FrostyGoop report-derived safe reconstruction; safe Lab capability demonstration. The Lab decoded Modbus FC6 on localhost TCP/1502.",
+    "evidence_ids": [
+      "FROSTY-N05"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc06_write_001",
+      "safe_fc06_single_register_write",
+      "safe Lab capability demonstration",
+      "case_summary",
+      "安全重建",
+      "報告衍生",
+      "Lab",
+      "FC6",
+      "Modbus",
+      "TCP/1502"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc06-write-001-task-pcap-correlation-02",
+    "scenario": "frostygoop",
+    "stage": "traffic_analysis",
+    "source_type": "normalized_correlation",
+    "title": "frostygoop_fc06_write_001：Task JSON 與 PCAP 對照",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc06_write_001；classification=safe_fc06_single_register_write；safety_role=safe Lab capability demonstration；證據類型=Task JSON 與 PCAP 對照。Task JSON requests FC6 at register 53760; the decoded PCAP match is True. Additional decoded request count is 1. The capture is a localhost Lab request and does not prove device acceptance.",
+    "evidence_ids": [
+      "FROSTY-N06"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc06_write_001",
+      "safe_fc06_single_register_write",
+      "safe Lab capability demonstration",
+      "task_pcap_correlation",
+      "Task JSON",
+      "PCAP",
+      "Modbus",
+      "tshark",
+      "對照",
+      "FC6",
+      "53760"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc06-write-001-pcap-follow-up-03",
+    "scenario": "frostygoop",
+    "stage": "verification",
+    "source_type": "normalized_timeline",
+    "title": "frostygoop_fc06_write_001：PCAP 後續觀測",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc06_write_001；classification=safe_fc06_single_register_write；safety_role=safe Lab capability demonstration；證據類型=PCAP 後續觀測。The PCAP contains 1 additional supported Modbus request(s) after the task-correlated request. These are retained as Lab follow-up observations and do not prove device acceptance.",
+    "evidence_ids": [
+      "FROSTY-N07"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc06_write_001",
+      "safe_fc06_single_register_write",
+      "safe Lab capability demonstration",
+      "pcap_follow_up",
+      "PCAP",
+      "後續觀測",
+      "驗證讀取",
+      "不代表設備接受",
+      "Modbus"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc06-write-001-behavior-detection-04",
+    "scenario": "frostygoop",
+    "stage": "detection",
+    "source_type": "normalized_detection",
+    "title": "frostygoop_fc06_write_001：Modbus 行為偵測結果",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc06_write_001；classification=safe_fc06_single_register_write；safety_role=safe Lab capability demonstration；證據類型=Modbus 行為偵測結果。Behavior detector classified FC6 as WRITE with Lab risk MEDIUM and result ALERT. Safe single-register write overlaps the Lab watched register range.",
+    "evidence_ids": [
+      "FROSTY-N08"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc06_write_001",
+      "safe_fc06_single_register_write",
+      "safe Lab capability demonstration",
+      "behavior_detection",
+      "Modbus",
+      "偵測",
+      "NOTICE",
+      "ALERT",
+      "register",
+      "FC6",
+      "WRITE"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc06-write-001-data-quality-05",
+    "scenario": "frostygoop",
+    "stage": "data_quality",
+    "source_type": "normalized_data_quality",
+    "title": "frostygoop_fc06_write_001：資料品質與安全限制",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc06_write_001；classification=safe_fc06_single_register_write；safety_role=safe Lab capability demonstration；證據類型=資料品質與安全限制。Report-derived safe reconstruction; no real FrostyGoop sample, PLC, RTU, or physical process is involved. | Modbus port 1502 is a localhost Lab port, not production TCP/502. | PCAP proves the captured Lab request, not device acceptance or physical impact. | FC06/FC16 are safe Lab capability demonstrations and are not claimed as observed real FrostyGoop behavior. | PCAP contains additional supported Modbus requests; they are retained as follow-up observations rather than discarded.",
+    "evidence_ids": [
+      "FROSTY-N09"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc06_write_001",
+      "safe_fc06_single_register_write",
+      "safe Lab capability demonstration",
+      "data_quality",
+      "資料品質",
+      "安全限制",
+      "unknowns",
+      "TCP/1502",
+      "非生產環境",
+      "FC06",
+      "FC16",
+      "Modbus",
+      "TCP/502",
+      "PCAP"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc16-write-001-case-summary-01",
+    "scenario": "frostygoop",
+    "stage": "incident_overview",
+    "source_type": "normalized_summary",
+    "title": "frostygoop_fc16_write_001：安全重建案例摘要",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc16_write_001；classification=safe_fc16_multiple_register_write；safety_role=safe Lab capability demonstration；證據類型=安全重建案例摘要。FrostyGoop report-derived safe reconstruction; safe Lab capability demonstration. The Lab decoded Modbus FC16 on localhost TCP/1502.",
+    "evidence_ids": [
+      "FROSTY-N10"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc16_write_001",
+      "safe_fc16_multiple_register_write",
+      "safe Lab capability demonstration",
+      "case_summary",
+      "安全重建",
+      "報告衍生",
+      "Lab",
+      "FC16",
+      "Modbus",
+      "TCP/1502"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc16-write-001-task-pcap-correlation-02",
+    "scenario": "frostygoop",
+    "stage": "traffic_analysis",
+    "source_type": "normalized_correlation",
+    "title": "frostygoop_fc16_write_001：Task JSON 與 PCAP 對照",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc16_write_001；classification=safe_fc16_multiple_register_write；safety_role=safe Lab capability demonstration；證據類型=Task JSON 與 PCAP 對照。Task JSON requests FC16 at register 53760; the decoded PCAP match is True. Additional decoded request count is 1. The capture is a localhost Lab request and does not prove device acceptance.",
+    "evidence_ids": [
+      "FROSTY-N11"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc16_write_001",
+      "safe_fc16_multiple_register_write",
+      "safe Lab capability demonstration",
+      "task_pcap_correlation",
+      "Task JSON",
+      "PCAP",
+      "Modbus",
+      "tshark",
+      "對照",
+      "FC16",
+      "53760"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc16-write-001-pcap-follow-up-03",
+    "scenario": "frostygoop",
+    "stage": "verification",
+    "source_type": "normalized_timeline",
+    "title": "frostygoop_fc16_write_001：PCAP 後續觀測",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc16_write_001；classification=safe_fc16_multiple_register_write；safety_role=safe Lab capability demonstration；證據類型=PCAP 後續觀測。The PCAP contains 1 additional supported Modbus request(s) after the task-correlated request. These are retained as Lab follow-up observations and do not prove device acceptance.",
+    "evidence_ids": [
+      "FROSTY-N12"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc16_write_001",
+      "safe_fc16_multiple_register_write",
+      "safe Lab capability demonstration",
+      "pcap_follow_up",
+      "PCAP",
+      "後續觀測",
+      "驗證讀取",
+      "不代表設備接受",
+      "Modbus"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc16-write-001-behavior-detection-04",
+    "scenario": "frostygoop",
+    "stage": "detection",
+    "source_type": "normalized_detection",
+    "title": "frostygoop_fc16_write_001：Modbus 行為偵測結果",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc16_write_001；classification=safe_fc16_multiple_register_write；safety_role=safe Lab capability demonstration；證據類型=Modbus 行為偵測結果。Behavior detector classified FC16 as WRITE with Lab risk HIGH and result ALERT. Safe multiple-register write overlaps the Lab watched register range.",
+    "evidence_ids": [
+      "FROSTY-N13"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc16_write_001",
+      "safe_fc16_multiple_register_write",
+      "safe Lab capability demonstration",
+      "behavior_detection",
+      "Modbus",
+      "偵測",
+      "NOTICE",
+      "ALERT",
+      "register",
+      "FC16",
+      "WRITE"
+    ]
+  },
+  {
+    "chunk_id": "FROSTY-fc16-write-001-data-quality-05",
+    "scenario": "frostygoop",
+    "stage": "data_quality",
+    "source_type": "normalized_data_quality",
+    "title": "frostygoop_fc16_write_001：資料品質與安全限制",
+    "text": "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc16_write_001；classification=safe_fc16_multiple_register_write；safety_role=safe Lab capability demonstration；證據類型=資料品質與安全限制。Report-derived safe reconstruction; no real FrostyGoop sample, PLC, RTU, or physical process is involved. | Modbus port 1502 is a localhost Lab port, not production TCP/502. | PCAP proves the captured Lab request, not device acceptance or physical impact. | FC06/FC16 are safe Lab capability demonstrations and are not claimed as observed real FrostyGoop behavior. | PCAP contains additional supported Modbus requests; they are retained as follow-up observations rather than discarded.",
+    "evidence_ids": [
+      "FROSTY-N14"
+    ],
+    "keywords": [
+      "FrostyGoop",
+      "frostygoop_fc16_write_001",
+      "safe_fc16_multiple_register_write",
+      "safe Lab capability demonstration",
+      "data_quality",
+      "資料品質",
+      "安全限制",
+      "unknowns",
+      "TCP/1502",
+      "非生產環境",
+      "FC06",
+      "FC16",
+      "Modbus",
+      "TCP/502",
+      "PCAP"
+    ]
+  }
+]

@@ -1,0 +1,36 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local configuration
+.env
+.env.*
+!.env.example
+.venv-*/
+
+# Local vector database
+data/chroma/
+
+# Generated evaluation reports
+reports/*.json
+reports/**/*.json
+
+# Local source material and VM backups pending publication review
+/情境資訊/
+/vm_script_backup/
+/scenarios/ryuk/input/raw/
+/PUBLICATION_REVIEW.local.md
+/scripts/finalize_ryuk_sensor_scripts.sh
+/scripts/finalize_ind2_vm_scripts.sh
+
+# Pre-handoff history retained locally but excluded from delivery
+_archive/
+
+# Editors and operating systems
+.vscode/
+.DS_Store
+Thumbs.db

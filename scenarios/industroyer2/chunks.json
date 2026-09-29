@@ -1,0 +1,657 @@
+[
+  {
+    "chunk_id": "IND2-normal-eng-001-executive-summary-01",
+    "scenario": "industroyer2",
+    "stage": "incident_overview",
+    "source_type": "normalized_summary",
+    "title": "ind2_normal_eng_001：事件摘要",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_normal_eng_001；classification=normal_eng_maintenance；證據類型=事件摘要。ind2_normal_eng_001: Authorized ENG Maintenance Console sent an IEC-104 command to OT-SERVER01. Server observed source_ip=10.10.60.20 over TCP/2404. Maintenance ticket is present in ENG local logs only (MW-2026-001) and is not carried by IEC-104 packets.",
+    "evidence_ids": [
+      "IND2-N01"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_normal_eng_001",
+      "normal_eng_maintenance",
+      "executive_summary",
+      "事件摘要",
+      "事件鏈",
+      "安全模擬",
+      "OT-SERVER01",
+      "IEC-104",
+      "TCP/2404",
+      "source_ip"
+    ]
+  },
+  {
+    "chunk_id": "IND2-normal-eng-001-comparison-note-02",
+    "scenario": "industroyer2",
+    "stage": "analysis",
+    "source_type": "normalized_analysis",
+    "title": "ind2_normal_eng_001：鑑別與比較",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_normal_eng_001；classification=normal_eng_maintenance；證據類型=鑑別與比較。Normal ENG traffic establishes the authorized baseline: Server and PCAP see ENG01 as source_ip=10.10.60.20 over TCP/2404.",
+    "evidence_ids": [
+      "IND2-N02"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_normal_eng_001",
+      "normal_eng_maintenance",
+      "comparison_note",
+      "比較",
+      "鑑別",
+      "來源 IP",
+      "來源位址",
+      "正常 ENG",
+      "ENG01",
+      "OT-SERVER01",
+      "baseline",
+      "正常維護",
+      "TCP/2404",
+      "PCAP",
+      "source_ip"
+    ]
+  },
+  {
+    "chunk_id": "IND2-normal-eng-001-comparison-note-03",
+    "scenario": "industroyer2",
+    "stage": "analysis",
+    "source_type": "normalized_analysis",
+    "title": "ind2_normal_eng_001：鑑別與比較",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_normal_eng_001；classification=normal_eng_maintenance；證據類型=鑑別與比較。Maintenance ticket is evidence of operator intent, but it exists in ENG local logs and is not visible in IEC-104 packets or Server state.",
+    "evidence_ids": [
+      "IND2-N03"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_normal_eng_001",
+      "normal_eng_maintenance",
+      "comparison_note",
+      "比較",
+      "鑑別",
+      "來源 IP",
+      "來源位址",
+      "正常 ENG",
+      "ENG01",
+      "OT-SERVER01",
+      "baseline",
+      "正常維護",
+      "IEC-104"
+    ]
+  },
+  {
+    "chunk_id": "IND2-normal-eng-001-server-commands-04",
+    "scenario": "industroyer2",
+    "stage": "command_execution",
+    "source_type": "normalized_timeline",
+    "title": "ind2_normal_eng_001：OT-SERVER01 IEC-104 指令",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_normal_eng_001；classification=normal_eng_maintenance；證據類型=OT-SERVER01 IEC-104 指令。2026-08-06T10:24:59.694971 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-06T10:24:59.894149 Server received IEC-104 command from None to IOA 1002 (BRK-102 -> OPEN) over TCP/2404",
+    "evidence_ids": [
+      "IND2-N04"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_normal_eng_001",
+      "normal_eng_maintenance",
+      "server_commands",
+      "OT-SERVER01",
+      "IEC-104",
+      "TCP/2404",
+      "控制指令"
+    ]
+  },
+  {
+    "chunk_id": "IND2-normal-eng-001-eng-maintenance-05",
+    "scenario": "industroyer2",
+    "stage": "normal_operations",
+    "source_type": "normalized_timeline",
+    "title": "ind2_normal_eng_001：ENG 正常維護證據",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_normal_eng_001；classification=normal_eng_maintenance；證據類型=ENG 正常維護證據。ENG maintenance records count=2; maintenance tickets=MW-2026-001. Tickets are local ENG evidence and are not carried in IEC-104 packets.",
+    "evidence_ids": [
+      "IND2-N05"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_normal_eng_001",
+      "normal_eng_maintenance",
+      "eng_maintenance",
+      "ENG01",
+      "正常維護",
+      "maintenance ticket",
+      "IEC-104"
+    ]
+  },
+  {
+    "chunk_id": "IND2-normal-eng-001-caddywiper-status-06",
+    "scenario": "industroyer2",
+    "stage": "recovery_impact",
+    "source_type": "normalized_state",
+    "title": "ind2_normal_eng_001：Safe CaddyWiper 狀態",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_normal_eng_001；classification=normal_eng_maintenance；證據類型=Safe CaddyWiper 狀態。Safe CaddyWiper status: eng_console_available=True, engineering_backup_available=True, ioa_mapping_available=True, restore_allowed=True, dummy_files_wiped=False, reason=SAFE_CADDYWIPER_V2_RECOVERED",
+    "evidence_ids": [
+      "IND2-N06"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_normal_eng_001",
+      "normal_eng_maintenance",
+      "caddywiper_status",
+      "Safe CaddyWiper",
+      "ENG01",
+      "復原能力",
+      "lockout",
+      "CaddyWiper"
+    ]
+  },
+  {
+    "chunk_id": "IND2-normal-eng-001-data-quality-07",
+    "scenario": "industroyer2",
+    "stage": "data_quality",
+    "source_type": "normalized_data_quality",
+    "title": "ind2_normal_eng_001：資料品質與限制",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_normal_eng_001；classification=normal_eng_maintenance；證據類型=資料品質與限制。Data quality warnings: Some collected files are empty. Empty files may mean no activity for that channel, or collection gaps. | Excluded 5 stale/legacy events from main conclusion using per-host recent window of 45 minutes. | PCAP files are present, but tshark is not installed; normalizer recorded file hashes/sizes but did not decode IEC-104 fields. | Server/PCAP source IP alone cannot distinguish normal ENG operation from Kali via ENG relay; correlate ENG local logs and Kali logs. | Maintenance ticket is local ENG evidence only; IEC-104 packets and Server state do not carry the lab maintenance_ticket field.",
+    "evidence_ids": [
+      "IND2-N07"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_normal_eng_001",
+      "normal_eng_maintenance",
+      "data_quality",
+      "資料品質",
+      "證據限制",
+      "tshark",
+      "PCAP",
+      "unknowns",
+      "Kali",
+      "IEC-104",
+      "maintenance_ticket"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-002-executive-summary-01",
+    "scenario": "industroyer2",
+    "stage": "incident_overview",
+    "source_type": "normalized_summary",
+    "title": "ind2_vE_002：事件摘要",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_002；classification=direct_iec104_attack；證據類型=事件摘要。ind2_vE_002: Kali sent a direct Industroyer2-like IEC-104 payload to OT-SERVER01. Server observed source_ip=10.10.60.10 over TCP/2404 and OT state changed to service disruption.",
+    "evidence_ids": [
+      "IND2-N08"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_002",
+      "direct_iec104_attack",
+      "executive_summary",
+      "事件摘要",
+      "事件鏈",
+      "安全模擬",
+      "Kali",
+      "OT-SERVER01",
+      "IEC-104",
+      "TCP/2404",
+      "source_ip"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-002-comparison-note-02",
+    "scenario": "industroyer2",
+    "stage": "analysis",
+    "source_type": "normalized_analysis",
+    "title": "ind2_vE_002：鑑別與比較",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_002；classification=direct_iec104_attack；證據類型=鑑別與比較。Direct attack is distinguishable at Server/PCAP by source_ip=10.10.60.10 sending IEC-104 to TCP/2404. 比較 Kali direct IEC-104 與 via ENG Relay 時，這筆證據只支持 direct case 的來源為 10.10.60.10；relay case 必須另以 ENG Relay 與 Server 證據確認。",
+    "evidence_ids": [
+      "IND2-N09"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_002",
+      "direct_iec104_attack",
+      "comparison_note",
+      "比較",
+      "鑑別",
+      "來源 IP",
+      "來源位址",
+      "Kali",
+      "正常 ENG",
+      "OT-SERVER01",
+      "direct IEC-104",
+      "via ENG Relay",
+      "direct vs relay",
+      "比較來源 IP",
+      "區分",
+      "IEC-104",
+      "TCP/2404",
+      "PCAP",
+      "source_ip"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-002-server-commands-03",
+    "scenario": "industroyer2",
+    "stage": "command_execution",
+    "source_type": "normalized_timeline",
+    "title": "ind2_vE_002：OT-SERVER01 IEC-104 指令",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_002；classification=direct_iec104_attack；證據類型=OT-SERVER01 IEC-104 指令。2026-08-05T16:07:56.130578 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-05T16:07:56.326969 Server received IEC-104 command from None to IOA 1001 (BRK-101 -> OPEN) over TCP/2404; 2026-08-05T16:07:57.079692 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-05T16:07:57.272046 Server received IEC-104 command from None to IOA 1002 (BRK-102 -> OPEN) over TCP/2404; 2026-08-05T16:07:58.007985 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-05T16:07:58.196801 Server received IEC-104 command from None to IOA 1003 (BRK-103 -> OPEN) over TCP/2404; 2026-08-05T16:07:58.924492 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-05T16:07:59.122198 Server received IEC-104 command from None to IOA 2001 (FDR-A -> DEENERGIZED) over TCP/2404; 2026-08-05T16:07:59.864810 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-05T16:08:00.055931 Server received IEC-104 command from None to IOA 3001 (RLY-201 -> ALARM) over TCP/2404",
+    "evidence_ids": [
+      "IND2-N10"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_002",
+      "direct_iec104_attack",
+      "server_commands",
+      "OT-SERVER01",
+      "IEC-104",
+      "TCP/2404",
+      "控制指令"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-002-caddywiper-status-04",
+    "scenario": "industroyer2",
+    "stage": "recovery_impact",
+    "source_type": "normalized_state",
+    "title": "ind2_vE_002：Safe CaddyWiper 狀態",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_002；classification=direct_iec104_attack；證據類型=Safe CaddyWiper 狀態。Safe CaddyWiper status: eng_console_available=True, engineering_backup_available=True, ioa_mapping_available=True, restore_allowed=True, dummy_files_wiped=False, reason=SAFE_CADDYWIPER_V2_RECOVERED",
+    "evidence_ids": [
+      "IND2-N11"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_002",
+      "direct_iec104_attack",
+      "caddywiper_status",
+      "Safe CaddyWiper",
+      "ENG01",
+      "復原能力",
+      "lockout",
+      "CaddyWiper"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-002-data-quality-05",
+    "scenario": "industroyer2",
+    "stage": "data_quality",
+    "source_type": "normalized_data_quality",
+    "title": "ind2_vE_002：資料品質與限制",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_002；classification=direct_iec104_attack；證據類型=資料品質與限制。Data quality warnings: Some collected files are empty. Empty files may mean no activity for that channel, or collection gaps. | Excluded 3 stale/legacy events from main conclusion using per-host recent window of 45 minutes. | Possible cross-host clock offset detected. Preserve original timestamps and do not infer causality from absolute time alone. Host latest timestamps: eng01=2026-07-29T10:57:51.142336, kali=2026-08-05T04:08:01.353973, server=2026-08-05T16:08:00.566504. | PCAP files are present, but tshark is not installed; normalizer recorded file hashes/sizes but did not decode IEC-104 fields.",
+    "evidence_ids": [
+      "IND2-N12"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_002",
+      "direct_iec104_attack",
+      "data_quality",
+      "資料品質",
+      "證據限制",
+      "tshark",
+      "PCAP",
+      "unknowns",
+      "IEC-104"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-003-executive-summary-01",
+    "scenario": "industroyer2",
+    "stage": "incident_overview",
+    "source_type": "normalized_summary",
+    "title": "ind2_vE_003：事件摘要",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_003；classification=direct_attack_plus_caddywiper_lockout；證據類型=事件摘要。ind2_vE_003: Kali sent a direct Industroyer2-like IEC-104 payload to OT-SERVER01, then Safe CaddyWiper v2 simulated ENG01 recovery disruption. Server observed direct source_ip=10.10.60.10 for IEC-104 commands, while later relay/recovery attempts were blocked by CaddyWiper lockout.",
+    "evidence_ids": [
+      "IND2-N13"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_003",
+      "direct_attack_plus_caddywiper_lockout",
+      "executive_summary",
+      "direct_iec104_attack",
+      "safe_caddywiper_lockout_active",
+      "via_eng_relay_blocked_by_caddywiper",
+      "事件摘要",
+      "事件鏈",
+      "安全模擬",
+      "Kali",
+      "ENG01",
+      "OT-SERVER01",
+      "IEC-104",
+      "CaddyWiper",
+      "source_ip"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-003-comparison-note-02",
+    "scenario": "industroyer2",
+    "stage": "analysis",
+    "source_type": "normalized_analysis",
+    "title": "ind2_vE_003：鑑別與比較",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_003；classification=direct_attack_plus_caddywiper_lockout；證據類型=鑑別與比較。Direct attack is distinguishable at Server/PCAP by source_ip=10.10.60.10 sending IEC-104 to TCP/2404.",
+    "evidence_ids": [
+      "IND2-N14"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_003",
+      "direct_attack_plus_caddywiper_lockout",
+      "comparison_note",
+      "direct_iec104_attack",
+      "safe_caddywiper_lockout_active",
+      "via_eng_relay_blocked_by_caddywiper",
+      "比較",
+      "鑑別",
+      "來源 IP",
+      "來源位址",
+      "Kali",
+      "ENG Relay",
+      "OT-SERVER01",
+      "CaddyWiper lockout",
+      "iec104_sent",
+      "IEC-104",
+      "TCP/2404",
+      "PCAP",
+      "source_ip"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-003-comparison-note-03",
+    "scenario": "industroyer2",
+    "stage": "analysis",
+    "source_type": "normalized_analysis",
+    "title": "ind2_vE_003：鑑別與比較",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_003；classification=direct_attack_plus_caddywiper_lockout；證據類型=鑑別與比較。After Safe CaddyWiper lockout, ENG relay/recovery attempts may be rejected before IEC-104 is sent; verify iec104_sent=false.",
+    "evidence_ids": [
+      "IND2-N15"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_003",
+      "direct_attack_plus_caddywiper_lockout",
+      "comparison_note",
+      "direct_iec104_attack",
+      "safe_caddywiper_lockout_active",
+      "via_eng_relay_blocked_by_caddywiper",
+      "比較",
+      "鑑別",
+      "來源 IP",
+      "來源位址",
+      "Kali",
+      "ENG Relay",
+      "OT-SERVER01",
+      "CaddyWiper lockout",
+      "iec104_sent",
+      "IEC-104",
+      "CaddyWiper"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-003-server-commands-04",
+    "scenario": "industroyer2",
+    "stage": "command_execution",
+    "source_type": "normalized_timeline",
+    "title": "ind2_vE_003：OT-SERVER01 IEC-104 指令",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_003；classification=direct_attack_plus_caddywiper_lockout；證據類型=OT-SERVER01 IEC-104 指令。2026-08-05T17:11:16.554886 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-05T17:11:16.753134 Server received IEC-104 command from None to IOA 1001 (BRK-101 -> OPEN) over TCP/2404; 2026-08-05T17:11:17.491258 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-05T17:11:17.686104 Server received IEC-104 command from None to IOA 1002 (BRK-102 -> OPEN) over TCP/2404; 2026-08-05T17:11:18.418921 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-05T17:11:18.617315 Server received IEC-104 command from None to IOA 1003 (BRK-103 -> OPEN) over TCP/2404; 2026-08-05T17:11:19.386699 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-05T17:11:19.575763 Server received IEC-104 command from None to IOA 2001 (FDR-A -> DEENERGIZED) over TCP/2404; 2026-08-05T17:11:20.404646 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-05T17:11:20.607503 Server received IEC-104 command from None to IOA 3001 (RLY-201 -> ALARM) over TCP/2404",
+    "evidence_ids": [
+      "IND2-N16"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_003",
+      "direct_attack_plus_caddywiper_lockout",
+      "server_commands",
+      "direct_iec104_attack",
+      "safe_caddywiper_lockout_active",
+      "via_eng_relay_blocked_by_caddywiper",
+      "OT-SERVER01",
+      "IEC-104",
+      "TCP/2404",
+      "控制指令"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-003-eng-relay-05",
+    "scenario": "industroyer2",
+    "stage": "relay",
+    "source_type": "normalized_timeline",
+    "title": "ind2_vE_003：ENG Relay 操作證據",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_003；classification=direct_attack_plus_caddywiper_lockout；證據類型=ENG Relay 操作證據。2026-08-05T17:11:40.709464 relay remote_ip=10.10.60.10 accepted=True iec104_sent=None outcome=safe_caddywiper_triggered blocked_by=None; 2026-08-05T17:12:04.205758 relay remote_ip=10.10.60.10 accepted=False iec104_sent=False outcome=blocked_by_safe_caddywiper blocked_by=safe_caddywiper_v2_console_lockout",
+    "evidence_ids": [
+      "IND2-N17"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_003",
+      "direct_attack_plus_caddywiper_lockout",
+      "eng_relay",
+      "direct_iec104_attack",
+      "safe_caddywiper_lockout_active",
+      "via_eng_relay_blocked_by_caddywiper",
+      "ENG01",
+      "ENG Relay",
+      "工程站中繼",
+      "Kali"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-003-caddywiper-status-06",
+    "scenario": "industroyer2",
+    "stage": "recovery_impact",
+    "source_type": "normalized_state",
+    "title": "ind2_vE_003：Safe CaddyWiper 狀態",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_003；classification=direct_attack_plus_caddywiper_lockout；證據類型=Safe CaddyWiper 狀態。Safe CaddyWiper status: eng_console_available=False, engineering_backup_available=False, ioa_mapping_available=False, restore_allowed=False, dummy_files_wiped=True, reason=SAFE_CADDYWIPER_V2_SIMULATED_ENGINEERING_WORKSTATION_IMPACT",
+    "evidence_ids": [
+      "IND2-N18"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_003",
+      "direct_attack_plus_caddywiper_lockout",
+      "caddywiper_status",
+      "direct_iec104_attack",
+      "safe_caddywiper_lockout_active",
+      "via_eng_relay_blocked_by_caddywiper",
+      "Safe CaddyWiper",
+      "ENG01",
+      "復原能力",
+      "lockout",
+      "CaddyWiper"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-003-data-quality-07",
+    "scenario": "industroyer2",
+    "stage": "data_quality",
+    "source_type": "normalized_data_quality",
+    "title": "ind2_vE_003：資料品質與限制",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_003；classification=direct_attack_plus_caddywiper_lockout；證據類型=資料品質與限制。Data quality warnings: Some collected files are empty. Empty files may mean no activity for that channel, or collection gaps. | Excluded 5 stale/legacy events from main conclusion using per-host recent window of 45 minutes. | Possible cross-host clock offset detected. Preserve original timestamps and do not infer causality from absolute time alone. Host latest timestamps: eng01=2026-08-05T17:12:04.205758, kali=2026-08-05T05:12:04.108289, server=2026-08-05T17:11:21.115819. | PCAP files are present, but tshark is not installed; normalizer recorded file hashes/sizes but did not decode IEC-104 fields.",
+    "evidence_ids": [
+      "IND2-N19"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_003",
+      "direct_attack_plus_caddywiper_lockout",
+      "data_quality",
+      "direct_iec104_attack",
+      "safe_caddywiper_lockout_active",
+      "via_eng_relay_blocked_by_caddywiper",
+      "資料品質",
+      "證據限制",
+      "tshark",
+      "PCAP",
+      "unknowns",
+      "IEC-104"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-004-executive-summary-01",
+    "scenario": "industroyer2",
+    "stage": "incident_overview",
+    "source_type": "normalized_summary",
+    "title": "ind2_vE_004：事件摘要",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_004；classification=via_eng_relay_success；證據類型=事件摘要。ind2_vE_004: Kali requested a command through ENG Relay before Safe CaddyWiper lockout. ENG01 sent the IEC-104 command to OT-SERVER01, and Server observed source_ip=10.10.60.20 over TCP/2404. This shows that Server/PCAP view can look similar to normal ENG traffic and must be correlated with Kali and ENG Relay logs.",
+    "evidence_ids": [
+      "IND2-N20"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_004",
+      "via_eng_relay_success",
+      "executive_summary",
+      "事件摘要",
+      "事件鏈",
+      "安全模擬",
+      "Kali",
+      "ENG01",
+      "OT-SERVER01",
+      "IEC-104",
+      "TCP/2404",
+      "CaddyWiper",
+      "PCAP",
+      "source_ip"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-004-comparison-note-02",
+    "scenario": "industroyer2",
+    "stage": "analysis",
+    "source_type": "normalized_analysis",
+    "title": "ind2_vE_004：鑑別與比較",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_004；classification=via_eng_relay_success；證據類型=鑑別與比較。Via-ENG relay success can look similar to normal ENG traffic from the Server/PCAP perspective because both use source_ip=10.10.60.20.",
+    "evidence_ids": [
+      "IND2-N21"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_004",
+      "via_eng_relay_success",
+      "comparison_note",
+      "比較",
+      "鑑別",
+      "來源 IP",
+      "來源位址",
+      "Kali",
+      "ENG Relay",
+      "正常 ENG",
+      "OT-SERVER01",
+      "來源 IP 歸因",
+      "PCAP",
+      "source_ip"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-004-comparison-note-03",
+    "scenario": "industroyer2",
+    "stage": "analysis",
+    "source_type": "normalized_analysis",
+    "title": "ind2_vE_004：鑑別與比較",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_004；classification=via_eng_relay_success；證據類型=鑑別與比較。Distinguish via-ENG relay from normal ENG by correlating Kali actions and ENG relay logs, not by Server source IP alone.",
+    "evidence_ids": [
+      "IND2-N22"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_004",
+      "via_eng_relay_success",
+      "comparison_note",
+      "比較",
+      "鑑別",
+      "來源 IP",
+      "來源位址",
+      "Kali",
+      "ENG Relay",
+      "正常 ENG",
+      "OT-SERVER01",
+      "來源 IP 歸因"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-004-server-commands-04",
+    "scenario": "industroyer2",
+    "stage": "command_execution",
+    "source_type": "normalized_timeline",
+    "title": "ind2_vE_004：OT-SERVER01 IEC-104 指令",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_004；classification=via_eng_relay_success；證據類型=OT-SERVER01 IEC-104 指令。2026-08-06T09:50:29.531141 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-06T09:51:00.047774 Server received IEC-104 command from None to IOA None (None -> None) over TCP/2404; 2026-08-06T09:51:00.244418 Server received IEC-104 command from None to IOA 1002 (BRK-102 -> OPEN) over TCP/2404",
+    "evidence_ids": [
+      "IND2-N23"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_004",
+      "via_eng_relay_success",
+      "server_commands",
+      "OT-SERVER01",
+      "IEC-104",
+      "TCP/2404",
+      "控制指令"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-004-eng-relay-05",
+    "scenario": "industroyer2",
+    "stage": "relay",
+    "source_type": "normalized_timeline",
+    "title": "ind2_vE_004：ENG Relay 操作證據",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_004；classification=via_eng_relay_success；證據類型=ENG Relay 操作證據。2026-08-05T21:51:02.114597 relay remote_ip=None accepted=True iec104_sent=None outcome=kali_requested_via_eng_relay_success blocked_by=None; 2026-08-06T09:50:31.505881 relay remote_ip=10.10.60.10 accepted=False iec104_sent=False outcome=eng_relay_connection_timeout blocked_by=None; 2026-08-06T09:51:02.044697 relay remote_ip=10.10.60.10 accepted=True iec104_sent=True outcome=eng_relay_successful_iec104_send blocked_by=None; 2026-08-06T09:51:02.764426 relay remote_ip=None accepted=None iec104_sent=None outcome=eng_relay_iec104 blocked_by=None",
+    "evidence_ids": [
+      "IND2-N24"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_004",
+      "via_eng_relay_success",
+      "eng_relay",
+      "ENG01",
+      "ENG Relay",
+      "工程站中繼",
+      "Kali"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-004-caddywiper-status-06",
+    "scenario": "industroyer2",
+    "stage": "recovery_impact",
+    "source_type": "normalized_state",
+    "title": "ind2_vE_004：Safe CaddyWiper 狀態",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_004；classification=via_eng_relay_success；證據類型=Safe CaddyWiper 狀態。Safe CaddyWiper status: eng_console_available=True, engineering_backup_available=True, ioa_mapping_available=True, restore_allowed=True, dummy_files_wiped=False, reason=SAFE_CADDYWIPER_V2_RECOVERED",
+    "evidence_ids": [
+      "IND2-N25"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_004",
+      "via_eng_relay_success",
+      "caddywiper_status",
+      "Safe CaddyWiper",
+      "ENG01",
+      "復原能力",
+      "lockout",
+      "CaddyWiper"
+    ]
+  },
+  {
+    "chunk_id": "IND2-ve-004-data-quality-07",
+    "scenario": "industroyer2",
+    "stage": "data_quality",
+    "source_type": "normalized_data_quality",
+    "title": "ind2_vE_004：資料品質與限制",
+    "text": "Industroyer2-like 安全模擬；case_id=ind2_vE_004；classification=via_eng_relay_success；證據類型=資料品質與限制。Data quality warnings: Some collected files are empty. Empty files may mean no activity for that channel, or collection gaps. | Excluded 5 stale/legacy events from main conclusion using per-host recent window of 45 minutes. | Possible cross-host clock offset detected. Preserve original timestamps and do not infer causality from absolute time alone. Host latest timestamps: eng01=2026-08-06T09:51:02.764426, kali=2026-08-05T21:51:02.114597, server=2026-08-06T09:51:00.749909. | PCAP files are present, but tshark is not installed; normalizer recorded file hashes/sizes but did not decode IEC-104 fields. | Server/PCAP source IP alone cannot distinguish normal ENG operation from Kali via ENG relay; correlate ENG local logs and Kali logs.",
+    "evidence_ids": [
+      "IND2-N26"
+    ],
+    "keywords": [
+      "Industroyer2",
+      "ind2_vE_004",
+      "via_eng_relay_success",
+      "data_quality",
+      "資料品質",
+      "證據限制",
+      "tshark",
+      "PCAP",
+      "unknowns",
+      "Kali",
+      "IEC-104"
+    ]
+  }
+]

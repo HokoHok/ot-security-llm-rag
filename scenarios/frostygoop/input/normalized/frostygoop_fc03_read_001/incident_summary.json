@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "normalizer_version": "frostygoop-normalizer-0.1.0",
+  "scenario": "frostygoop",
+  "case_id": "frostygoop_fc03_read_001",
+  "classification": "report_derived_fc03_read_baseline",
+  "safety_role": "report-derived read-only baseline",
+  "generated_at": "2026-08-10T07:52:35.257414+00:00",
+  "lab": {
+    "transport": "Modbus TCP",
+    "lab_endpoint": "127.0.0.1",
+    "lab_port": 1502,
+    "watch_range": {
+      "start": 53760,
+      "end": 53882
+    }
+  },
+  "task": {
+    "function_code": 3,
+    "address": 53760,
+    "count": 123
+  },
+  "pcap_observation": {
+    "transaction_id": 1,
+    "unit_id": 1,
+    "function_code": 3,
+    "address": 53760,
+    "count": 123,
+    "frame_number": 4,
+    "source_ip": "127.0.0.1",
+    "destination_ip": "127.0.0.1",
+    "source_port": 36588,
+    "destination_port": 1502
+  },
+  "pcap_follow_up_observations": [],
+  "task_pcap_match": true,
+  "behavior_detection": {
+    "operation": "read_holding_registers",
+    "behavior": "READ",
+    "risk": "LOW",
+    "detector_result": "NOTICE",
+    "message": "Read activity overlaps the Lab watched register range."
+  },
+  "source_files": {
+    "task_json": {
+      "path": "/home/lab-user/frostygoop-analysis/json-analysis/task_test_reconstructed_v1.json",
+      "sha256": "63fd853ea618591548d3dcb97b5040449f7072d506ebe550be65831a6e7ccf49",
+      "size": 128
+    },
+    "pcap": {
+      "path": "/home/lab-user/frostygoop-analysis/traffic/frostygoop_fc03_reconstructed.pcapng",
+      "sha256": "1c79cfa391e13f60d27fc29f0a540f2cc385fef9fee973000d1eada53fe4534a",
+      "size": 1640
+    }
+  },
+  "data_quality": {
+    "status": "warning",
+    "warnings": [
+      "Report-derived safe reconstruction; no real FrostyGoop sample, PLC, RTU, or physical process is involved.",
+      "Modbus port 1502 is a localhost Lab port, not production TCP/502.",
+      "PCAP proves the captured Lab request, not device acceptance or physical impact."
+    ]
+  }
+}

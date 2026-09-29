@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "normalizer_version": "frostygoop-normalizer-0.1.0",
+  "scenario": "frostygoop",
+  "case_id": "frostygoop_fc06_write_001",
+  "status": "warning",
+  "warnings": [
+    "Report-derived safe reconstruction; no real FrostyGoop sample, PLC, RTU, or physical process is involved.",
+    "Modbus port 1502 is a localhost Lab port, not production TCP/502.",
+    "PCAP proves the captured Lab request, not device acceptance or physical impact.",
+    "FC06/FC16 are safe Lab capability demonstrations and are not claimed as observed real FrostyGoop behavior.",
+    "PCAP contains additional supported Modbus requests; they are retained as follow-up observations rather than discarded."
+  ],
+  "decoded_request_count": 2,
+  "matching_request_count": 1
+}

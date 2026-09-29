@@ -1,0 +1,280 @@
+{
+  "normalizer_version": "ind2-normalizer-0.1.5",
+  "generated_at": "2026-08-06T03:41:14Z",
+  "case_id": "ind2_normal_eng_001",
+  "classification": {
+    "primary_case_type": "normal_eng_maintenance",
+    "tags": [
+      "normal_eng_maintenance"
+    ],
+    "signals": {
+      "has_kali_payload": false,
+      "has_direct_server": false,
+      "has_any_server_command": true,
+      "has_eng_server_explicit": false,
+      "has_eng_server": true,
+      "has_relay_success": false,
+      "has_relay_blocked": false,
+      "has_maintenance": true,
+      "case_name_hints_normal_eng": true,
+      "active_event_type_counts": {
+        "authorized_eng_maintenance_command": 2,
+        "server_raw_traffic": 4,
+        "server_received_iec104_command": 2
+      }
+    }
+  },
+  "executive_summary": "ind2_normal_eng_001: Authorized ENG Maintenance Console sent an IEC-104 command to OT-SERVER01. Server observed source_ip=10.10.60.20 over TCP/2404. Maintenance ticket is present in ENG local logs only (MW-2026-001) and is not carried by IEC-104 packets.",
+  "observed_facts": {
+    "kali": {
+      "count": 0,
+      "actions": []
+    },
+    "eng_relay": {
+      "count": 0,
+      "attempts": [],
+      "successful_attempts": [],
+      "failed_attempts": []
+    },
+    "eng_maintenance": {
+      "count": 2,
+      "maintenance_tickets": [
+        "MW-2026-001"
+      ],
+      "records": [
+        {
+          "timestamp": "2026-08-06T10:25:01.643553",
+          "event": "eng_maintenance_console_request",
+          "route": null,
+          "ioa": "1002",
+          "asset_id": "BRK-102",
+          "desired_state": "OPEN",
+          "maintenance_ticket": "MW-2026-001",
+          "accepted": true,
+          "iec104_sent": true,
+          "source_file": "eng01/eng_maintenance_console_actions.log",
+          "line_number": 1
+        },
+        {
+          "timestamp": "2026-08-06T10:25:02.366282",
+          "event": null,
+          "route": "authorized_maintenance_console",
+          "ioa": "1002",
+          "asset_id": "BRK-102",
+          "desired_state": "OPEN",
+          "maintenance_ticket": "MW-2026-001",
+          "accepted": null,
+          "iec104_sent": null,
+          "source_file": "eng01/eng_iec104_maintenance_actions.log",
+          "line_number": 1
+        }
+      ]
+    },
+    "server_commands": {
+      "count": 2,
+      "commands": [
+        {
+          "timestamp": "2026-08-06T10:24:59.694971",
+          "source_ip": null,
+          "source_classification": "AUTHORIZED_IEC104_ENGINEERING_SOURCE",
+          "ioa": null,
+          "asset_id": null,
+          "desired_state": null,
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 1
+        },
+        {
+          "timestamp": "2026-08-06T10:24:59.894149",
+          "source_ip": null,
+          "source_classification": null,
+          "ioa": 1002,
+          "asset_id": "BRK-102",
+          "desired_state": "OPEN",
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 2
+        }
+      ],
+      "source_ips": [],
+      "ioas": [
+        "1002"
+      ]
+    },
+    "caddywiper_status": {
+      "timestamp": "2026-08-06T10:21:34.692333",
+      "safe_caddywiper_version": "v2",
+      "eng_console_available": true,
+      "engineering_backup_available": true,
+      "ioa_mapping_available": true,
+      "restore_allowed": true,
+      "dummy_files_wiped": false,
+      "reason": "SAFE_CADDYWIPER_V2_RECOVERED",
+      "safety_note": "Lab recovery completed. Dummy engineering files recreated."
+    },
+    "caddywiper_report": {
+      "timestamp": "2026-08-05T17:11:40.748873",
+      "safe_caddywiper_version": "v2",
+      "eng_console_available": false,
+      "engineering_backup_available": false,
+      "ioa_mapping_available": false,
+      "restore_allowed": false,
+      "dummy_files_wiped": true,
+      "wiped_dummy_files": [
+        "substation_A_IOA_mapping.xlsx.sim",
+        "relay_settings_backup.cfg.sim",
+        "maintenance_restore_plan.txt.sim"
+      ],
+      "reason": "SAFE_CADDYWIPER_V2_SIMULATED_ENGINEERING_WORKSTATION_IMPACT",
+      "safety_note": "Safe simulation only. No real disk wiping, no destructive system commands.",
+      "impact_summary": [
+        "ENG maintenance console locked out",
+        "Engineering backup marked unavailable",
+        "IOA mapping marked unavailable",
+        "Restore action blocked",
+        "Dummy engineering files overwritten with safe simulation marker"
+      ]
+    },
+    "ot_state_before": {
+      "grid_status": "NORMAL",
+      "service_disruption_simulated": false,
+      "assets": {
+        "BRK-101": {
+          "state": "CLOSED"
+        },
+        "BRK-102": {
+          "state": "CLOSED"
+        },
+        "BRK-103": {
+          "state": "CLOSED"
+        },
+        "FDR-A": {
+          "state": "ENERGIZED"
+        },
+        "RLY-201": {
+          "state": "HEALTHY"
+        }
+      }
+    },
+    "ot_state_final": {
+      "scenario": "Industroyer2-like Safe Emulation",
+      "version": "D",
+      "site": "Simulated Substation A",
+      "grid_status": "SERVICE_DISRUPTION_SIMULATED",
+      "breakers": [
+        {
+          "asset_id": "BRK-101",
+          "state": "CLOSED"
+        },
+        {
+          "asset_id": "BRK-102",
+          "state": "CLOSED"
+        },
+        {
+          "asset_id": "BRK-103",
+          "state": "CLOSED"
+        }
+      ],
+      "feeders": [
+        {
+          "asset_id": "FDR-A",
+          "status": "ENERGIZED"
+        }
+      ],
+      "relays": [
+        {
+          "asset_id": "RLY-201",
+          "status": "HEALTHY"
+        }
+      ],
+      "last_updated_by": "iec104_server_v1",
+      "service_disruption_simulated": true,
+      "last_command": {
+        "timestamp": "2026-08-06T10:24:59.893584",
+        "protocol_label": "IEC-104",
+        "type_id_label": "C_SC_NA_1",
+        "transport": "TCP",
+        "destination_port": 2404,
+        "real_ics_protocol_used": true,
+        "source_ip": "10.10.60.20",
+        "source_host_claim": "IEC104-CLIENT",
+        "source_classification": "AUTHORIZED_IEC104_ENGINEERING_SOURCE",
+        "ioa": "1002",
+        "asset_id": "BRK-102",
+        "desired_state": "OPEN",
+        "maintenance_ticket": null,
+        "continued_without_ack": true,
+        "note": "IEC-104 packets do not carry lab maintenance_ticket metadata. ENG/Kali intent is correlated through local console or relay logs."
+      },
+      "assets": {
+        "BRK-102": {
+          "state": "OPEN",
+          "last_updated": "2026-08-06T10:24:59.893556"
+        },
+        "BRK-101": {
+          "state": "CLOSED",
+          "last_updated": "2026-08-06T10:21:33.476337"
+        },
+        "BRK-103": {
+          "state": "CLOSED",
+          "last_updated": "2026-08-06T10:21:35.361027"
+        },
+        "FDR-A": {
+          "state": "ENERGIZED",
+          "last_updated": "2026-08-06T10:21:36.304816"
+        },
+        "RLY-201": {
+          "state": "HEALTHY",
+          "last_updated": "2026-08-06T10:21:37.270918"
+        }
+      }
+    },
+    "pcaps": [
+      {
+        "path": "pcaps/ind2_normal_eng_001_maintenance.pcapng",
+        "size_bytes": 1986,
+        "sha256": "bbb162fd23de6516828e99bcf8044869bca13985971bb863b6f795b75bd5dfaa",
+        "decoded_with_tshark": false,
+        "iec104_field_rows": []
+      }
+    ],
+    "collection_manifest": {
+      "case_id": "ind2_normal_eng_001",
+      "collected_at": "2026-08-06T10:27:20+08:00",
+      "sensor_host": "iii",
+      "source_hosts": {
+        "kali": "10.10.60.10",
+        "eng01": "10.10.60.20",
+        "server": "10.10.60.30",
+        "sensor": "10.10.60.50"
+      },
+      "note": "Collected active logs only. logs/archive was intentionally excluded."
+    }
+  },
+  "comparison_notes": [
+    "Normal ENG traffic establishes the authorized baseline: Server and PCAP see ENG01 as source_ip=10.10.60.20 over TCP/2404.",
+    "Maintenance ticket is evidence of operator intent, but it exists in ENG local logs and is not visible in IEC-104 packets or Server state."
+  ],
+  "data_quality_summary": {
+    "warnings": [
+      "Some collected files are empty. Empty files may mean no activity for that channel, or collection gaps.",
+      "Excluded 5 stale/legacy events from main conclusion using per-host recent window of 45 minutes.",
+      "PCAP files are present, but tshark is not installed; normalizer recorded file hashes/sizes but did not decode IEC-104 fields.",
+      "Server/PCAP source IP alone cannot distinguish normal ENG operation from Kali via ENG relay; correlate ENG local logs and Kali logs.",
+      "Maintenance ticket is local ENG evidence only; IEC-104 packets and Server state do not carry the lab maintenance_ticket field."
+    ],
+    "missing_expected_files_count": 0,
+    "empty_files_count": 7,
+    "parse_errors_count": 0,
+    "stale_events_excluded_count": 5,
+    "pcap_count": 1
+  },
+  "output_files": {
+    "incident_summary": "/home/lab-user/ind2_sensor/normalized/ind2_normal_eng_001/incident_summary.json",
+    "timeline": "/home/lab-user/ind2_sensor/normalized/ind2_normal_eng_001/timeline.json",
+    "data_quality": "/home/lab-user/ind2_sensor/normalized/ind2_normal_eng_001/data_quality.json",
+    "rag_chunks": "/home/lab-user/ind2_sensor/normalized/ind2_normal_eng_001/rag_chunks.jsonl"
+  }
+}

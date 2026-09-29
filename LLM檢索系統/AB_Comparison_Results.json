@@ -1,0 +1,542 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-13T16:45:35.425216+08:00",
+  "purpose": "Small live A/B sample: shared scenario context versus shared context plus RAG.",
+  "configuration": {
+    "chat_model": "llama3.1:8b-instruct-q5_0",
+    "embedding_model": "embeddinggemma:300m-qat-q8_0",
+    "top_k": 4,
+    "temperature": 0.15
+  },
+  "rows": [
+    {
+      "case_id": "RYUK-AB01",
+      "scenario": "ryuk",
+      "question": "為什麼 Kali 不是直接修改 DC01 Share 的主機？",
+      "shared_context": "student_materials\\ryuk\\llm_context.md",
+      "condition_a": {
+        "answer": "Lab 設計中，為了安全性考量，Kali 不是直接修改 DC01 Share 的主機，而是透過 SMB 存取 RyukShare 進行操作。",
+        "known_facts": [
+          "Lab 設計中，Kali 不是直接修改 DC01 Share 的主機",
+          "Lab 設計中，透過 SMB 存取 RyukShare 進行操作"
+        ],
+        "reasonable_inferences": [],
+        "unknowns": [
+          "Lab 設計中，為什麼 Kali 不是直接修改 DC01 Share 的主機？"
+        ],
+        "evidence_ids": [],
+        "next_hint": "請注意 Lab 設計中的安全考量"
+      },
+      "condition_b": {
+        "answer": "Kali 的 HTTP 提供紀錄支持它是本情境的內容來源端。USER01 的端點紀錄則直接支持它是實際執行端，因此兩類證據代表不同角色。實驗環境設計另阻擋 Kali 直接透過 SMB 存取 DC01，但這項設計不能取代執行期間的防火牆或封包觀測。",
+        "known_facts": [
+          "Kali 是本情境的 HTTP 下載來源。",
+          "USER01 是有端點紀錄支持的實際執行端。",
+          "實驗環境設計阻擋 Kali 直接透過 SMB 存取 DC01。"
+        ],
+        "reasonable_inferences": [],
+        "unknowns": [
+          "目前缺少執行期間的防火牆紀錄或封包擷取，無法確認 Kali 是否曾嘗試直接 SMB 連線。"
+        ],
+        "evidence_ids": [
+          "RYUK-C01",
+          "RYUK-U01"
+        ],
+        "next_hint": "請把 Kali、USER01 與 DC01 分成內容提供端、實際執行端和 Share 所在端，再指出哪一項仍缺少網路層紀錄。"
+      },
+      "condition_b_retrieved_chunk_ids": [
+        "RYUK-execution-impact-01",
+        "RYUK-topology-01",
+        "RYUK-impact-01",
+        "RYUK-discovery-01"
+      ],
+      "condition_b_retrieved_evidence_ids": [
+        "RYUK-U01",
+        "RYUK-U02",
+        "RYUK-U03",
+        "RYUK-L02",
+        "RYUK-N01",
+        "RYUK-C01",
+        "RYUK-L03",
+        "RYUK-L04",
+        "RYUK-L06"
+      ],
+      "comparison_observations": {
+        "same_student_context": true,
+        "condition_a_evidence_id_count": 0,
+        "condition_b_evidence_id_count": 2,
+        "condition_b_citations_are_retrieved": true,
+        "condition_a_answer_excerpt": "Lab 設計中，為了安全性考量，Kali 不是直接修改 DC01 Share 的主機，而是透過 SMB 存取 RyukShare 進行操作。",
+        "condition_b_answer_excerpt": "Kali 的 HTTP 提供紀錄支持它是本情境的內容來源端。USER01 的端點紀錄則直接支持它是實際執行端，因此兩類證據代表不同角色。實驗環境設計另阻擋 Kali 直接透過 SMB 存取 …"
+      },
+      "ollama_calls": [
+        {
+          "request_number": 1,
+          "done_reason": "stop",
+          "prompt_eval_count": 577,
+          "eval_count": 169,
+          "total_duration_seconds": 29.306289,
+          "load_duration_seconds": 16.1904852,
+          "prompt_eval_duration_seconds": 4.531139,
+          "eval_duration_seconds": 8.57618,
+          "output_tokens_per_second": 19.70574311639914,
+          "output_may_be_truncated": false
+        },
+        {
+          "request_number": 2,
+          "done_reason": "stop",
+          "prompt_eval_count": 3087,
+          "eval_count": 246,
+          "total_duration_seconds": 41.9619991,
+          "load_duration_seconds": 0.2557439,
+          "prompt_eval_duration_seconds": 25.033964,
+          "eval_duration_seconds": 16.609827,
+          "output_tokens_per_second": 14.810509465270169,
+          "output_may_be_truncated": false
+        }
+      ]
+    },
+    {
+      "case_id": "RYUK-AB02",
+      "scenario": "ryuk",
+      "question": "100 個 .RYK 檔案是否證明發生真實 Ryuk 加密？",
+      "shared_context": "student_materials\\ryuk\\llm_context.md",
+      "condition_a": {
+        "answer": "根據 Lab 設計，.RYK 檔案是安全模擬 artifacts，不代表真實 Ryuk 加密。\n在此 Lab 中，Caesar shift 是可逆內容轉換，不是真實 Ryuk 加密。\n因此，100 個 .RYK 檔案不證明發生真實 Ryuk 加密。",
+        "known_facts": [
+          "Lab 設計阻擋 Kali 直接 SMB 到 DC01",
+          "DC01 的 `.RYK`、RyukReadMe、Caesar marker 與 Critical 是本 Lab 的安全模擬 artifacts",
+          "Caesar shift 是可逆內容轉換，不是真實 Ryuk 加密"
+        ],
+        "reasonable_inferences": [],
+        "unknowns": [
+          "是否有其他證據支持真實 Ryuk 加密"
+        ],
+        "evidence_ids": [],
+        "next_hint": "Lab 設計中，.RYK 檔案的目的與真實 Ryuk 加密有何關係?"
+      },
+      "condition_b": {
+        "answer": "這個前提不成立：證據只支持本實驗以 Caesar shift 產生 100 個 .RYK 安全模擬檔，不能證明使用了真實 Ryuk，也無法據此判斷真實惡意程式的加密演算法。",
+        "known_facts": [
+          "本次實驗環境產生 100 個 .RYK 安全模擬檔。",
+          "檔案內容使用可逆的 Caesar shift，不是真實 Ryuk 加密。"
+        ],
+        "reasonable_inferences": [],
+        "unknowns": [
+          "目前證據不包含真實 Ryuk 的加密演算法或惡意程式樣本。"
+        ],
+        "evidence_ids": [
+          "RYUK-L03",
+          "RYUK-L04"
+        ],
+        "next_hint": "請問安全模擬的目的是什麼?"
+      },
+      "condition_b_retrieved_chunk_ids": [
+        "RYUK-restore-01",
+        "RYUK-impact-01",
+        "OT-safe-simulation-boundary-01",
+        "RYUK-simulation-boundaries-01"
+      ],
+      "condition_b_retrieved_evidence_ids": [
+        "RYUK-L05",
+        "RYUK-L03",
+        "RYUK-L04",
+        "OT-G04",
+        "RYUK-L03",
+        "RYUK-L06",
+        "RYUK-L07",
+        "RYUK-L08",
+        "RYUK-L09"
+      ],
+      "comparison_observations": {
+        "same_student_context": true,
+        "condition_a_evidence_id_count": 0,
+        "condition_b_evidence_id_count": 2,
+        "condition_b_citations_are_retrieved": true,
+        "condition_a_answer_excerpt": "根據 Lab 設計，.RYK 檔案是安全模擬 artifacts，不代表真實 Ryuk 加密。 在此 Lab 中，Caesar shift 是可逆內容轉換，不是真實 Ryuk 加密。 因此，…",
+        "condition_b_answer_excerpt": "這個前提不成立：證據只支持本實驗以 Caesar shift 產生 100 個 .RYK 安全模擬檔，不能證明使用了真實 Ryuk，也無法據此判斷真實惡意程式的加密演算法。"
+      },
+      "ollama_calls": [
+        {
+          "request_number": 1,
+          "done_reason": "stop",
+          "prompt_eval_count": 582,
+          "eval_count": 238,
+          "total_duration_seconds": 13.2198477,
+          "load_duration_seconds": 0.2442625,
+          "prompt_eval_duration_seconds": 0.952057,
+          "eval_duration_seconds": 11.886297,
+          "output_tokens_per_second": 20.02305680229932,
+          "output_may_be_truncated": false
+        },
+        {
+          "request_number": 2,
+          "done_reason": "stop",
+          "prompt_eval_count": 2995,
+          "eval_count": 186,
+          "total_duration_seconds": 22.0183472,
+          "load_duration_seconds": 0.2650964,
+          "prompt_eval_duration_seconds": 9.28352,
+          "eval_duration_seconds": 12.328717,
+          "output_tokens_per_second": 15.086728002597514,
+          "output_may_be_truncated": false
+        }
+      ]
+    },
+    {
+      "case_id": "IND2-AB01",
+      "scenario": "industroyer2",
+      "question": "為什麼只看到 source_ip=10.10.60.20，不能判定是正常 ENG 維護？",
+      "shared_context": "student_materials\\industroyer2\\llm_context.md",
+      "condition_a": {
+        "answer": "因為只看到 source_ip=10.10.60.20，無法確認是哪一方發起的動作，也無法確定最初的操作意圖。",
+        "known_facts": [
+          "只觀測到 source_ip=10.10.60.20",
+          "無法確認最初發起者或操作意圖"
+        ],
+        "reasonable_inferences": [],
+        "unknowns": [
+          "最初發起者的身份",
+          "操作的意圖"
+        ],
+        "evidence_ids": [],
+        "next_hint": "請注意，source_ip=10.10.60.20 只能表示可觀測的送出端，不代表真實的發起者或操作意圖。"
+      },
+      "condition_b": {
+        "answer": "不能。正常 ENG 維護與 Kali via ENG Relay 成功時，Server／PCAP 都可能看到 source_ip=10.10.60.20；來源 IP 本身不足以判定最初發起者或操作意圖。",
+        "known_facts": [
+          "正常 ENG baseline 在 Server／PCAP 視角使用 source_ip=10.10.60.20。"
+        ],
+        "reasonable_inferences": [
+          "只使用 Server source IP 會把兩種不同的操作來源混在一起。"
+        ],
+        "unknowns": [
+          "Server source IP 單獨無法顯示最初的發起者或正常維護意圖。"
+        ],
+        "evidence_ids": [
+          "IND2-N02",
+          "IND2-N21"
+        ],
+        "next_hint": "正常 ENG 與 Kali via ENG Relay 都可能讓 Server 看見 10.10.60.20；哪兩端的紀錄能補上真正的發起來源？"
+      },
+      "condition_b_retrieved_chunk_ids": [
+        "IND2-normal-eng-001-comparison-note-02",
+        "IND2-ve-004-comparison-note-02",
+        "IND2-ve-004-comparison-note-03",
+        "IND2-normal-eng-001-data-quality-07"
+      ],
+      "condition_b_retrieved_evidence_ids": [
+        "IND2-N02",
+        "IND2-N21",
+        "IND2-N22",
+        "IND2-N07"
+      ],
+      "comparison_observations": {
+        "same_student_context": true,
+        "condition_a_evidence_id_count": 0,
+        "condition_b_evidence_id_count": 2,
+        "condition_b_citations_are_retrieved": true,
+        "condition_a_answer_excerpt": "因為只看到 source_ip=10.10.60.20，無法確認是哪一方發起的動作，也無法確定最初的操作意圖。",
+        "condition_b_answer_excerpt": "不能。正常 ENG 維護與 Kali via ENG Relay 成功時，Server／PCAP 都可能看到 source_ip=10.10.60.20；來源 IP 本身不足以判定最初發起者…"
+      },
+      "ollama_calls": [
+        {
+          "request_number": 1,
+          "done_reason": "stop",
+          "prompt_eval_count": 682,
+          "eval_count": 167,
+          "total_duration_seconds": 14.0669703,
+          "load_duration_seconds": 0.2543632,
+          "prompt_eval_duration_seconds": 5.402343,
+          "eval_duration_seconds": 8.280057,
+          "output_tokens_per_second": 20.168943281429105,
+          "output_may_be_truncated": false
+        },
+        {
+          "request_number": 2,
+          "done_reason": "stop",
+          "prompt_eval_count": 3282,
+          "eval_count": 257,
+          "total_duration_seconds": 44.4451203,
+          "load_duration_seconds": 0.2729516,
+          "prompt_eval_duration_seconds": 26.960384,
+          "eval_duration_seconds": 17.141744999,
+          "output_tokens_per_second": 14.992639315016799,
+          "output_may_be_truncated": false
+        }
+      ]
+    },
+    {
+      "case_id": "IND2-AB02",
+      "scenario": "industroyer2",
+      "question": "Safe CaddyWiper-like lockout 後，iec104_sent=false 能證明什麼？不能證明什麼？",
+      "shared_context": "student_materials\\industroyer2\\llm_context.md",
+      "condition_a": {
+        "answer": "Safe CaddyWiper-like lockout 後，iec104_sent=false 能證明 OT-SERVER01 沒有接收到 IEC-104 控制封包，但不能證明最初發起者或操作意圖。",
+        "known_facts": [
+          "OT-SERVER01 記錄 IEC-104 控制相關活動",
+          "iec104_sent=false 表示 OT-SERVER01 沒有接收到 IEC-104 控制封包"
+        ],
+        "reasonable_inferences": [
+          "如果 OT-SERVER01 沒有接收到 IEC-104 控制封包，則可能是因為 Safe CaddyWiper-like lockout",
+          "Safe CaddyWiper-like lockout 可能是由 Kali 或 ENG01 引起的"
+        ],
+        "unknowns": [
+          "最初發起者或操作意圖"
+        ],
+        "evidence_ids": [],
+        "next_hint": "請注意，iec104_sent=false 只能證明 OT-SERVER01 沒有接收到 IEC-104 控制封包，但不能提供更多資訊。"
+      },
+      "condition_b": {
+        "answer": "Safe CaddyWiper-like lockout 後，iec104_sent=false 能證明 Safe CaddyWiper lockout 後，ENG relay／recovery 嘗試可能在 IEC-104 送出前被拒絕。",
+        "known_facts": [
+          "IND2-N18：安全模擬後，CaddyWiper 狀態： 工程控制台不可用=False, 工程備份可用=False, IOA 映射可用=False, 恢復允許=False, 虛假檔案清除=True, 原因=SAFE_CADDYWIPER_V2_SIMULATED_ENGINEERING_WORKSTATION_IMPACT。",
+          "IND2-N25：安全模擬後，CaddyWiper 狀態： 工程控制台可用=True, 工程備份可用=True, IOA 映射可用=True, 恢復允許=True, 虛假檔案清除=False, 原因=SAFE_CADDYWIPER_V2_RECOVERED。"
+        ],
+        "reasonable_inferences": [
+          "ENG relay／recovery 嘗試可能在 IEC-104 送出前被拒絕。"
+        ],
+        "unknowns": [],
+        "evidence_ids": [
+          "IND2-N18",
+          "IND2-N25"
+        ],
+        "next_hint": "請依序核對 Relay 的 accepted、iec104_sent 與 Server command log，哪一步證明命令停在 ENG01？"
+      },
+      "condition_b_retrieved_chunk_ids": [
+        "IND2-ve-003-comparison-note-03",
+        "IND2-ve-003-caddywiper-status-06",
+        "IND2-ve-004-caddywiper-status-06",
+        "IND2-ve-002-caddywiper-status-04"
+      ],
+      "condition_b_retrieved_evidence_ids": [
+        "IND2-N15",
+        "IND2-N18",
+        "IND2-N25",
+        "IND2-N11"
+      ],
+      "comparison_observations": {
+        "same_student_context": true,
+        "condition_a_evidence_id_count": 0,
+        "condition_b_evidence_id_count": 2,
+        "condition_b_citations_are_retrieved": true,
+        "condition_a_answer_excerpt": "Safe CaddyWiper-like lockout 後，iec104_sent=false 能證明 OT-SERVER01 沒有接收到 IEC-104 控制封包，但不能證明最初發起者或…",
+        "condition_b_answer_excerpt": "Safe CaddyWiper-like lockout 後，iec104_sent=false 能證明 Safe CaddyWiper lockout 後，ENG relay／recove…"
+      },
+      "ollama_calls": [
+        {
+          "request_number": 1,
+          "done_reason": "stop",
+          "prompt_eval_count": 682,
+          "eval_count": 249,
+          "total_duration_seconds": 14.1476283,
+          "load_duration_seconds": 0.2721243,
+          "prompt_eval_duration_seconds": 0.955014,
+          "eval_duration_seconds": 12.764901,
+          "output_tokens_per_second": 19.506614269863903,
+          "output_may_be_truncated": false
+        },
+        {
+          "request_number": 2,
+          "done_reason": "stop",
+          "prompt_eval_count": 3274,
+          "eval_count": 292,
+          "total_duration_seconds": 31.2013472,
+          "load_duration_seconds": 0.2694912,
+          "prompt_eval_duration_seconds": 10.394602,
+          "eval_duration_seconds": 20.414516,
+          "output_tokens_per_second": 14.303547534509269,
+          "output_may_be_truncated": false
+        },
+        {
+          "request_number": 3,
+          "done_reason": "stop",
+          "prompt_eval_count": 3629,
+          "eval_count": 276,
+          "total_duration_seconds": 23.6371163,
+          "load_duration_seconds": 0.2387378,
+          "prompt_eval_duration_seconds": 3.508202,
+          "eval_duration_seconds": 19.855695,
+          "output_tokens_per_second": 13.900294096983258,
+          "output_may_be_truncated": false
+        },
+        {
+          "request_number": 4,
+          "done_reason": "stop",
+          "prompt_eval_count": 3984,
+          "eval_count": 320,
+          "total_duration_seconds": 24.1732544,
+          "load_duration_seconds": 0.2560517,
+          "prompt_eval_duration_seconds": 0.932121,
+          "eval_duration_seconds": 22.95052,
+          "output_tokens_per_second": 13.943039199111828,
+          "output_may_be_truncated": false
+        }
+      ]
+    },
+    {
+      "case_id": "FROSTY-AB01",
+      "scenario": "frostygoop",
+      "question": "FC06 寫入是否能證明是真實 FrostyGoop 對 PLC 的攻擊？",
+      "shared_context": "student_materials\\frostygoop\\llm_context.md",
+      "condition_a": {
+        "answer": "FC06 寫入不能直接證明是真實 FrostyGoop 對 PLC 的攻擊，因為 Lab 沒有真實 FrostyGoop sample、PLC、RTU 或實體製程。",
+        "known_facts": [
+          "Lab 使用 Task JSON、localhost TCP/1502 的 Modbus request、PCAP decode／follow-up observations 與 behavior detector",
+          "FC06 是安全 Lab capability demonstration"
+        ],
+        "reasonable_inferences": [],
+        "unknowns": [
+          "是否有真實 FrostyGoop 對 PLC 的攻擊"
+        ],
+        "evidence_ids": [],
+        "next_hint": "請注意，Lab 沒有真實 FrostyGoop sample、PLC、RTU 或實體製程。"
+      },
+      "condition_b": {
+        "answer": "FC06 寫入不能證明是真實 FrostyGoop 對 PLC 的攻擊，因為實驗環境是安全重建，沒有真實 FrostyGoop sample、PLC、RTU 或物理製程。",
+        "known_facts": [
+          "FrostyGoop 報告衍生安全重建；case_id=frostygoop_fc06_write_001；classification=safe_fc06_single_register_write；safety_role=safe實驗環境capability demonstration。",
+          "Modbus port 1502 是 localhost實驗環境端口，不是生產 TCP/502。",
+          "PCAP 證實捕捉到的實驗環境請求，不代表設備接受或物理影響。"
+        ],
+        "reasonable_inferences": [
+          "FC06/FC16 是安全實驗環境能力展示，沒有被宣稱為觀察到的真實 FrostyGoop 行為。"
+        ],
+        "unknowns": [],
+        "evidence_ids": [
+          "FROSTY-N09",
+          "FROSTY-N14",
+          "FROSTY-N07",
+          "FROSTY-N06"
+        ],
+        "next_hint": "請比較 FC06 寫入的實驗環境請求與 PCAP 的對照結果，是否有任何額外證據支持真實 FrostyGoop 對 PLC 的攻擊?"
+      },
+      "condition_b_retrieved_chunk_ids": [
+        "FROSTY-fc06-write-001-data-quality-05",
+        "FROSTY-fc16-write-001-data-quality-05",
+        "FROSTY-fc06-write-001-pcap-follow-up-03",
+        "FROSTY-fc06-write-001-task-pcap-correlation-02"
+      ],
+      "condition_b_retrieved_evidence_ids": [
+        "FROSTY-N09",
+        "FROSTY-N14",
+        "FROSTY-N07",
+        "FROSTY-N06"
+      ],
+      "comparison_observations": {
+        "same_student_context": true,
+        "condition_a_evidence_id_count": 0,
+        "condition_b_evidence_id_count": 4,
+        "condition_b_citations_are_retrieved": true,
+        "condition_a_answer_excerpt": "FC06 寫入不能直接證明是真實 FrostyGoop 對 PLC 的攻擊，因為 Lab 沒有真實 FrostyGoop sample、PLC、RTU 或實體製程。",
+        "condition_b_answer_excerpt": "FC06 寫入不能證明是真實 FrostyGoop 對 PLC 的攻擊，因為實驗環境是安全重建，沒有真實 FrostyGoop sample、PLC、RTU 或物理製程。"
+      },
+      "ollama_calls": [
+        {
+          "request_number": 1,
+          "done_reason": "stop",
+          "prompt_eval_count": 546,
+          "eval_count": 177,
+          "total_duration_seconds": 13.6616259,
+          "load_duration_seconds": 0.2919811,
+          "prompt_eval_duration_seconds": 4.441709,
+          "eval_duration_seconds": 8.814176,
+          "output_tokens_per_second": 20.081287235471585,
+          "output_may_be_truncated": false
+        },
+        {
+          "request_number": 2,
+          "done_reason": "stop",
+          "prompt_eval_count": 3218,
+          "eval_count": 292,
+          "total_duration_seconds": 47.0255453,
+          "load_duration_seconds": 0.2605462,
+          "prompt_eval_duration_seconds": 26.642496,
+          "eval_duration_seconds": 20.057396,
+          "output_tokens_per_second": 14.5582208178968,
+          "output_may_be_truncated": false
+        }
+      ]
+    },
+    {
+      "case_id": "FROSTY-AB02",
+      "scenario": "frostygoop",
+      "question": "只看單一 Modbus 寫入封包，能直接證明造成哪些實體設備影響嗎？",
+      "shared_context": "student_materials\\frostygoop\\llm_context.md",
+      "condition_a": {
+        "answer": "根據 Lab 架構，單一 Modbus 寫入封包不能直接證明造成實體設備影響。\nLab 沒有真實 FrostyGoop sample、PLC、RTU 或實體製程，因此無法提供直接證據。\n資料不足時必須保留此界線，且不得提供真實 PLC 控制或 Modbus 寫入步驟。",
+        "known_facts": [
+          "Lab 沒有真實 FrostyGoop sample、PLC、RTU 或實體製程",
+          "TCP/1502 不是生產 Modbus TCP/502",
+          "資料不足時必須保留界線"
+        ],
+        "reasonable_inferences": [],
+        "unknowns": [
+          "造成哪些實體設備影響"
+        ],
+        "evidence_ids": [],
+        "next_hint": "Lab 沒有真實 FrostyGoop sample、PLC、RTU 或實體製程，因此無法提供直接證據。"
+      },
+      "condition_b": {
+        "answer": "現有證據無法確認 FrostyGoop 報告衍生安全重建中，單一 Modbus 寫入封包直接造成哪些實體設備影響。",
+        "known_facts": [
+          "FROSTY-N07 是 FrostyGoop 報告衍生的安全重建實驗環境follow-up observations 的證據。"
+        ],
+        "reasonable_inferences": [],
+        "unknowns": [
+          "現有證據無法確認 FrostyGoop 報告衍生安全重建中，單一 Modbus 寫入封包直接造成哪些實體設備影響。"
+        ],
+        "evidence_ids": [
+          "FROSTY-N07"
+        ],
+        "next_hint": "請問實驗環境觀察到的 Modbus 寫入封包是否能夠證明 FrostyGoop 報告衍生的安全重建中，單一 Modbus 寫入封包直接造成哪些實體設備影響?"
+      },
+      "condition_b_retrieved_chunk_ids": [
+        "FROSTY-fc06-write-001-pcap-follow-up-03",
+        "FROSTY-fc06-write-001-behavior-detection-04",
+        "FROSTY-fc16-write-001-pcap-follow-up-03",
+        "FROSTY-fc16-write-001-behavior-detection-04"
+      ],
+      "condition_b_retrieved_evidence_ids": [
+        "FROSTY-N07",
+        "FROSTY-N08",
+        "FROSTY-N12",
+        "FROSTY-N13"
+      ],
+      "comparison_observations": {
+        "same_student_context": true,
+        "condition_a_evidence_id_count": 0,
+        "condition_b_evidence_id_count": 1,
+        "condition_b_citations_are_retrieved": true,
+        "condition_a_answer_excerpt": "根據 Lab 架構，單一 Modbus 寫入封包不能直接證明造成實體設備影響。 Lab 沒有真實 FrostyGoop sample、PLC、RTU 或實體製程，因此無法提供直接證據。 資料…",
+        "condition_b_answer_excerpt": "現有證據無法確認 FrostyGoop 報告衍生安全重建中，單一 Modbus 寫入封包直接造成哪些實體設備影響。"
+      },
+      "ollama_calls": [
+        {
+          "request_number": 1,
+          "done_reason": "stop",
+          "prompt_eval_count": 548,
+          "eval_count": 229,
+          "total_duration_seconds": 12.9773268,
+          "load_duration_seconds": 0.2645978,
+          "prompt_eval_duration_seconds": 0.971784,
+          "eval_duration_seconds": 11.595746,
+          "output_tokens_per_second": 19.748621606578826,
+          "output_may_be_truncated": false
+        },
+        {
+          "request_number": 2,
+          "done_reason": "stop",
+          "prompt_eval_count": 3024,
+          "eval_count": 219,
+          "total_duration_seconds": 24.6029732,
+          "load_duration_seconds": 0.2399655,
+          "prompt_eval_duration_seconds": 9.490815,
+          "eval_duration_seconds": 14.776071,
+          "output_tokens_per_second": 14.82126067206905,
+          "output_may_be_truncated": false
+        }
+      ]
+    }
+  ]
+}

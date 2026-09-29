@@ -1,0 +1,393 @@
+{
+  "normalizer_version": "ind2-normalizer-0.1.5",
+  "generated_at": "2026-08-06T03:41:14Z",
+  "case_id": "ind2_vE_004",
+  "classification": {
+    "primary_case_type": "via_eng_relay_success",
+    "tags": [
+      "via_eng_relay_success"
+    ],
+    "signals": {
+      "has_kali_payload": false,
+      "has_direct_server": false,
+      "has_any_server_command": true,
+      "has_eng_server_explicit": false,
+      "has_eng_server": true,
+      "has_relay_success": true,
+      "has_relay_blocked": false,
+      "has_maintenance": false,
+      "case_name_hints_normal_eng": false,
+      "active_event_type_counts": {
+        "eng_relay_connection_timeout": 1,
+        "eng_relay_iec104": 1,
+        "eng_relay_successful_iec104_send": 1,
+        "kali_action": 1,
+        "kali_requested_via_eng_relay_success": 1,
+        "server_raw_traffic": 4,
+        "server_received_iec104_command": 3
+      }
+    }
+  },
+  "executive_summary": "ind2_vE_004: Kali requested a command through ENG Relay before Safe CaddyWiper lockout. ENG01 sent the IEC-104 command to OT-SERVER01, and Server observed source_ip=10.10.60.20 over TCP/2404. This shows that Server/PCAP view can look similar to normal ENG traffic and must be correlated with Kali and ENG Relay logs.",
+  "observed_facts": {
+    "kali": {
+      "count": 2,
+      "actions": [
+        {
+          "timestamp": "2026-08-05T21:50:31.574458",
+          "event": null,
+          "ioa": "1002",
+          "desired_state": "OPEN",
+          "frontend_target": null,
+          "final_backend_protocol": null,
+          "final_backend_target": null,
+          "accepted": false,
+          "normalized_event_type": "kali_action",
+          "source_file": "kali/kali_attacker_console_actions.log",
+          "line_number": 1
+        },
+        {
+          "timestamp": "2026-08-05T21:51:02.114597",
+          "event": "kali_via_eng_relay_command",
+          "ioa": "1002",
+          "desired_state": "OPEN",
+          "frontend_target": "10.10.60.20:8092",
+          "final_backend_protocol": "IEC-104",
+          "final_backend_target": "10.10.60.30:2404",
+          "accepted": true,
+          "normalized_event_type": "kali_requested_via_eng_relay_success",
+          "source_file": "kali/kali_attacker_console_actions.log",
+          "line_number": 2
+        }
+      ]
+    },
+    "eng_relay": {
+      "count": 4,
+      "attempts": [
+        {
+          "timestamp": "2026-08-05T21:51:02.114597",
+          "event": "kali_via_eng_relay_command",
+          "remote_ip": null,
+          "operator": null,
+          "ioa": "1002",
+          "asset_id": "BRK-102",
+          "desired_state": "OPEN",
+          "accepted": true,
+          "iec104_sent": null,
+          "blocked_by": null,
+          "error": null,
+          "outcome": "kali_requested_via_eng_relay_success",
+          "source_file": "kali/kali_attacker_console_actions.log",
+          "line_number": 2
+        },
+        {
+          "timestamp": "2026-08-06T09:50:31.505881",
+          "event": "eng_relay_request",
+          "remote_ip": "10.10.60.10",
+          "operator": "kali_web_console",
+          "ioa": "1002",
+          "asset_id": null,
+          "desired_state": "OPEN",
+          "accepted": false,
+          "iec104_sent": false,
+          "blocked_by": null,
+          "error": "IEC-104 connection timeout to 10.10.60.30:2404",
+          "outcome": "eng_relay_connection_timeout",
+          "source_file": "eng01/eng_command_relay_actions.log",
+          "line_number": 1
+        },
+        {
+          "timestamp": "2026-08-06T09:51:02.044697",
+          "event": "eng_relay_request",
+          "remote_ip": "10.10.60.10",
+          "operator": "kali_web_console",
+          "ioa": "1002",
+          "asset_id": "BRK-102",
+          "desired_state": "OPEN",
+          "accepted": true,
+          "iec104_sent": true,
+          "blocked_by": null,
+          "error": null,
+          "outcome": "eng_relay_successful_iec104_send",
+          "source_file": "eng01/eng_command_relay_actions.log",
+          "line_number": 2
+        },
+        {
+          "timestamp": "2026-08-06T09:51:02.764426",
+          "event": null,
+          "remote_ip": null,
+          "operator": null,
+          "ioa": "1002",
+          "asset_id": "BRK-102",
+          "desired_state": "OPEN",
+          "accepted": null,
+          "iec104_sent": null,
+          "blocked_by": null,
+          "error": null,
+          "outcome": "eng_relay_iec104",
+          "source_file": "eng01/eng_iec104_relay_actions.log",
+          "line_number": 1
+        }
+      ],
+      "successful_attempts": [
+        {
+          "timestamp": "2026-08-06T09:51:02.044697",
+          "event": "eng_relay_request",
+          "remote_ip": "10.10.60.10",
+          "operator": "kali_web_console",
+          "ioa": "1002",
+          "asset_id": "BRK-102",
+          "desired_state": "OPEN",
+          "accepted": true,
+          "iec104_sent": true,
+          "blocked_by": null,
+          "error": null,
+          "outcome": "eng_relay_successful_iec104_send",
+          "source_file": "eng01/eng_command_relay_actions.log",
+          "line_number": 2
+        }
+      ],
+      "failed_attempts": [
+        {
+          "timestamp": "2026-08-06T09:50:31.505881",
+          "event": "eng_relay_request",
+          "remote_ip": "10.10.60.10",
+          "operator": "kali_web_console",
+          "ioa": "1002",
+          "asset_id": null,
+          "desired_state": "OPEN",
+          "accepted": false,
+          "iec104_sent": false,
+          "blocked_by": null,
+          "error": "IEC-104 connection timeout to 10.10.60.30:2404",
+          "outcome": "eng_relay_connection_timeout",
+          "source_file": "eng01/eng_command_relay_actions.log",
+          "line_number": 1
+        }
+      ]
+    },
+    "eng_maintenance": {
+      "count": 0,
+      "maintenance_tickets": [],
+      "records": []
+    },
+    "server_commands": {
+      "count": 3,
+      "commands": [
+        {
+          "timestamp": "2026-08-06T09:50:29.531141",
+          "source_ip": null,
+          "source_classification": "AUTHORIZED_IEC104_ENGINEERING_SOURCE",
+          "ioa": null,
+          "asset_id": null,
+          "desired_state": null,
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 1
+        },
+        {
+          "timestamp": "2026-08-06T09:51:00.047774",
+          "source_ip": null,
+          "source_classification": "AUTHORIZED_IEC104_ENGINEERING_SOURCE",
+          "ioa": null,
+          "asset_id": null,
+          "desired_state": null,
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 2
+        },
+        {
+          "timestamp": "2026-08-06T09:51:00.244418",
+          "source_ip": null,
+          "source_classification": null,
+          "ioa": 1002,
+          "asset_id": "BRK-102",
+          "desired_state": "OPEN",
+          "protocol_label": "IEC-104",
+          "destination_port": 2404,
+          "source_file": "server/iec104_server_commands.log",
+          "line_number": 3
+        }
+      ],
+      "source_ips": [],
+      "ioas": [
+        "1002"
+      ]
+    },
+    "caddywiper_status": {
+      "timestamp": "2026-08-06T09:49:17.629478",
+      "safe_caddywiper_version": "v2",
+      "eng_console_available": true,
+      "engineering_backup_available": true,
+      "ioa_mapping_available": true,
+      "restore_allowed": true,
+      "dummy_files_wiped": false,
+      "reason": "SAFE_CADDYWIPER_V2_RECOVERED",
+      "safety_note": "Lab recovery completed. Dummy engineering files recreated."
+    },
+    "caddywiper_report": {
+      "timestamp": "2026-08-05T17:11:40.748873",
+      "safe_caddywiper_version": "v2",
+      "eng_console_available": false,
+      "engineering_backup_available": false,
+      "ioa_mapping_available": false,
+      "restore_allowed": false,
+      "dummy_files_wiped": true,
+      "wiped_dummy_files": [
+        "substation_A_IOA_mapping.xlsx.sim",
+        "relay_settings_backup.cfg.sim",
+        "maintenance_restore_plan.txt.sim"
+      ],
+      "reason": "SAFE_CADDYWIPER_V2_SIMULATED_ENGINEERING_WORKSTATION_IMPACT",
+      "safety_note": "Safe simulation only. No real disk wiping, no destructive system commands.",
+      "impact_summary": [
+        "ENG maintenance console locked out",
+        "Engineering backup marked unavailable",
+        "IOA mapping marked unavailable",
+        "Restore action blocked",
+        "Dummy engineering files overwritten with safe simulation marker"
+      ]
+    },
+    "ot_state_before": {
+      "grid_status": "NORMAL",
+      "service_disruption_simulated": false,
+      "assets": {
+        "BRK-101": {
+          "state": "CLOSED"
+        },
+        "BRK-102": {
+          "state": "CLOSED"
+        },
+        "BRK-103": {
+          "state": "CLOSED"
+        },
+        "FDR-A": {
+          "state": "ENERGIZED"
+        },
+        "RLY-201": {
+          "state": "HEALTHY"
+        }
+      }
+    },
+    "ot_state_final": {
+      "scenario": "Industroyer2-like Safe Emulation",
+      "version": "D",
+      "site": "Simulated Substation A",
+      "grid_status": "SERVICE_DISRUPTION_SIMULATED",
+      "breakers": [
+        {
+          "asset_id": "BRK-101",
+          "state": "CLOSED"
+        },
+        {
+          "asset_id": "BRK-102",
+          "state": "CLOSED"
+        },
+        {
+          "asset_id": "BRK-103",
+          "state": "CLOSED"
+        }
+      ],
+      "feeders": [
+        {
+          "asset_id": "FDR-A",
+          "status": "ENERGIZED"
+        }
+      ],
+      "relays": [
+        {
+          "asset_id": "RLY-201",
+          "status": "HEALTHY"
+        }
+      ],
+      "last_updated_by": "iec104_server_v1",
+      "service_disruption_simulated": true,
+      "last_command": {
+        "timestamp": "2026-08-06T09:51:00.244188",
+        "protocol_label": "IEC-104",
+        "type_id_label": "C_SC_NA_1",
+        "transport": "TCP",
+        "destination_port": 2404,
+        "real_ics_protocol_used": true,
+        "source_ip": "10.10.60.20",
+        "source_host_claim": "IEC104-CLIENT",
+        "source_classification": "AUTHORIZED_IEC104_ENGINEERING_SOURCE",
+        "ioa": "1002",
+        "asset_id": "BRK-102",
+        "desired_state": "OPEN",
+        "maintenance_ticket": null,
+        "continued_without_ack": true,
+        "note": "IEC-104 packets do not carry lab maintenance_ticket metadata. ENG/Kali intent is correlated through local console or relay logs."
+      },
+      "assets": {
+        "BRK-102": {
+          "state": "OPEN",
+          "last_updated": "2026-08-06T09:51:00.244158"
+        },
+        "BRK-101": {
+          "state": "CLOSED",
+          "last_updated": "2026-08-06T09:49:16.352870"
+        },
+        "BRK-103": {
+          "state": "CLOSED",
+          "last_updated": "2026-08-06T09:49:18.218189"
+        },
+        "FDR-A": {
+          "state": "ENERGIZED",
+          "last_updated": "2026-08-06T09:49:19.144937"
+        },
+        "RLY-201": {
+          "state": "HEALTHY",
+          "last_updated": "2026-08-06T09:49:20.090767"
+        }
+      }
+    },
+    "pcaps": [
+      {
+        "path": "pcaps/ind2_vE_004_via_eng_relay_success.pcapng",
+        "size_bytes": 2590,
+        "sha256": "56c9e64b5d62ec726e9386cf897807d1b799d28a9a3ae40ebdc2a21f3336da7f",
+        "decoded_with_tshark": false,
+        "iec104_field_rows": []
+      }
+    ],
+    "collection_manifest": {
+      "case_id": "ind2_vE_004",
+      "collected_at": "2026-08-06T09:53:44+08:00",
+      "sensor_host": "iii",
+      "source_hosts": {
+        "kali": "10.10.60.10",
+        "eng01": "10.10.60.20",
+        "server": "10.10.60.30",
+        "sensor": "10.10.60.50"
+      },
+      "note": "Collected active logs only. logs/archive was intentionally excluded."
+    }
+  },
+  "comparison_notes": [
+    "Via-ENG relay success can look similar to normal ENG traffic from the Server/PCAP perspective because both use source_ip=10.10.60.20.",
+    "Distinguish via-ENG relay from normal ENG by correlating Kali actions and ENG relay logs, not by Server source IP alone."
+  ],
+  "data_quality_summary": {
+    "warnings": [
+      "Some collected files are empty. Empty files may mean no activity for that channel, or collection gaps.",
+      "Excluded 5 stale/legacy events from main conclusion using per-host recent window of 45 minutes.",
+      "Possible cross-host clock offset detected. Preserve original timestamps and do not infer causality from absolute time alone. Host latest timestamps: eng01=2026-08-06T09:51:02.764426, kali=2026-08-05T21:51:02.114597, server=2026-08-06T09:51:00.749909.",
+      "PCAP files are present, but tshark is not installed; normalizer recorded file hashes/sizes but did not decode IEC-104 fields.",
+      "Server/PCAP source IP alone cannot distinguish normal ENG operation from Kali via ENG relay; correlate ENG local logs and Kali logs."
+    ],
+    "missing_expected_files_count": 0,
+    "empty_files_count": 6,
+    "parse_errors_count": 0,
+    "stale_events_excluded_count": 5,
+    "pcap_count": 1
+  },
+  "output_files": {
+    "incident_summary": "/home/lab-user/ind2_sensor/normalized/ind2_vE_004/incident_summary.json",
+    "timeline": "/home/lab-user/ind2_sensor/normalized/ind2_vE_004/timeline.json",
+    "data_quality": "/home/lab-user/ind2_sensor/normalized/ind2_vE_004/data_quality.json",
+    "rag_chunks": "/home/lab-user/ind2_sensor/normalized/ind2_vE_004/rag_chunks.jsonl"
+  }
+}

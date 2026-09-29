@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "normalizer_version": "frostygoop-normalizer-0.1.0",
+  "scenario": "frostygoop",
+  "case_id": "frostygoop_fc06_write_001",
+  "classification": "safe_fc06_single_register_write",
+  "safety_role": "safe Lab capability demonstration",
+  "generated_at": "2026-08-10T07:52:35.257414+00:00",
+  "lab": {
+    "transport": "Modbus TCP",
+    "lab_endpoint": "127.0.0.1",
+    "lab_port": 1502,
+    "watch_range": {
+      "start": 53760,
+      "end": 53882
+    }
+  },
+  "task": {
+    "function_code": 6,
+    "address": 53760,
+    "value": 2222
+  },
+  "pcap_observation": {
+    "transaction_id": 1,
+    "unit_id": 1,
+    "function_code": 6,
+    "address": 53760,
+    "value": 2222,
+    "frame_number": 4,
+    "source_ip": "127.0.0.1",
+    "destination_ip": "127.0.0.1",
+    "source_port": 38184,
+    "destination_port": 1502
+  },
+  "pcap_follow_up_observations": [
+    {
+      "transaction_id": 2,
+      "unit_id": 1,
+      "function_code": 3,
+      "address": 53760,
+      "count": 1,
+      "frame_number": 8,
+      "source_ip": "127.0.0.1",
+      "destination_ip": "127.0.0.1",
+      "source_port": 38184,
+      "destination_port": 1502
+    }
+  ],
+  "task_pcap_match": true,
+  "behavior_detection": {
+    "operation": "write_single_register",
+    "behavior": "WRITE",
+    "risk": "MEDIUM",
+    "detector_result": "ALERT",
+    "message": "Safe single-register write overlaps the Lab watched register range."
+  },
+  "source_files": {
+    "task_json": {
+      "path": "/home/lab-user/frostygoop-analysis/json-analysis/task_test_fc06_lab.json",
+      "sha256": "d1ab487c2e10676c5cb7054128c2440119a2dbef3cf82ade7b3f4ef532beb8ef",
+      "size": 129
+    },
+    "pcap": {
+      "path": "/home/lab-user/frostygoop-analysis/traffic/frostygoop_fc06_lab.pcapng",
+      "sha256": "06da111292ab8e656409270127dd8c50c7d3875401c75b60ff1edbf37d265bea",
+      "size": 1820
+    }
+  },
+  "data_quality": {
+    "status": "warning",
+    "warnings": [
+      "Report-derived safe reconstruction; no real FrostyGoop sample, PLC, RTU, or physical process is involved.",
+      "Modbus port 1502 is a localhost Lab port, not production TCP/502.",
+      "PCAP proves the captured Lab request, not device acceptance or physical impact.",
+      "FC06/FC16 are safe Lab capability demonstrations and are not claimed as observed real FrostyGoop behavior.",
+      "PCAP contains additional supported Modbus requests; they are retained as follow-up observations rather than discarded."
+    ]
+  }
+}

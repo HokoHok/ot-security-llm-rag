@@ -1,0 +1,41 @@
+{
+  "normalizer_version": "ind2-normalizer-0.1.5",
+  "generated_at": "2026-08-06T03:41:14Z",
+  "case_count": 4,
+  "cases": [
+    {
+      "case_id": "ind2_normal_eng_001",
+      "primary_case_type": "normal_eng_maintenance",
+      "tags": [
+        "normal_eng_maintenance"
+      ],
+      "incident_summary": "/home/lab-user/ind2_sensor/normalized/ind2_normal_eng_001/incident_summary.json"
+    },
+    {
+      "case_id": "ind2_vE_002",
+      "primary_case_type": "direct_iec104_attack",
+      "tags": [
+        "direct_iec104_attack"
+      ],
+      "incident_summary": "/home/lab-user/ind2_sensor/normalized/ind2_vE_002/incident_summary.json"
+    },
+    {
+      "case_id": "ind2_vE_003",
+      "primary_case_type": "direct_attack_plus_caddywiper_lockout",
+      "tags": [
+        "direct_iec104_attack",
+        "safe_caddywiper_lockout_active",
+        "via_eng_relay_blocked_by_caddywiper"
+      ],
+      "incident_summary": "/home/lab-user/ind2_sensor/normalized/ind2_vE_003/incident_summary.json"
+    },
+    {
+      "case_id": "ind2_vE_004",
+      "primary_case_type": "via_eng_relay_success",
+      "tags": [
+        "via_eng_relay_success"
+      ],
+      "incident_summary": "/home/lab-user/ind2_sensor/normalized/ind2_vE_004/incident_summary.json"
+    }
+  ]
+}

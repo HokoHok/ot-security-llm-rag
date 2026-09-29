@@ -1,0 +1,41 @@
+{
+  "catalog_version": "1.0",
+  "scenario": "common",
+  "evidence": [
+    {
+      "evidence_id": "OT-G01",
+      "source_path": "docs/OT_REFERENCE_SOURCES.md",
+      "source_type": "public_reference",
+      "locator": "IEC 60870-5-104",
+      "description": "IEC-104 的通用協定定位與 TCP/IP 傳輸設定檔背景。"
+    },
+    {
+      "evidence_id": "OT-G02",
+      "source_path": "docs/OT_REFERENCE_SOURCES.md",
+      "source_type": "teaching_convention",
+      "locator": "事件證據界線",
+      "description": "傳送紀錄與遠端設備接受、執行或實體影響之間的教學證據界線。"
+    },
+    {
+      "evidence_id": "OT-G03",
+      "source_path": "docs/OT_REFERENCE_SOURCES.md",
+      "source_type": "teaching_convention",
+      "locator": "本專案欄位定義",
+      "description": "Normalizer 與 Relay 的本地欄位名稱不等同產業標準術語。"
+    },
+    {
+      "evidence_id": "OT-G04",
+      "source_path": "docs/OT_REFERENCE_SOURCES.md",
+      "source_type": "teaching_convention",
+      "locator": "安全模擬界線",
+      "description": "教學 Lab 觀察與歷史事件、真實惡意程式行為的區別。"
+    },
+    {
+      "evidence_id": "OT-G05",
+      "source_path": "docs/OT_REFERENCE_SOURCES.md",
+      "source_type": "public_reference",
+      "locator": "Microsoft Learn: PowerShell logging and Event 4688",
+      "description": "PowerShell Script Block Logging 的 4104 與 Windows Security 4688 的通用記錄意義。"
+    }
+  ]
+}

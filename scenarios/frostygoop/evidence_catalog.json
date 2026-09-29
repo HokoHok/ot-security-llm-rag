@@ -1,0 +1,104 @@
+{
+  "catalog_version": "1.0",
+  "scenario": "frostygoop",
+  "evidence": [
+    {
+      "evidence_id": "FROSTY-N01",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc03_read_001/rag_chunks.jsonl",
+      "source_type": "normalized_summary",
+      "locator": "line 1; chunk_type=case_summary; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc03_read_001 的 安全重建案例摘要；分類為 report_derived_fc03_read_baseline。"
+    },
+    {
+      "evidence_id": "FROSTY-N02",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc03_read_001/rag_chunks.jsonl",
+      "source_type": "normalized_correlation",
+      "locator": "line 2; chunk_type=task_pcap_correlation; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc03_read_001 的 Task JSON 與 PCAP 對照；分類為 report_derived_fc03_read_baseline。"
+    },
+    {
+      "evidence_id": "FROSTY-N03",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc03_read_001/rag_chunks.jsonl",
+      "source_type": "normalized_detection",
+      "locator": "line 3; chunk_type=behavior_detection; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc03_read_001 的 Modbus 行為偵測結果；分類為 report_derived_fc03_read_baseline。"
+    },
+    {
+      "evidence_id": "FROSTY-N04",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc03_read_001/rag_chunks.jsonl",
+      "source_type": "normalized_data_quality",
+      "locator": "line 4; chunk_type=data_quality; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc03_read_001 的 資料品質與安全限制；分類為 report_derived_fc03_read_baseline。"
+    },
+    {
+      "evidence_id": "FROSTY-N05",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc06_write_001/rag_chunks.jsonl",
+      "source_type": "normalized_summary",
+      "locator": "line 1; chunk_type=case_summary; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc06_write_001 的 安全重建案例摘要；分類為 safe_fc06_single_register_write。"
+    },
+    {
+      "evidence_id": "FROSTY-N06",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc06_write_001/rag_chunks.jsonl",
+      "source_type": "normalized_correlation",
+      "locator": "line 2; chunk_type=task_pcap_correlation; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc06_write_001 的 Task JSON 與 PCAP 對照；分類為 safe_fc06_single_register_write。"
+    },
+    {
+      "evidence_id": "FROSTY-N07",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc06_write_001/rag_chunks.jsonl",
+      "source_type": "normalized_timeline",
+      "locator": "line 3; chunk_type=pcap_follow_up; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc06_write_001 的 PCAP 後續觀測；分類為 safe_fc06_single_register_write。"
+    },
+    {
+      "evidence_id": "FROSTY-N08",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc06_write_001/rag_chunks.jsonl",
+      "source_type": "normalized_detection",
+      "locator": "line 4; chunk_type=behavior_detection; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc06_write_001 的 Modbus 行為偵測結果；分類為 safe_fc06_single_register_write。"
+    },
+    {
+      "evidence_id": "FROSTY-N09",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc06_write_001/rag_chunks.jsonl",
+      "source_type": "normalized_data_quality",
+      "locator": "line 5; chunk_type=data_quality; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc06_write_001 的 資料品質與安全限制；分類為 safe_fc06_single_register_write。"
+    },
+    {
+      "evidence_id": "FROSTY-N10",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc16_write_001/rag_chunks.jsonl",
+      "source_type": "normalized_summary",
+      "locator": "line 1; chunk_type=case_summary; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc16_write_001 的 安全重建案例摘要；分類為 safe_fc16_multiple_register_write。"
+    },
+    {
+      "evidence_id": "FROSTY-N11",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc16_write_001/rag_chunks.jsonl",
+      "source_type": "normalized_correlation",
+      "locator": "line 2; chunk_type=task_pcap_correlation; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc16_write_001 的 Task JSON 與 PCAP 對照；分類為 safe_fc16_multiple_register_write。"
+    },
+    {
+      "evidence_id": "FROSTY-N12",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc16_write_001/rag_chunks.jsonl",
+      "source_type": "normalized_timeline",
+      "locator": "line 3; chunk_type=pcap_follow_up; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc16_write_001 的 PCAP 後續觀測；分類為 safe_fc16_multiple_register_write。"
+    },
+    {
+      "evidence_id": "FROSTY-N13",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc16_write_001/rag_chunks.jsonl",
+      "source_type": "normalized_detection",
+      "locator": "line 4; chunk_type=behavior_detection; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc16_write_001 的 Modbus 行為偵測結果；分類為 safe_fc16_multiple_register_write。"
+    },
+    {
+      "evidence_id": "FROSTY-N14",
+      "source_path": "scenarios/frostygoop/input/normalized/frostygoop_fc16_write_001/rag_chunks.jsonl",
+      "source_type": "normalized_data_quality",
+      "locator": "line 5; chunk_type=data_quality; normalizer=frostygoop-normalizer-0.1.0",
+      "description": "frostygoop_fc16_write_001 的 資料品質與安全限制；分類為 safe_fc16_multiple_register_write。"
+    }
+  ]
+}

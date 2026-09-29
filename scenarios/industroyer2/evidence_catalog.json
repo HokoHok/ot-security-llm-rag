@@ -1,0 +1,188 @@
+{
+  "catalog_version": "1.0",
+  "scenario": "industroyer2",
+  "evidence": [
+    {
+      "evidence_id": "IND2-N01",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_normal_eng_001/rag_chunks.jsonl",
+      "source_type": "normalized_summary",
+      "locator": "line 1; chunk_type=executive_summary; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_normal_eng_001 的正規化 事件摘要；分類為 normal_eng_maintenance。"
+    },
+    {
+      "evidence_id": "IND2-N02",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_normal_eng_001/rag_chunks.jsonl",
+      "source_type": "normalized_analysis",
+      "locator": "line 2; chunk_type=comparison_note; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_normal_eng_001 的正規化 鑑別與比較；分類為 normal_eng_maintenance。"
+    },
+    {
+      "evidence_id": "IND2-N03",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_normal_eng_001/rag_chunks.jsonl",
+      "source_type": "normalized_analysis",
+      "locator": "line 3; chunk_type=comparison_note; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_normal_eng_001 的正規化 鑑別與比較；分類為 normal_eng_maintenance。"
+    },
+    {
+      "evidence_id": "IND2-N04",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_normal_eng_001/rag_chunks.jsonl",
+      "source_type": "normalized_timeline",
+      "locator": "line 4; chunk_type=server_commands; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_normal_eng_001 的正規化 OT-SERVER01 IEC-104 指令；分類為 normal_eng_maintenance。"
+    },
+    {
+      "evidence_id": "IND2-N05",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_normal_eng_001/rag_chunks.jsonl",
+      "source_type": "normalized_timeline",
+      "locator": "line 5; chunk_type=eng_maintenance; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_normal_eng_001 的正規化 ENG 正常維護證據；分類為 normal_eng_maintenance。"
+    },
+    {
+      "evidence_id": "IND2-N06",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_normal_eng_001/rag_chunks.jsonl",
+      "source_type": "normalized_state",
+      "locator": "line 6; chunk_type=caddywiper_status; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_normal_eng_001 的正規化 Safe CaddyWiper 狀態；分類為 normal_eng_maintenance。"
+    },
+    {
+      "evidence_id": "IND2-N07",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_normal_eng_001/rag_chunks.jsonl",
+      "source_type": "normalized_data_quality",
+      "locator": "line 7; chunk_type=data_quality; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_normal_eng_001 的正規化 資料品質與限制；分類為 normal_eng_maintenance。"
+    },
+    {
+      "evidence_id": "IND2-N08",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_002/rag_chunks.jsonl",
+      "source_type": "normalized_summary",
+      "locator": "line 1; chunk_type=executive_summary; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_002 的正規化 事件摘要；分類為 direct_iec104_attack。"
+    },
+    {
+      "evidence_id": "IND2-N09",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_002/rag_chunks.jsonl",
+      "source_type": "normalized_analysis",
+      "locator": "line 2; chunk_type=comparison_note; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_002 的正規化 鑑別與比較；分類為 direct_iec104_attack。"
+    },
+    {
+      "evidence_id": "IND2-N10",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_002/rag_chunks.jsonl",
+      "source_type": "normalized_timeline",
+      "locator": "line 3; chunk_type=server_commands; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_002 的正規化 OT-SERVER01 IEC-104 指令；分類為 direct_iec104_attack。"
+    },
+    {
+      "evidence_id": "IND2-N11",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_002/rag_chunks.jsonl",
+      "source_type": "normalized_state",
+      "locator": "line 4; chunk_type=caddywiper_status; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_002 的正規化 Safe CaddyWiper 狀態；分類為 direct_iec104_attack。"
+    },
+    {
+      "evidence_id": "IND2-N12",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_002/rag_chunks.jsonl",
+      "source_type": "normalized_data_quality",
+      "locator": "line 5; chunk_type=data_quality; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_002 的正規化 資料品質與限制；分類為 direct_iec104_attack。"
+    },
+    {
+      "evidence_id": "IND2-N13",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_003/rag_chunks.jsonl",
+      "source_type": "normalized_summary",
+      "locator": "line 1; chunk_type=executive_summary; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_003 的正規化 事件摘要；分類為 direct_attack_plus_caddywiper_lockout。"
+    },
+    {
+      "evidence_id": "IND2-N14",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_003/rag_chunks.jsonl",
+      "source_type": "normalized_analysis",
+      "locator": "line 2; chunk_type=comparison_note; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_003 的正規化 鑑別與比較；分類為 direct_attack_plus_caddywiper_lockout。"
+    },
+    {
+      "evidence_id": "IND2-N15",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_003/rag_chunks.jsonl",
+      "source_type": "normalized_analysis",
+      "locator": "line 3; chunk_type=comparison_note; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_003 的正規化 鑑別與比較；分類為 direct_attack_plus_caddywiper_lockout。"
+    },
+    {
+      "evidence_id": "IND2-N16",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_003/rag_chunks.jsonl",
+      "source_type": "normalized_timeline",
+      "locator": "line 4; chunk_type=server_commands; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_003 的正規化 OT-SERVER01 IEC-104 指令；分類為 direct_attack_plus_caddywiper_lockout。"
+    },
+    {
+      "evidence_id": "IND2-N17",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_003/rag_chunks.jsonl",
+      "source_type": "normalized_timeline",
+      "locator": "line 5; chunk_type=eng_relay; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_003 的正規化 ENG Relay 操作證據；分類為 direct_attack_plus_caddywiper_lockout。"
+    },
+    {
+      "evidence_id": "IND2-N18",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_003/rag_chunks.jsonl",
+      "source_type": "normalized_state",
+      "locator": "line 6; chunk_type=caddywiper_status; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_003 的正規化 Safe CaddyWiper 狀態；分類為 direct_attack_plus_caddywiper_lockout。"
+    },
+    {
+      "evidence_id": "IND2-N19",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_003/rag_chunks.jsonl",
+      "source_type": "normalized_data_quality",
+      "locator": "line 7; chunk_type=data_quality; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_003 的正規化 資料品質與限制；分類為 direct_attack_plus_caddywiper_lockout。"
+    },
+    {
+      "evidence_id": "IND2-N20",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_004/rag_chunks.jsonl",
+      "source_type": "normalized_summary",
+      "locator": "line 1; chunk_type=executive_summary; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_004 的正規化 事件摘要；分類為 via_eng_relay_success。"
+    },
+    {
+      "evidence_id": "IND2-N21",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_004/rag_chunks.jsonl",
+      "source_type": "normalized_analysis",
+      "locator": "line 2; chunk_type=comparison_note; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_004 的正規化 鑑別與比較；分類為 via_eng_relay_success。"
+    },
+    {
+      "evidence_id": "IND2-N22",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_004/rag_chunks.jsonl",
+      "source_type": "normalized_analysis",
+      "locator": "line 3; chunk_type=comparison_note; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_004 的正規化 鑑別與比較；分類為 via_eng_relay_success。"
+    },
+    {
+      "evidence_id": "IND2-N23",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_004/rag_chunks.jsonl",
+      "source_type": "normalized_timeline",
+      "locator": "line 4; chunk_type=server_commands; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_004 的正規化 OT-SERVER01 IEC-104 指令；分類為 via_eng_relay_success。"
+    },
+    {
+      "evidence_id": "IND2-N24",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_004/rag_chunks.jsonl",
+      "source_type": "normalized_timeline",
+      "locator": "line 5; chunk_type=eng_relay; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_004 的正規化 ENG Relay 操作證據；分類為 via_eng_relay_success。"
+    },
+    {
+      "evidence_id": "IND2-N25",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_004/rag_chunks.jsonl",
+      "source_type": "normalized_state",
+      "locator": "line 6; chunk_type=caddywiper_status; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_004 的正規化 Safe CaddyWiper 狀態；分類為 via_eng_relay_success。"
+    },
+    {
+      "evidence_id": "IND2-N26",
+      "source_path": "scenarios/industroyer2/input/normalized/ind2_vE_004/rag_chunks.jsonl",
+      "source_type": "normalized_data_quality",
+      "locator": "line 7; chunk_type=data_quality; normalizer=ind2-normalizer-0.1.5",
+      "description": "ind2_vE_004 的正規化 資料品質與限制；分類為 via_eng_relay_success。"
+    }
+  ]
+}

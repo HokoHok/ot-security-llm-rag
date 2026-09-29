@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "normalizer_version": "frostygoop-normalizer-0.1.0",
+  "scenario": "frostygoop",
+  "generated_at": "2026-08-10T07:52:35.257414+00:00",
+  "cases": [
+    {
+      "case_id": "frostygoop_fc03_read_001",
+      "classification": "report_derived_fc03_read_baseline",
+      "safety_role": "report-derived read-only baseline",
+      "decoded_request_count": 1,
+      "matching_request_count": 1
+    },
+    {
+      "case_id": "frostygoop_fc06_write_001",
+      "classification": "safe_fc06_single_register_write",
+      "safety_role": "safe Lab capability demonstration",
+      "decoded_request_count": 2,
+      "matching_request_count": 1
+    },
+    {
+      "case_id": "frostygoop_fc16_write_001",
+      "classification": "safe_fc16_multiple_register_write",
+      "safety_role": "safe Lab capability demonstration",
+      "decoded_request_count": 2,
+      "matching_request_count": 1
+    }
+  ]
+}

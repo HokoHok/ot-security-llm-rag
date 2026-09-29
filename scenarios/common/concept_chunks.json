@@ -1,0 +1,52 @@
+[
+  {
+    "chunk_id": "OT-iec104-overview-01",
+    "scenario": "common",
+    "stage": "general_concept",
+    "source_type": "public_reference",
+    "title": "IEC 60870-5-104 的通用定位",
+    "text": "IEC 60870-5-104（常稱 IEC-104）是電力自動化與遠動系統使用的通訊協定，將 IEC 60870-5-101 的相關遠動應用層訊息配合標準 TCP/IP 傳輸設定檔使用。它可用於控制中心與遠端設備間的監視、狀態資料交換及控制相關訊息；協定本身不表示每一筆訊息都是控制命令。",
+    "evidence_ids": ["OT-G01"],
+    "keywords": ["IEC-104", "IEC 60870-5-104", "SCADA", "telecontrol", "TCP/IP", "監視", "控制"]
+  },
+  {
+    "chunk_id": "OT-transmission-evidence-boundary-01",
+    "scenario": "common",
+    "stage": "general_concept",
+    "source_type": "teaching_convention",
+    "title": "通訊送出與設備動作的證據界線",
+    "text": "在事件還原中，某協定訊息被記錄為 attempted 或 sent，只能直接支持傳送嘗試或傳送紀錄；它本身不足以證明遠端設備已接受、執行或造成實體影響。要確認後續結果，仍需搭配接收端確認、設備狀態、事件紀錄或其他可查證證據。",
+    "evidence_ids": ["OT-G02"],
+    "keywords": ["sent", "attempted", "acknowledgement", "設備狀態", "事件還原", "證據界線"]
+  },
+  {
+    "chunk_id": "OT-lab-field-boundary-01",
+    "scenario": "common",
+    "stage": "general_concept",
+    "source_type": "teaching_convention",
+    "title": "教學環境欄位與產業標準術語的區別",
+    "text": "教學環境中的欄位名稱，例如 iec104_sent、accepted 或安全模擬 case ID，是本專案 Normalizer 與 Relay log 的本地命名，不是 IEC 標準所定義的通用資安術語。解讀這些欄位時，必須先看本專案的資料定義與相關事件證據，不能把欄位名稱直接當成產業通用結論。",
+    "evidence_ids": ["OT-G03"],
+    "keywords": ["iec104_sent", "accepted", "Normalizer", "Relay", "欄位定義", "教學環境"]
+  },
+  {
+    "chunk_id": "OT-safe-simulation-boundary-01",
+    "scenario": "common",
+    "stage": "general_concept",
+    "source_type": "teaching_convention",
+    "title": "安全模擬與真實事件的界線",
+    "text": "本教學系統中的腳本、檔案數量、旗標與案例結果是可重現的安全模擬觀察，不是歷史攻擊的統計或真實惡意程式行為。回答時應清楚區分公開或通用背景、此 Lab 的設計，以及本次收集到的事件證據。",
+    "evidence_ids": ["OT-G04"],
+    "keywords": ["安全模擬", "Lab", "真實事件", "證據", "教學界線"]
+  },
+  {
+    "chunk_id": "OT-windows-event-logging-01",
+    "scenario": "common",
+    "stage": "general_concept",
+    "source_type": "public_reference",
+    "title": "PowerShell 4104 與 Security 4688 的通用意義",
+    "text": "當 Script Block Logging 已啟用時，PowerShell Operational 的 Event ID 4104 可記錄 PowerShell 處理的 script block 內容。Windows Security 的 Event ID 4688 是新的程序已建立；是否可取得事件與命令列欄位取決於 Audit Process Creation 與 Include command line in process creation events 等記錄設定。因此事件 ID 的存在可支持特定類型的主機紀錄，但不能單獨證明跨主機網路活動或其他未記錄行為。",
+    "evidence_ids": ["OT-G05"],
+    "keywords": ["PowerShell", "4104", "Script Block Logging", "Security", "4688", "Process Creation", "command line", "Windows Event Log"]
+  }
+]

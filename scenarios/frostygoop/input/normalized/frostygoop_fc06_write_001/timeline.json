@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "normalizer_version": "frostygoop-normalizer-0.1.0",
+  "scenario": "frostygoop",
+  "case_id": "frostygoop_fc06_write_001",
+  "events": [
+    {
+      "sequence": 1,
+      "event_type": "task_configuration_loaded",
+      "detail": {
+        "function_code": 6,
+        "address": 53760,
+        "value": 2222
+      },
+      "source": "task_test_fc06_lab.json"
+    },
+    {
+      "sequence": 2,
+      "event_type": "pcap_request_decoded",
+      "detail": {
+        "transaction_id": 1,
+        "unit_id": 1,
+        "function_code": 6,
+        "address": 53760,
+        "value": 2222,
+        "frame_number": 4,
+        "source_ip": "127.0.0.1",
+        "destination_ip": "127.0.0.1",
+        "source_port": 38184,
+        "destination_port": 1502
+      },
+      "source": "frostygoop_fc06_lab.pcapng"
+    },
+    {
+      "sequence": 3,
+      "event_type": "pcap_follow_up_request_decoded",
+      "detail": {
+        "transaction_id": 2,
+        "unit_id": 1,
+        "function_code": 3,
+        "address": 53760,
+        "count": 1,
+        "frame_number": 8,
+        "source_ip": "127.0.0.1",
+        "destination_ip": "127.0.0.1",
+        "source_port": 38184,
+        "destination_port": 1502
+      },
+      "source": "frostygoop_fc06_lab.pcapng"
+    },
+    {
+      "sequence": 4,
+      "event_type": "behavior_detector_result",
+      "detail": {
+        "operation": "write_single_register",
+        "behavior": "WRITE",
+        "risk": "MEDIUM",
+        "detector_result": "ALERT",
+        "message": "Safe single-register write overlaps the Lab watched register range."
+      },
+      "source": "deterministic_normalizer"
+    }
+  ]
+}

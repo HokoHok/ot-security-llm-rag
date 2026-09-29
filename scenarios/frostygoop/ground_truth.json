@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "scenario": "frostygoop",
+  "purpose": "Instructor-only FrostyGoop report-derived safe-reconstruction baseline. It must not be indexed or revealed wholesale to students.",
+  "cases": [
+    {
+      "question_id": "FROSTY-Q01",
+      "topic": "fc03_read_baseline",
+      "canonical_question": "FrostyGoop 安全重建中的 FC03 對照案例，Task JSON 與 PCAP 已知顯示什麼？",
+      "expected_answer": "Task JSON 與 localhost TCP/1502 PCAP 的 FC03 請求相符；此對照只支持安全 Lab 中捕獲到請求，PCAP 不證明設備接受或實體影響。",
+      "required_evidence_ids": ["FROSTY-N02", "FROSTY-N04"],
+      "expected_known_facts": ["Task JSON 與解碼 PCAP 的 FC03 請求相符。", "PCAP 不證明設備接受或實體影響。"],
+      "acceptable_inferences": ["這個案例可作為比較 Lab 讀取與安全寫入展示的基準。"],
+      "expected_unknowns": ["PCAP 並未證明設備接受請求或造成實體影響。"],
+      "forbidden_claims": ["FC03 PCAP 證明真實 PLC 已接受請求。", "FC03 案例來自真實 FrostyGoop 樣本。"],
+      "hint_levels": ["先比對 FC03 Task JSON 與 PCAP。", "再查看 READ、LOW 與 NOTICE。", "最後用資料品質證據確認 PCAP 的界線。"]
+    },
+    {
+      "question_id": "FROSTY-Q02",
+      "topic": "fc06_safe_write_boundary",
+      "canonical_question": "FC06 案例可以證明真實 FrostyGoop 曾修改 PLC 暫存器嗎？為什麼？",
+      "expected_answer": "不可以。FC06 是 localhost TCP/1502 的安全單一暫存器寫入展示；Task JSON 與 PCAP 只支持捕獲到相符的 Lab 請求，不能證明設備接受、暫存器改變、實體影響或真實 FrostyGoop 行為。",
+      "required_evidence_ids": ["FROSTY-N09"],
+      "expected_known_facts": ["FC06 是安全 Lab capability demonstration。", "FC06／FC16 不被宣稱為真實 FrostyGoop 行為。"],
+      "acceptable_inferences": ["偵測規則可將監看範圍中的單一暫存器寫入列為需注意的 Lab 行為。"],
+      "expected_unknowns": ["沒有設備接受、暫存器實際狀態或實體製程影響的證據。", "沒有證據可將 FC06 視為真實觀測到的 FrostyGoop 行為。"],
+      "forbidden_claims": ["FC06 證明真實 FrostyGoop 修改了 PLC。", "FC06 PCAP 證明設備已接受寫入並造成實體影響。"],
+      "hint_levels": ["先辨認 FC06 的 Lab 性質。", "找出 Task JSON 與 PCAP 能支持的範圍。", "閱讀 FROSTY-N09 的資料品質限制。"]
+    },
+    {
+      "question_id": "FROSTY-Q03",
+      "topic": "fc16_safe_write_boundary",
+      "canonical_question": "FC16 案例的偵測結果是什麼？為何不能直接推論真實設備受到影響？",
+      "expected_answer": "FC16 安全多暫存器寫入展示被標示為 WRITE、HIGH 與 ALERT，因為操作重疊 Lab 監看範圍；但 PCAP 僅證明捕獲到 localhost Lab 請求，沒有設備接受或實體影響的證據。",
+      "required_evidence_ids": ["FROSTY-N13", "OT-G02"],
+      "expected_known_facts": ["FC16 偵測結果為 WRITE、HIGH 與 ALERT。", "送出或捕獲請求不等於設備接受或實體影響。"],
+      "acceptable_inferences": ["多暫存器寫入在此 Lab 偵測規則中被賦予比 FC06 更高的風險等級。"],
+      "expected_unknowns": ["沒有證據證明真實設備接受請求或產生實體製程影響。"],
+      "forbidden_claims": ["FC16 已在真實 OT 設備造成影響。", "FC16 是真實 FrostyGoop 被觀測到的行為。"],
+      "hint_levels": ["從 FROSTY-N13 找出偵測分類。", "再確認 Task JSON／PCAP 對照。", "用 FROSTY-N14 區分 Lab 請求與設備影響。"]
+    },
+    {
+      "question_id": "FROSTY-Q04",
+      "topic": "pcap_follow_up_observation",
+      "canonical_question": "FC06 或 FC16 後出現的 PCAP 後續 FC03 讀取，能否當成設備已成功寫入的證明？",
+      "expected_answer": "不能。Normalizer 保留後續 FC03 作為 Lab follow-up observation，避免遺失交易脈絡；它不證明設備接受前一個寫入請求、暫存器內容改變或實體影響。",
+      "required_evidence_ids": ["FROSTY-N07", "FROSTY-N12"],
+      "expected_known_facts": ["FC06 與 FC16 案例都有被保留的後續支援 Modbus 請求。", "後續請求被標示為 Lab follow-up observation。"],
+      "acceptable_inferences": ["保留後續觀測可讓教師檢視較完整的 Lab 交易脈絡。"],
+      "expected_unknowns": ["後續 FC03 讀取不能單獨證明前一筆寫入被設備接受。"],
+      "forbidden_claims": ["後續 FC03 讀取證明 FC06 或 FC16 已成功改變設備。"],
+      "hint_levels": ["先找出 Normalizer 如何命名額外請求。", "比較 follow-up 與 task-correlated request。", "說明保留不等於設備接受。"]
+    },
+    {
+      "question_id": "FROSTY-Q05",
+      "topic": "lab_port_and_evidence_limit",
+      "canonical_question": "為什麼本案例的 TCP/1502 不能直接當成正式 Modbus TCP/502 或真實工控網路證據？",
+      "expected_answer": "TCP/1502 是 localhost Lab port，不是 production TCP/502；它只支持本次安全重建的 Lab 通訊觀測，不能據此描述真實工控網路或實際設備。",
+      "required_evidence_ids": ["FROSTY-N04"],
+      "expected_known_facts": ["案例使用 localhost TCP/1502。", "TCP/1502 不是 production TCP/502。"],
+      "acceptable_inferences": ["明確區分 Lab port 與正式環境 port 可避免把測試架構誤當成真實部署。"],
+      "expected_unknowns": ["沒有真實工控網路、PLC、RTU 或實體製程的證據。"],
+      "forbidden_claims": ["localhost TCP/1502 證明真實生產 Modbus TCP/502 網路受到影響。"],
+      "hint_levels": ["先確認 IP 與 TCP port。", "比較 TCP/1502 與 production TCP/502。", "以 FROSTY-N04 說明限制如何影響結論。"]
+    },
+    {
+      "question_id": "FROSTY-Q06",
+      "topic": "report_derived_boundary",
+      "canonical_question": "這份 FrostyGoop 情境可以說是使用真實惡意程式和真實 PLC 重現的嗎？",
+      "expected_answer": "不可以。它是報告衍生安全重建，沒有真實 FrostyGoop 樣本、PLC、RTU 或實體製程；FC06／FC16 僅是安全 Lab capability demonstrations。",
+      "required_evidence_ids": ["FROSTY-N04", "FROSTY-N09"],
+      "expected_known_facts": ["此情境沒有真實 FrostyGoop 樣本、PLC、RTU 或實體製程。", "FC06／FC16 是安全 Lab capability demonstrations。"],
+      "acceptable_inferences": ["此情境適合教導證據界線與偵測邏輯，而非宣稱重現真實破壞。"],
+      "expected_unknowns": ["現有資料不能證明真實 FrostyGoop 在特定設備上的實際行為。"],
+      "forbidden_claims": ["本案例使用真實 FrostyGoop 惡意程式控制真實 PLC。"],
+      "hint_levels": ["先辨認報告衍生安全重建。", "找出資料品質列出的排除項目。", "比較 FROSTY-N04 與 FROSTY-N09 的安全界線。"]
+    }
+  ]
+}

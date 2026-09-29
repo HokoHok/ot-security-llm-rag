@@ -1,0 +1,155 @@
+{
+  "scenario": "Ryuk-like safe incident simulation",
+  "normalization_schema_version": "1.1",
+  "summary_type": "AI incident summary",
+  "generated_by": "SENSOR01",
+  "generated_at": "2026-07-31T16:49:37+08:00",
+  "source_hosts": {
+    "delivery_server": "Kali",
+    "execution_endpoint": "USER01",
+    "detector_and_file_server": "DC01",
+    "collector": "SENSOR01"
+  },
+  "target_asset": "C:\\RyukShare\\attack_from_user_v4",
+  "user_context": "RYUK\\employee01",
+  "risk": "Critical",
+  "initial_access_evidence": {
+    "kali_download_page_hits_from_user01": 1,
+    "payload_download_hits_from_user01": 1,
+    "sensor_fetched_kali_http_log": true
+  },
+  "user01_endpoint_evidence": {
+    "run_id": "20260731-163150",
+    "collector_declared_success": true,
+    "source_host": "USER01",
+    "source_user": "RYUK\\employee01",
+    "payload_sha256": "19AA6D5E7E8BABDFDF0D612D1BA4499F6FD017B67D423F2717BD72B3A3248184",
+    "context_verified": true,
+    "powershell": {
+      "verified": true,
+      "total_events": 932,
+      "event_4103_count": 926,
+      "event_4104_count": 6,
+      "markers": {
+        "payload_name_found": true,
+        "dc01_share_found": true,
+        "impact_folder_found": true,
+        "caesar_marker_found": true
+      }
+    },
+    "process_creation": {
+      "verified": true,
+      "event_id": 4688,
+      "event_count": 7,
+      "powershell_found": true,
+      "payload_name_found": true,
+      "employee01_found": true,
+      "command_line_available": true
+    },
+    "smb_current_state": {
+      "connection_count": 0,
+      "mapping_count": 0,
+      "historical_access_proven": false
+    },
+    "manifest": {
+      "records": 7,
+      "files_checked": 7,
+      "hashes_matched": 7,
+      "verified": true
+    },
+    "execution_corroborated": true,
+    "limitations": [
+      "SMB state was queried after execution and contained no active connection or mapping; this does not disprove earlier USER01-to-DC01 SMB access.",
+      "Historical SMB access still requires DC01 server audit or network telemetry."
+    ]
+  },
+  "impact_evidence": {
+    "ryk_file_count": 100,
+    "ryuk_readme_count": 4,
+    "caesar_marker_file_count": 100,
+    "affected_file_type_count": 4
+  },
+  "kill_chain_evidence": {
+    "discovery_log_found": true,
+    "credential_exposure_simulation_log_found": true,
+    "scheduled_task_deployment_dryrun_log_found": true,
+    "service_recovery_dryrun_log_found": true,
+    "stage4_impact_summary_found": true,
+    "stage4_user_execution_log_found": true
+  },
+  "attack_stages": [
+    "Initial Access",
+    "User Execution",
+    "Discovery",
+    "Credential Exposure Assumption",
+    "Valid Account Abuse",
+    "Ryuk-like Impact",
+    "Detection",
+    "Evidence Collection"
+  ],
+  "detection_reasons": [
+    "Detected 100 or more .RYK files.",
+    "Detected RyukReadMe.txt in multiple affected folders.",
+    "Detected Caesar transform marker in many .RYK files.",
+    "Detected multiple affected business-like file types.",
+    "Found discovery simulation log.",
+    "Found credential exposure simulation log.",
+    "Found scheduled task deployment dry-run log.",
+    "Found service and recovery disruption dry-run log.",
+    "Found the Ryuk-like safe simulation impact summary JSON."
+  ],
+  "recommended_actions": [
+    "Isolate USER01 from the lab network",
+    "Review Kali HTTP access log for download evidence",
+    "Review DC01 detection JSON and affected RyukShare folder",
+    "Check the RYUK\\employee01 account activity",
+    "Restore affected test files using the validated safe restore procedure if recovery demo is required"
+  ],
+  "restore_status": {
+    "restore_result_found": true,
+    "restored_file_count": 100,
+    "failed_file_count": 0
+  },
+  "collection_evidence": {
+    "collection_time": "2026-07-31T16:49:37+08:00",
+    "dc01_share_available": true,
+    "kali_http_log": {
+      "declared_success": true,
+      "verified_success": true,
+      "curl_exit_code": 0,
+      "http_status": "200",
+      "reported_bytes": 1904,
+      "actual_bytes": 1904,
+      "file_exists": true,
+      "attempted_at": "2026-07-31T16:49:37+08:00"
+    },
+    "raw_files_present": {
+      "collection_metadata.json": true,
+      "kali_http_access.log": true,
+      "detection_stage2_user_v4.json": true,
+      "stage4_impact_summary.json": true,
+      "stage4_user_execution_impact_log.txt": true,
+      "stage4_discovery_log.txt": true,
+      "stage4_credential_exposure_simulation_log.txt": true,
+      "stage4_scheduled_task_deployment_simulation_log.txt": true,
+      "stage4_service_recovery_dryrun_log.txt": true,
+      "restore_version_d_result.json": true
+    },
+    "user01_run_id": "20260731-163150",
+    "user01_files_present": {
+      "user01_execution_context.json": true,
+      "user01_manifest.json": true,
+      "user01_powershell_events.json": true,
+      "user01_powershell_summary.json": true,
+      "user01_process_collection_status.json": true,
+      "user01_process_events.json": true,
+      "user01_process_summary.json": true,
+      "user01_smb_state.json": true
+    }
+  },
+  "data_quality": {
+    "status": "ok",
+    "warnings": []
+  },
+  "safety_note": "Safe Ryuk-like lab emulation only. No real Ryuk malware, real credential theft, persistence, service stop, or destructive recovery deletion was used."
+}

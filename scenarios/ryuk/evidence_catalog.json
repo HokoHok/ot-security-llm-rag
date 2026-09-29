@@ -1,0 +1,118 @@
+{
+  "catalog_version": "1.3",
+  "scenario": "ryuk",
+  "evidence": [
+    {
+      "evidence_id": "RYUK-C01",
+      "source_path": "student_materials/ryuk/lab_architecture.md",
+      "source_type": "lab_configuration",
+      "locator": "主機角色 and 證據界線 sections",
+      "description": "Defines Kali as the HTTP source, USER01 as the execution endpoint, USER01-to-DC01 SMB as allowed, and direct Kali-to-DC01 SMB as blocked."
+    },
+    {
+      "evidence_id": "RYUK-L01",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "observed_log",
+      "locator": "RYUK-L01 section",
+      "description": "Records successful requests from 10.10.50.20 for the download page and invoice_update_v4.ps1."
+    },
+    {
+      "evidence_id": "RYUK-L02",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "observed_log",
+      "locator": "RYUK-L02 section",
+      "description": "Records USER01 as the source host, Kali HTTP Server as the payload source, and the DC01 share as the impact target."
+    },
+    {
+      "evidence_id": "RYUK-L03",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "observed_summary",
+      "locator": "RYUK-L03 section",
+      "description": "Records USER01, the DC01 target share, 100 .RYK files, four readme files, 100 Caesar markers, and the safe-simulation boundary."
+    },
+    {
+      "evidence_id": "RYUK-L04",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "observed_detection",
+      "locator": "RYUK-L04 section",
+      "description": "Records DC01 detection results, observed artifact counts, expected USER01 context, Critical risk, and safety limitations."
+    },
+    {
+      "evidence_id": "RYUK-L05",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "observed_restore",
+      "locator": "RYUK-L05 section",
+      "description": "Records 100 restored copies, zero failures, and preservation of the original .RYK simulation files."
+    },
+    {
+      "evidence_id": "RYUK-L06",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "simulation_log",
+      "locator": "RYUK-L06 section",
+      "description": "Records the safe USER01 discovery simulation and visibility of the DC01 RyukShare."
+    },
+    {
+      "evidence_id": "RYUK-L07",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "simulation_log",
+      "locator": "RYUK-L07 section",
+      "description": "States that credential exposure is only a lab assumption and that no credential theft or password dumping occurred."
+    },
+    {
+      "evidence_id": "RYUK-L08",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "simulation_log",
+      "locator": "RYUK-L08 section",
+      "description": "States that scheduled-task deployment is a dry run and no remote task or payload deployment occurred."
+    },
+    {
+      "evidence_id": "RYUK-L09",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "simulation_log",
+      "locator": "RYUK-L09 section",
+      "description": "States that service and recovery disruption is a dry run and no service, backup, shadow copy, or recovery setting was changed."
+    },
+    {
+      "evidence_id": "RYUK-L10",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "collection_metadata",
+      "locator": "RYUK-L10 section",
+      "description": "Records SENSOR01 as the evidence collector, DC01 Share availability, collection time, Kali HTTP fetch result, and the selected USER01 evidence run."
+    },
+    {
+      "evidence_id": "RYUK-U01",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "observed_endpoint_context",
+      "locator": "RYUK-U01 section",
+      "description": "Records the USER01 run ID, time window, source host, RYUK employee identity, downloaded script path and SHA-256, and the DC01 RyukShare target."
+    },
+    {
+      "evidence_id": "RYUK-U02",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "observed_endpoint_log_summary",
+      "locator": "RYUK-U02 section",
+      "description": "Summarizes USER01 PowerShell Operational events 4103 and 4104 and confirms markers for the script name, DC01 Share, impact folder, and Caesar simulation."
+    },
+    {
+      "evidence_id": "RYUK-U03",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "observed_endpoint_log_summary",
+      "locator": "RYUK-U03 section",
+      "description": "Summarizes seven USER01 Security 4688 process-creation events and confirms PowerShell, the script name, employee01, and command-line availability."
+    },
+    {
+      "evidence_id": "RYUK-U04",
+      "source_path": "scenarios/ryuk/public_evidence_summary.md",
+      "source_type": "observed_endpoint_state",
+      "locator": "RYUK-U04 section",
+      "description": "Records no active USER01 SMB connection or mapping at the later collection time; this post-execution snapshot neither proves nor disproves earlier SMB access."
+    },
+    {
+      "evidence_id": "RYUK-N01",
+      "source_path": "scenarios/ryuk/input/normalized/ryuk_incident_summary.json",
+      "source_type": "normalized_summary",
+      "locator": "initial_access_evidence, user01_endpoint_evidence, collection_evidence, and data_quality",
+      "description": "Derived SENSOR01 summary that verifies Kali HTTP collection, USER01 context, PowerShell and process summaries, manifest hashes, expected raw-file presence, explicit SMB-state limitations, and the absence of normalization warnings."
+    }
+  ]
+}

@@ -1,0 +1,430 @@
+[
+  {
+    "chunk_id": "RYUK-topology-01",
+    "scenario": "ryuk",
+    "stage": "topology",
+    "source_type": "lab_configuration",
+    "title": "Kali、USER01 與 DC01 的通訊角色",
+    "text": "本情境將 Kali 設計為 HTTP 下載來源，USER01 是下載與執行安全模擬腳本的端點，DC01 則提供 RyukShare。USER01 可使用授權的網域帳號透過 SMB 存取 DC01；直接的 Kali 到 DC01 SMB 通訊由 Lab 防火牆規則阻擋。這是實驗網路設計，因此「設計上阻擋 Kali 直接 SMB」是已知事實；但它不是本次執行期間的逐封包防火牆紀錄，所以「Kali 是否曾嘗試直接 SMB」仍是證據不足。",
+    "evidence_ids": [
+      "RYUK-C01"
+    ],
+    "keywords": [
+      "Kali",
+      "USER01",
+      "DC01",
+      "HTTP",
+      "SMB",
+      "RyukShare",
+      "firewall",
+      "通訊角色",
+      "主機"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-delivery-01",
+    "scenario": "ryuk",
+    "stage": "delivery",
+    "source_type": "observed_log",
+    "title": "USER01 從 Kali 下載安全模擬腳本",
+    "text": "Kali HTTP access log 記錄來源 10.10.50.20 成功取得下載頁與 invoice_update_v4.ps1；Lab 網路設定將 10.10.50.20 對應至 USER01。這能直接支持 Kali 提供 HTTP delivery、USER01 是下載端，但 HTTP GET 本身不能證明檔案後來被執行，也不能證明 Kali 透過 SMB 修改 DC01。",
+    "evidence_ids": [
+      "RYUK-L01",
+      "RYUK-C01"
+    ],
+    "keywords": [
+      "Kali",
+      "USER01",
+      "HTTP",
+      "下載",
+      "delivery",
+      "invoice_update_v4.ps1",
+      "10.10.50.20",
+      "GET"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-execution-impact-01",
+    "scenario": "ryuk",
+    "stage": "execution",
+    "source_type": "observed_log",
+    "title": "USER01 執行並以 DC01 Share 為安全模擬目標",
+    "text": "Execution log 將 Source Host 記為 USER01、User 記為 RYUK\\employee01、Payload Source 記為 Kali HTTP Server，Target Share 記為 \\\\DC01\\RyukShare\\attack_from_user_v4。USER01 另外匯出的 execution context、PowerShell 4104 摘要與 Security 4688 摘要，都將主機、使用者、腳本名稱與 DC01 Share 目標串在同一次執行期間。這些觀測紀錄區分內容提供端 Kali、實際執行端 USER01 與共享資料所在端 DC01；紀錄沒有指出使用漏洞或由 Kali 直接建立 SMB 工作階段。",
+    "evidence_ids": [
+      "RYUK-U01",
+      "RYUK-U02",
+      "RYUK-U03",
+      "RYUK-L02",
+      "RYUK-N01"
+    ],
+    "keywords": [
+      "USER01",
+      "RYUK employee01",
+      "Kali",
+      "DC01",
+      "execution",
+      "執行端",
+      "SMB",
+      "attack_from_user_v4",
+      "Source Host"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-user01-endpoint-01",
+    "scenario": "ryuk",
+    "stage": "execution",
+    "source_type": "observed_endpoint_logs",
+    "title": "USER01 端點直接記錄下載腳本執行與 DC01 目標",
+    "text": "USER01 的 execution context 將 Source Host=USER01，並記錄使用者 RYUK\\employee01、從 Kali HTTP 來源取得的腳本路徑、SHA-256 與 DC01 RyukShare 目標。PowerShell Operational 摘要在執行時間窗內包含 926 筆 4103 與 6 筆 4104，腳本名稱、DC01 Share、impact folder 與 Caesar marker 都有命中；Security 摘要另記錄 7 筆 4688 process creation，並命中 PowerShell、腳本名稱、employee01 與 command line。這是直接來自 USER01 的執行端佐證，能區分 Kali 的 HTTP delivery 角色與 USER01 的實際執行角色，不只是從 DC01 結果回推。",
+    "evidence_ids": [
+      "RYUK-U01",
+      "RYUK-U02",
+      "RYUK-U03",
+      "RYUK-N01"
+    ],
+    "keywords": [
+      "USER01",
+      "Kali",
+      "HTTP delivery",
+      "endpoint evidence",
+      "PowerShell",
+      "4103",
+      "4104",
+      "Security",
+      "4688",
+      "process creation",
+      "invoice_update_v4.ps1",
+      "DC01",
+      "RyukShare",
+      "實際執行端",
+      "不是直接修改",
+      "SHA-256"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-impact-01",
+    "scenario": "ryuk",
+    "stage": "impact",
+    "source_type": "observed_summary",
+    "title": "DC01 Share 的安全模擬結果",
+    "text": "Impact summary 記錄 USER01 為來源主機，目標是 DC01 RyukShare 的 attack_from_user_v4。本次實驗產生 100 個 .RYK 測試檔、4 個 RyukReadMe 檔與 100 個 Caesar markers。這些數量只代表本次 Lab 輸出；Caesar shift 是可逆內容轉換，不是真實 Ryuk 加密，也不能單靠副檔名判定真實惡意程式家族。",
+    "evidence_ids": [
+      "RYUK-L03",
+      "RYUK-L04"
+    ],
+    "keywords": [
+      "USER01",
+      "DC01",
+      ".RYK",
+      "RyukReadMe",
+      "Caesar shift",
+      "100",
+      "impact",
+      "安全模擬",
+      "檔案"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-detection-01",
+    "scenario": "ryuk",
+    "stage": "detection",
+    "source_type": "observed_detection",
+    "title": "DC01 將模擬結果判定為 Critical",
+    "text": "DC01 detection JSON 將本次 Lab 風險標記為 Critical，理由包含 100 個 .RYK、4 個 RyukReadMe、100 個 Caesar markers、4 種受影響測試檔類型，以及多份模擬階段 log。Critical 是這套實驗偵測規則對觀測 artifacts 的分類，不是歷史 Ryuk 事件統計，也不代表已證明真實惡意程式存在。",
+    "evidence_ids": [
+      "RYUK-L04"
+    ],
+    "keywords": [
+      "DC01",
+      "detection",
+      "Critical",
+      ".RYK",
+      "risk",
+      "偵測理由",
+      "artifact",
+      "安全模擬"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-restore-01",
+    "scenario": "ryuk",
+    "stage": "restore",
+    "source_type": "observed_restore",
+    "title": "安全復原結果",
+    "text": "Restore result 記錄從 100 個 .RYK 測試檔建立 100 份復原副本，失敗數為 0。復原腳本未修改原始 .RYK，而是將 Caesar shift -3 後的副本寫入 restored_from_v4。這能證明本次受控轉換可逆，不能推論該腳本可復原真實 Ryuk 加密或所有正式環境資料。",
+    "evidence_ids": [
+      "RYUK-L05"
+    ],
+    "keywords": [
+      "restore",
+      "復原",
+      "restored_from_v4",
+      "100",
+      "failed_file_count",
+      "Caesar shift",
+      "可逆",
+      "副本"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-simulation-boundaries-01",
+    "scenario": "ryuk",
+    "stage": "safety",
+    "source_type": "simulation_overview",
+    "title": "Discovery、憑證、排程工作與服務中斷的安全邊界",
+    "text": "本情境將 Discovery、credential exposure、scheduled task deployment 與 service/recovery disruption 放入事件故事，但證據層級不同：Discovery log 記錄 USER01 執行的查詢；credential exposure 只是情境假設；scheduled task 與 service/recovery 都是 dry run。Impact summary 記錄的則是 Caesar shift 與 .RYK 測試檔等安全模擬 artifacts，不是真實 Ryuk 加密。這些檔案可用於教學還原，不能合併解讀為所有真實攻擊行為都已發生。",
+    "evidence_ids": [
+      "RYUK-L03",
+      "RYUK-L06",
+      "RYUK-L07",
+      "RYUK-L08",
+      "RYUK-L09"
+    ],
+    "keywords": [
+      "discovery",
+      "credential exposure",
+      "scheduled task",
+      "service recovery",
+      "impact",
+      "Caesar shift",
+      "真實 Ryuk 解密器",
+      "成功還原",
+      "復原不代表真實解密",
+      ".RYK",
+      "dry run",
+      "安全邊界",
+      "模擬",
+      "證據層級"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-collection-01",
+    "scenario": "ryuk",
+    "stage": "collection",
+    "source_type": "collection_metadata",
+    "title": "SENSOR01 收集並正規化跨主機證據",
+    "text": "Collection metadata 將 SENSOR01 記為證據收集端。Collector 明確記錄 DC01 Share 可讀，Kali HTTP log 的 curl exit code 為 0、HTTP status 為 200，並完整收進 USER01 執行證據包。Normalizer 驗證 USER01 context、PowerShell 4104、Security 4688 與 manifest 雜湊後，將 execution_corroborated 設為 true。SENSOR01 的角色是複製、驗證與正規化證據，不是 delivery、execution、impact 或 detection 主機。",
+    "evidence_ids": [
+      "RYUK-L10",
+      "RYUK-U01",
+      "RYUK-U02",
+      "RYUK-U03",
+      "RYUK-N01"
+    ],
+    "keywords": [
+      "SENSOR01",
+      "collection",
+      "normalization",
+      "DC01",
+      "Kali",
+      "HTTP 200",
+      "curl",
+      "資料來源",
+      "蒐證"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-timeline-01",
+    "scenario": "ryuk",
+    "stage": "timeline",
+    "source_type": "evidence_synthesis",
+    "title": "從下載到復原的證據時間線",
+    "text": "跨來源證據形成以下順序：Kali HTTP log 先記錄 USER01 取得頁面與腳本；USER01 execution context、PowerShell 4104 與 Security 4688 隨後直接佐證執行端、使用者與腳本；execution log 將目標指向 DC01 Share；impact 與 detection 記錄測試 artifacts；restore result 記錄復原副本；最後 SENSOR01 收集並產生資料品質為 ok 的摘要。時間線是由多份證據串接，不應把任何單一 log 當成完整事件。",
+    "evidence_ids": [
+      "RYUK-L01",
+      "RYUK-L02",
+      "RYUK-U01",
+      "RYUK-U02",
+      "RYUK-U03",
+      "RYUK-L03",
+      "RYUK-L04",
+      "RYUK-L05",
+      "RYUK-L10",
+      "RYUK-N01"
+    ],
+    "keywords": [
+      "timeline",
+      "時間線",
+      "下載",
+      "執行",
+      "impact",
+      "detection",
+      "restore",
+      "collection",
+      "事件順序"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-smb-access-01",
+    "scenario": "ryuk",
+    "stage": "access",
+    "source_type": "evidence_synthesis",
+    "title": "USER01 使用既有網域身分存取 DC01 RyukShare",
+    "text": "Lab 設計允許 USER01 到 DC01 的 SMB，Discovery log 顯示 USER01 能列出 DC01 的 RyukShare；execution log 與 USER01 PowerShell 摘要也把 RYUK\\employee01、腳本和目標 Share 串在同一次模擬中。因此證據支持使用既有授權路徑造成 Lab impact 的解讀。USER01 的 SMB state 是在執行後才查詢，當時沒有 active connection 或 mapping；這不能否定先前存取，也不能取代 DC01 server audit 或網路遙測。現有證據沒有記載漏洞利用、密碼傾印、遠端排程工作建立或 Kali 直接 SMB 寫入。",
+    "evidence_ids": [
+      "RYUK-C01",
+      "RYUK-L02",
+      "RYUK-L06",
+      "RYUK-U02",
+      "RYUK-U04",
+      "RYUK-N01"
+    ],
+    "keywords": [
+      "USER01",
+      "DC01",
+      "SMB",
+      "valid account",
+      "網域帳號",
+      "RyukShare",
+      "授權",
+      "漏洞",
+      "存取路徑"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-discovery-01",
+    "scenario": "ryuk",
+    "stage": "discovery",
+    "source_type": "simulation_log",
+    "title": "USER01 的 Discovery 安全模擬",
+    "text": "Discovery log 在 USER01 上記錄 whoami、hostname、IP 設定、網域控制站查詢、DC01 分享列舉與目標 Share 清單；其中使用者為 RYUK\\employee01，主機為 USER01。這支持端點曾進行 Lab discovery 查詢並看見 RyukShare，但不能據此推論憑證如何取得，也不能證明 Kali 執行了這些查詢。",
+    "evidence_ids": [
+      "RYUK-L06"
+    ],
+    "keywords": [
+      "Discovery",
+      "USER01",
+      "whoami",
+      "hostname",
+      "domain controller",
+      "share listing",
+      "DC01",
+      "RyukShare",
+      "探索"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-credential-assumption-01",
+    "scenario": "ryuk",
+    "stage": "credential_access",
+    "source_type": "simulation_log",
+    "title": "Credential exposure 是情境假設而非觀測到的竊取",
+    "text": "Credential exposure log 明確寫出 RYUK\\employee01 被視為已暴露只是 Demo assumption。安全說明同時否定真實 credential theft、password dumping、LSASS access 與 browser password collection。因此可以把帳號可用視為故事前提，但不能回答密碼如何被偷、使用了哪個工具或何時發生竊取。",
+    "evidence_ids": [
+      "RYUK-L07"
+    ],
+    "keywords": [
+      "credential exposure",
+      "credential theft",
+      "password dumping",
+      "LSASS",
+      "browser password",
+      "RYUK employee01",
+      "情境假設",
+      "憑證"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-scheduled-task-dryrun-01",
+    "scenario": "ryuk",
+    "stage": "deployment",
+    "source_type": "simulation_log",
+    "title": "Scheduled task deployment 僅為 dry run",
+    "text": "Scheduled task deployment log 只描述 Ryuk-like 故事中的廣泛部署階段。Lab implementation 明確指出這是 dry run，沒有建立遠端 scheduled task，也沒有把 payload 推送到其他主機；USER01 與 DC01 只是 simulated target hosts。這份 log 不能作為 persistence 或實際橫向部署已發生的證據。",
+    "evidence_ids": [
+      "RYUK-L08"
+    ],
+    "keywords": [
+      "scheduled task",
+      "dry run",
+      "deployment",
+      "persistence",
+      "remote task",
+      "payload push",
+      "USER01",
+      "DC01",
+      "排程工作"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-service-recovery-dryrun-01",
+    "scenario": "ryuk",
+    "stage": "inhibit_recovery",
+    "source_type": "simulation_log",
+    "title": "Service 與 recovery disruption 僅為 dry run",
+    "text": "Service and Recovery Disruption log 描述模擬意圖，但 Lab implementation 明確記錄沒有停止服務、沒有刪除 backup 或 shadow copy，也沒有變更 recovery setting。它能表示課程希望學生辨識的事件階段，不能支持 DC01 的復原能力真的被破壞。",
+    "evidence_ids": [
+      "RYUK-L09"
+    ],
+    "keywords": [
+      "service stop",
+      "backup",
+      "shadow copy",
+      "recovery",
+      "dry run",
+      "DC01",
+      "服務中斷",
+      "復原破壞"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-collection-quality-01",
+    "scenario": "ryuk",
+    "stage": "data_quality",
+    "source_type": "normalized_summary",
+    "title": "本次 SENSOR01 收集完整性與仍缺少的遙測",
+    "text": "Normalized summary 顯示預期的十個 DC01／Kali raw evidence 檔與八個 USER01 evidence 檔都存在，USER01 manifest 中七個受驗證檔案的 SHA-256 全部一致；Kali HTTP log 的 declared 與 verified success 都為 true，data_quality 為 ok 且沒有 warnings。這代表預期來源已成功收集並通過一致性檢查，不代表所有可能遙測都存在；目前集合沒有逐連線 firewall log、PCAP 或執行期間的 SMB client snapshot，因此無法用本次證據斷言 Kali 從未嘗試直接 SMB，也不能從事後空白的 SMB state 否定 USER01 先前的存取。",
+    "evidence_ids": [
+      "RYUK-L10",
+      "RYUK-U04",
+      "RYUK-N01"
+    ],
+    "keywords": [
+      "data quality",
+      "資料品質",
+      "verified success",
+      "raw evidence",
+      "firewall log",
+      "PCAP",
+      "缺少證據",
+      "SENSOR01",
+      "完整性",
+      "Kali",
+      "DC01",
+      "SMB",
+      "直接修改",
+      "漏洞",
+      "入侵"
+    ]
+  },
+  {
+    "chunk_id": "RYUK-lab-workflow-01",
+    "scenario": "ryuk",
+    "stage": "workflow",
+    "source_type": "evidence_synthesis",
+    "title": "在隔離虛擬機中重現並還原安全模擬情境",
+    "text": "若要重現這個受控教學情境，應沿用既有虛擬機角色與安全腳本：先由 Kali 提供 HTTP 下載內容，再由 USER01 下載並執行安全模擬腳本，把 DC01 RyukShare 當成模擬目標；完成後查看 DC01 的安全模擬輸出，使用復原流程建立解碼副本，最後由 SENSOR01 收集並正規化跨主機證據。這條流程用來重建 delivery、execution、impact、restore 與 collection 的證據關係，不代表執行真實惡意程式，也不應改成破壞性操作。",
+    "evidence_ids": [
+      "RYUK-C01",
+      "RYUK-L02",
+      "RYUK-L05",
+      "RYUK-L10"
+    ],
+    "keywords": [
+      "虛擬機",
+      "VM",
+      "重現",
+      "還原情境",
+      "安全模擬流程",
+      "Kali",
+      "USER01",
+      "DC01",
+      "SENSOR01",
+      "delivery",
+      "execution",
+      "impact",
+      "restore",
+      "collection"
+    ]
+  }
+]
